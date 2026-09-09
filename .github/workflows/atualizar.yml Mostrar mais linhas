@@ -1,0 +1,45 @@
+name: Atualizar Noticias
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+
+  atualizar:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Baixar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar bibliotecas
+        run: |
+          pip install -r requirements.txt
+
+      - name: Gerar noticias
+        run: |
+          python noticias.py
+
+      - name: Publicar atualizacao
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add index.html
+
+          git commit -m "Atualizando noticias" || echo "Sem alteracoes"
+
+          git push
