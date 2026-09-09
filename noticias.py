@@ -451,12 +451,14 @@ def criar_index(noticias):
 </html>'''
 
 # Para isto (com chaves duplas):
-html_final = (
-    html_template.replace("{{HORARIO}}", horario)
-    .replace("{{QUANTIDADE}}", quantidade)
-    .replace("{{FILTROS}}", filtros_html)
-    .replace("{{CARDS}}", cards_html)
-)
+'''
+
+    html_final = (
+        html_template.replace("__HORARIO__", horario)
+        .replace("__QUANTIDADE__", quantidade)
+        .replace("__FILTROS__", filtros_html)
+        .replace("__CARDS__", cards_html)
+    )
 
     CAMINHO_INDEX.write_text(html_final, encoding="utf-8")
     print(f"Página gerada com sucesso em: {CAMINHO_INDEX}")
