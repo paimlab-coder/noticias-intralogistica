@@ -1,126 +1,35 @@
-import feedparser
-from datetime import datetime
+name: Atualizar Notícias
 
-RSS_FEEDS = {
-    "Supply Chain Dive": "https://www.supplychaindive.com/feeds/news/",
-    "Material Handling 24/7": "https://www.mhlnews.com/rss.xml",
-    "DC Velocity": "https://www.dcvelocity.com/rss/topic/174-news",
-}
+on:
+  schedule:
+    - cron: "*/30 * * * *"
 
-def buscar_noticias():
-    noticias = []
+  workflow_dispatch:
 
-    for fonte, feed_url in RSS_FEEDS.items():
-        try:
-            feed = feedparser.parse(feed_url)
+permissions:
+  contents: write
 
-            for item in feed.entries[:10]:
-                noticias.append({
-                    "fonte": fonte,
-                    "titulo": item.get("title", "Sem título"),
-                    "link": item.get("link", "#"),
-                    "data": item.get("published", "")
-                })
+jobs:
+  update:
 
-        except Exception as erro:
-            print(f"Erro em {fonte}: {erro}")
+    runs-on: ubuntu-latest
 
-    return noticias
+    steps:
 
+      - uses: actions/checkout@v4
 
-def gerar_html(noticias):
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-    html = f"""
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="utf-8">
-<title>Radar de Notícias - Intralogística</title>
+      - run: pip install feedparser
 
-<style>
+      - run: python noticias.py
 
-body {{
-    font-family: Arial, sans-serif;
-    background:#f5f5f5;
-    margin:0;
-}}
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
-header {{
-    background:#003366;
-    color:white;
-    padding:20px;
-}}
-
-.container {{
-    width:90%;
-    margin:auto;
-}}
-
-.card {{
-    background:white;
-    padding:20px;
-    margin:15px 0;
-    border-radius:8px;
-    box-shadow:0 2px 5px rgba(0,0,0,.1);
-}}
-
-.fonte {{
-    color:#0066cc;
-    font-size:12px;
-    font-weight:bold;
-}}
-
-a {{
-    text-decoration:none;
-}}
-
-</style>
-
-</head>
-<body>
-
-<header>
-    <h1>Radar de Notícias Logística & Intralogística</h1>
-    <p>Atualizado em {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}</p>
-</header>
-
-<div class="container">
-
-"""
-
-    for noticia in noticias:
-
-        html += f"""
-        <div class="card">
-
-            <div class="fonte">
-                {noticia['fonte']}
-            </div>
-
-            <h2>
-                <a href="{noticia['link']}"           {noticia['titulo']}
-                </a>
-            </h2>
-
-            <small>{noticia['data']}</small>
-
-        </div>
-        """
-
-    html += """
-</div>
-</body>
-</html>
-"""
-
-    with open("index.html", "w", encoding="utf-8") as arquivo:
-        arquivo.write(html)
-
-
-if __name__ == "__main__":
-
-    noticias = buscar_noticias()
-
-    gerar_html(noticias)
-
-    print(f"{len(noticias)} notícias processadas.")
+          git add index.html
+          git commit -m "Atualizando notícias" || exit 0
+          git push
