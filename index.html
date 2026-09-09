@@ -1,208 +1,4 @@
-from datetime import datetime
-from pathlib import Path
-from urllib.request import Request, urlopen
-from urllib.parse import quote_plus
-from email.utils import parsedate_to_datetime
-import xml.etree.ElementTree as ET
-import html
-import base64
-
-# ============================================================
-# CONFIGURAÇÕES
-# ============================================================
-
-PASTA_PROJETO = Path(__file__).resolve().parent
-CAMINHO_INDEX = PASTA_PROJETO / "index.html"
-LIMITE_POR_CATEGORIA = 8
-
-PESQUISAS = {
-    "Intralogística": "intralogística OR intralogistica",
-    "Armazenagem": "armazenagem industrial",
-    "Automação Logística": "automação logística",
-    "Supply Chain": "supply chain Brasil",
-}
-
-CORES_CATEGORIAS = {
-    "Intralogística": "#2563eb",       # Azul Vibrant
-    "Armazenagem": "#d97706",          # Âmbar
-    "Automação Logística": "#7c3aed", # Roxo
-    "Supply Chain": "#059669",         # Esmeralda
-}
-
-ICONES_CATEGORIAS = {
-    "Intralogística": "▦",
-    "Armazenagem": "▤",
-    "Automação Logística": "⚙",
-    "Supply Chain": "⇄",
-}
-
-# ============================================================
-# FUNÇÕES AUXILIARES
-# ============================================================
-
-def criar_imagem_padrao(categoria):
-    cor = CORES_CATEGORIAS.get(categoria, "#2563eb")
-    icone = ICONES_CATEGORIAS.get(categoria, "▦")
-
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="600" height="320" viewBox="0 0 600 320">
-    <defs>
-        <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="{cor}" />
-            <stop offset="100%" stop-color="#0f172a" />
-        </linearGradient>
-    </defs>
-    <rect width="600" height="320" rx="16" fill="url(#fundo)"/>
-    <circle cx="300" cy="120" r="60" fill="rgba(255,255,255,0.12)"/>
-    <text x="300" y="145" text-anchor="middle" font-size="64" fill="white">{icone}</text>
-    <text x="300" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="white">{html.escape(categoria)}</text>
-    <text x="300" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.7)" letter-spacing="2">RADAR LOGÍSTICO</text>
-</svg>"""
-
-    svg_base64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
-    return f"data:image/svg+xml;base64,{svg_base64}"
-
-
-def formatar_data(data_original):
-    if not data_original:
-        return "Data não informada"
-    try:
-        data_convertida = parsedate_to_datetime(data_original)
-        return data_convertida.strftime("%d/%m/%Y às %H:%M")
-    except (TypeError, ValueError):
-        return data_original
-
-
-def obter_texto(elemento, valor_padrao=""):
-    if elemento is not None and elemento.text:
-        return elemento.text.strip()
-    return valor_padrao
-
-
-def procurar_imagem(item):
-    namespaces = {"media": "http://search.yahoo.com/mrss/"}
-    
-    media_content = item.find("media:content", namespaces)
-    if media_content is not None and media_content.get("url"):
-        return media_content.get("url")
-
-    media_thumbnail = item.find("media:thumbnail", namespaces)
-    if media_thumbnail is not None and media_thumbnail.get("url"):
-        return media_thumbnail.get("url")
-
-    enclosure = item.find("enclosure")
-    if enclosure is not None:
-        tipo = enclosure.get("type", "")
-        url_imagem = enclosure.get("url", "")
-        if tipo.startswith("image/") and url_imagem:
-            return url_imagem
-
-    return None
-
-# ============================================================
-# BUSCA DAS NOTÍCIAS
-# ============================================================
-
-def buscar_noticias():
-    noticias = []
-    links_encontrados = set()
-
-    for categoria, pesquisa in PESQUISAS.items():
-        termo = quote_plus(pesquisa)
-        url = f"https://news.google.com/rss/search?q={termo}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
-
-        print(f"Consultando: {categoria}")
-
-        requisicao = Request(
-            url,
-            headers={
-                "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/120.0.0.0 Safari/537.36"
-                )
-            },
-        )
-
-        try:
-            with urlopen(requisicao, timeout=30) as resposta:
-                conteudo_xml = resposta.read()
-                raiz = ET.fromstring(conteudo_xml)
-                itens = raiz.findall(".//item")
-
-                for item in itens[:LIMITE_POR_CATEGORIA]:
-                    titulo = obter_texto(item.find("title"), "Notícia sem título")
-                    link = obter_texto(item.find("link"), "#")
-                    data_original = obter_texto(item.find("pubDate"), "")
-                    imagem = procurar_imagem(item) or criar_imagem_padrao(categoria)
-
-                    if link in links_encontrados:
-                        continue
-
-                    links_encontrados.add(link)
-                    noticias.append({
-                        "categoria": categoria,
-                        "titulo": titulo,
-                        "link": link,
-                        "imagem": imagem,
-                        "data": formatar_data(data_original),
-                    })
-
-        except Exception as erro:
-            print(f"Erro ao consultar {categoria}: {erro}")
-
-    return noticias
-
-# ============================================================
-# GERAÇÃO DO HTML
-# ============================================================
-
-def gerar_cards(noticias):
-    if not noticias:
-        return '<div class="aviso-vazio">Nenhuma notícia encontrada no momento.</div>'
-
-    cards = []
-    for noticia in noticias:
-        cat_orig = noticia["categoria"]
-        cat_slug = cat_orig.lower().replace(" ", "-")
-        cor = CORES_CATEGORIAS.get(cat_orig, "#2563eb")
-
-        card = f"""
-        <article class="card-noticia" data-categoria="{cat_slug}" style="--cor-categoria: {cor};">
-            <div class="area-imagem">
-                <img src="{html.escape(noticia['imagem'], quote=True)}" alt="{html.escape(noticia['titulo'])}" class="imagem-noticia" loading="lazy">
-            </div>
-            <div class="conteudo-noticia">
-                <span class="badge">{html.escape(cat_orig)}</span>
-                <h2>
-                    <a href="{html.escape(noticia['link'], quote=True)}" target="_blank" rel="noopener" class="titulo-noticia">
-                        {html.escape(noticia['titulo'])}
-                    </a>
-                </h2>
-                <div class="rodape-card">
-                    <span class="data">🕒 {html.escape(noticia['data'])}</span>
-                    <a href="{html.escape(noticia['link'], quote=True)}" target="_blank" rel="noopener" class="botao-noticia">
-                        Acessar ↗
-                    </a>
-                </div>
-            </div>
-        </article>
-        """
-        cards.append(card)
-
-    return "\n".join(cards)
-
-
-def criar_index(noticias):
-    cards = gerar_cards(noticias)
-    horario = datetime.now().strftime("%d/%m/%Y às %H:%M")
-    quantidade = len(noticias)
-
-    filtros_html = '<button class="btn-filtro active" data-filter="todos">Todas</button>\n'
-    for cat in PESQUISAS.keys():
-        slug = cat.lower().replace(" ", "-")
-        filtros_html += f'<button class="btn-filtro" data-filter="{slug}">{cat}</button>\n'
-
-    html_content = f"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -212,70 +8,69 @@ def criar_index(noticias):
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {{
+        :root {
             --bg-body: #0f172a;
             --bg-card: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #334155;
             --primary: #3b82f6;
-        }}
+        }
 
-        * {{
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }}
+        }
 
-        body {{
+        body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             min-height: 100vh;
             padding: 30px 20px;
-        }}
+        }
 
-        .container {{
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-        }}
+        }
 
-        header {{
+        header {
             text-align: center;
             padding: 20px 0 40px;
-        }}
+        }
 
-        h1 {{
+        h1 {
             font-size: 2.5rem;
             font-weight: 700;
             background: linear-gradient(to right, #3b82f6, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-        }}
+        }
 
-        .subtitulo {{
+        .subtitulo {
             color: var(--text-muted);
             font-size: 1.1rem;
             margin-bottom: 8px;
-        }}
+        }
 
-        .atualizacao {{
+        .atualizacao {
             color: var(--text-muted);
             font-size: 0.85rem;
             opacity: 0.8;
-        }}
+        }
 
-        /* Filtros */
-        .filtros-container {{
+        .filtros-container {
             display: flex;
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
             margin-bottom: 35px;
-        }}
+        }
 
-        .btn-filtro {{
+        .btn-filtro {
             background: var(--bg-card);
             color: var(--text-muted);
             border: 1px solid var(--border-color);
@@ -285,23 +80,22 @@ def criar_index(noticias):
             font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.2s ease;
-        }}
+        }
 
-        .btn-filtro:hover, .btn-filtro.active {{
+        .btn-filtro:hover, .btn-filtro.active {
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }}
+        }
 
-        /* Grid de Cards */
-        .grade-noticias {{
+        .grade-noticias {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
-        }}
+        }
 
-        .card-noticia {{
+        .card-noticia {
             background: var(--bg-card);
             border-radius: 14px;
             overflow: hidden;
@@ -309,40 +103,40 @@ def criar_index(noticias):
             display: flex;
             flex-direction: column;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }}
+        }
 
-        .card-noticia:hover {{
+        .card-noticia:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
             border-color: var(--cor-categoria);
-        }}
+        }
 
-        .area-imagem {{
+        .area-imagem {
             width: 100%;
             height: 180px;
             overflow: hidden;
             background: #000;
-        }}
+        }
 
-        .imagem-noticia {{
+        .imagem-noticia {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
-        }}
+        }
 
-        .card-noticia:hover .imagem-noticia {{
+        .card-noticia:hover .imagem-noticia {
             transform: scale(1.05);
-        }}
+        }
 
-        .conteudo-noticia {{
+        .conteudo-noticia {
             padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-        }}
+        }
 
-        .badge {{
+        .badge {
             align-self: flex-start;
             background: var(--cor-categoria);
             color: #ffffff;
@@ -353,69 +147,69 @@ def criar_index(noticias):
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 12px;
-        }}
+        }
 
-        .card-noticia h2 {{
+        .card-noticia h2 {
             font-size: 1.1rem;
             line-height: 1.5;
             margin-bottom: 15px;
             font-weight: 600;
-        }}
+        }
 
-        .titulo-noticia {{
+        .titulo-noticia {
             color: var(--text-main);
             text-decoration: none;
             transition: color 0.2s ease;
-        }}
+        }
 
-        .titulo-noticia:hover {{
+        .titulo-noticia:hover {
             color: var(--primary);
-        }}
+        }
 
-        .rodape-card {{
+        .rodape-card {
             margin-top: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
             border-top: 1px solid var(--border-color);
-        }}
+        }
 
-        .data {{
+        .data {
             color: var(--text-muted);
             font-size: 0.8rem;
-        }}
+        }
 
-        .botao-noticia {{
+        .botao-noticia {
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
             transition: opacity 0.2s;
-        }}
+        }
 
-        .botao-noticia:hover {{
+        .botao-noticia:hover {
             opacity: 0.8;
             text-decoration: underline;
-        }}
+        }
 
-        footer {{
+        footer {
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
             margin-top: 50px;
             padding: 20px 0;
             border-top: 1px solid var(--border-color);
-        }}
+        }
 
-        .escondido {{
+        .escondido {
             display: none !important;
-        }}
+        }
 
-        @media (max-width: 600px) {{
-            h1 {{ font-size: 1.8rem; }}
-            .grade-noticias {{ grid-template-columns: 1fr; }}
-        }}
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grade-noticias { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -423,15 +217,15 @@ def criar_index(noticias):
         <header>
             <h1>Radar Logístico</h1>
             <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
-            <p class="atualizacao">Última atualização: {horario} | {quantidade} notícias carregadas</p>
+            <p class="atualizacao">Última atualização: {{HORARIO}} | {{QUANTIDADE}} notícias carregadas</p>
         </header>
 
         <div class="filtros-container">
-            {filtros_html}
+            {{FILTROS}}
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            {cards}
+            {{CARDS}}
         </main>
 
         <footer>
@@ -440,33 +234,23 @@ def criar_index(noticias):
     </div>
 
     <script>
-        document.querySelectorAll('.btn-filtro').forEach(btn => {{
-            btn.addEventListener('click', () => {{
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', () => {
                 document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
                 const cards = document.querySelectorAll('.card-noticia');
 
-                cards.forEach(card => {{
-                    if (filter === 'todos' || card.getAttribute('data-categoria') === filter) {{
+                cards.forEach(card => {
+                    if (filter === 'todos' || card.getAttribute('data-categoria') === filter) {
                         card.classList.remove('escondido');
-                    }} else {{
+                    } else {
                         card.classList.add('escondido');
-                    }}
-                }});
-            }});
-        }});
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
-"""
-
-    CAMINHO_INDEX.write_text(html_content, encoding="utf-8")
-    print(f"Arquivo gerado com sucesso em: {CAMINHO_INDEX}")
-
-
-if __name__ == "__main__":
-    lista = buscar_noticias()
-    print(f"Notícias capturadas: {len(lista)}")
-    criar_index(lista)
