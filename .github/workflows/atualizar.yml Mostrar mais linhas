@@ -1,7 +1,3 @@
-no index 
-
-
-
 name: Atualizar Noticias
 
 on:
@@ -30,5 +26,3 @@ jobs:
           git add index.html
           git commit -m "Atualizacao" || echo "Sem alteracoes"
           git push
-
-??
