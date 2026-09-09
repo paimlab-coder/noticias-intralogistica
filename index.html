@@ -1,32 +1,126 @@
+import feedparser
+from datetime import datetime
+
+RSS_FEEDS = {
+    "Supply Chain Dive": "https://www.supplychaindive.com/feeds/news/",
+    "Material Handling 24/7": "https://www.mhlnews.com/rss.xml",
+    "DC Velocity": "https://www.dcvelocity.com/rss/topic/174-news",
+}
+
+def buscar_noticias():
+    noticias = []
+
+    for fonte, feed_url in RSS_FEEDS.items():
+        try:
+            feed = feedparser.parse(feed_url)
+
+            for item in feed.entries[:10]:
+                noticias.append({
+                    "fonte": fonte,
+                    "titulo": item.get("title", "Sem título"),
+                    "link": item.get("link", "#"),
+                    "data": item.get("published", "")
+                })
+
+        except Exception as erro:
+            print(f"Erro em {fonte}: {erro}")
+
+    return noticias
+
+
+def gerar_html(noticias):
+
+    html = f"""
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radar de Notícias - Logística & Intralogística</title>
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid #0056b3; padding-bottom: 20px; }
-        h1 { color: #0056b3; margin: 0; }
-        .atualizacao { font-size: 0.9em; color: #666; }
-        .card-noticia { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .card-noticia h2 { margin: 10px 0; font-size: 1.3em; }
-        .card-noticia a { color: #222; text-decoration: none; }
-        .card-noticia a:hover { color: #0056b3; }
-        .badge { background: #0056b3; color: white; padding: 4px 8px; font-size: 0.8em; border-radius: 4px; font-weight: bold; }
-        .data { font-size: 0.85em; color: #888; margin: 5px 0 0 0; }
-    </style>
+<meta charset="utf-8">
+<title>Radar de Notícias - Intralogística</title>
+
+<style>
+
+body {{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    margin:0;
+}}
+
+header {{
+    background:#003366;
+    color:white;
+    padding:20px;
+}}
+
+.container {{
+    width:90%;
+    margin:auto;
+}}
+
+.card {{
+    background:white;
+    padding:20px;
+    margin:15px 0;
+    border-radius:8px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}}
+
+.fonte {{
+    color:#0066cc;
+    font-size:12px;
+    font-weight:bold;
+}}
+
+a {{
+    text-decoration:none;
+}}
+
+</style>
+
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Radar Logístico & Intralogístico</h1>
-            <p class="atualizacao">Última atualização: <!-- ULTIMA_ATUALIZACAO --></p>
-        </header>
-        <main>
-            <!-- NOTICIAS_AQUI -->
-        </main>
-    </div>
+
+<header>
+    <h1>Radar de Notícias Logística & Intralogística</h1>
+    <p>Atualizado em {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}</p>
+</header>
+
+<div class="container">
+
+"""
+
+    for noticia in noticias:
+
+        html += f"""
+        <div class="card">
+
+            <div class="fonte">
+                {noticia['fonte']}
+            </div>
+
+            <h2>
+                <a href="{noticia['link']}"           {noticia['titulo']}
+                </a>
+            </h2>
+
+            <small>{noticia['data']}</small>
+
+        </div>
+        """
+
+    html += """
+</div>
 </body>
 </html>
+"""
+
+    with open("index.html", "w", encoding="utf-8") as arquivo:
+        arquivo.write(html)
+
+
+if __name__ == "__main__":
+
+    noticias = buscar_noticias()
+
+    gerar_html(noticias)
+
+    print(f"{len(noticias)} notícias processadas.")
