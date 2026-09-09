@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Radar Logístico</title>
-</head>
+name: Atualizar Noticias
 
-<body>
+on:
+  workflow_dispatch:
 
-<h1>Radar Logística & Intralogística</h1>
+jobs:
+  teste:
+    runs-on: ubuntu-latest
 
-<p>
-Última atualização:
-<!-- ULTIMA_ATUALIZACAO -->
-</p>
-
-<!-- NOTICIAS_AQUI -->
-
-</body>
-</html>
+    steps:
+      - name: Teste
+        run: echo "Funcionou"
