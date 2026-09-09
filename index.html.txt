@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar de Notícias - Logística & Intralogística</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; border-bottom: 3px solid #0056b3; padding-bottom: 20px; }
+        h1 { color: #0056b3; margin: 0; }
+        .atualizacao { font-size: 0.9em; color: #666; }
+        .card-noticia { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .card-noticia h2 { margin: 10px 0; font-size: 1.3em; }
+        .card-noticia a { color: #222; text-decoration: none; }
+        .card-noticia a:hover { color: #0056b3; }
+        .badge { background: #0056b3; color: white; padding: 4px 8px; font-size: 0.8em; border-radius: 4px; font-weight: bold; }
+        .data { font-size: 0.85em; color: #888; margin: 5px 0 0 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Radar Logístico & Intralogístico</h1>
+            <p class="atualizacao">Última atualização: <!-- ULTIMA_ATUALIZACAO --></p>
+        </header>
+        <main>
+            <!-- NOTICIAS_AQUI -->
+        </main>
+    </div>
+</body>
+</html>
