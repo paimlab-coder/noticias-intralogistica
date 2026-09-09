@@ -3,14 +3,12 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.parse import quote_plus
 from email.utils import parsedate_to_datetime
+from string import Template
 import xml.etree.ElementTree as ET
 import html
 import base64
 
-# ============================================================
 # CONFIGURAÇÕES
-# ============================================================
-
 PASTA_PROJETO = Path(__file__).resolve().parent
 CAMINHO_INDEX = PASTA_PROJETO / "index.html"
 LIMITE_POR_CATEGORIA = 8
@@ -36,10 +34,6 @@ ICONES_CATEGORIAS = {
     "Supply Chain": "⇄",
 }
 
-# ============================================================
-# FUNÇÕES AUXILIARES
-# ============================================================
-
 def criar_imagem_padrao(categoria):
     cor = CORES_CATEGORIAS.get(categoria, "#2563eb")
     icone = ICONES_CATEGORIAS.get(categoria, "▦")
@@ -61,7 +55,6 @@ def criar_imagem_padrao(categoria):
     svg_base64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
     return f"data:image/svg+xml;base64,{svg_base64}"
 
-
 def formatar_data(data_original):
     if not data_original:
         return "Data não informada"
@@ -71,12 +64,10 @@ def formatar_data(data_original):
     except (TypeError, ValueError):
         return data_original
 
-
 def obter_texto(elemento, valor_padrao=""):
     if elemento is not None and elemento.text:
         return elemento.text.strip()
     return valor_padrao
-
 
 def procurar_imagem(item):
     namespaces = {"media": "http://search.yahoo.com/mrss/"}
@@ -95,10 +86,6 @@ def procurar_imagem(item):
         if tipo.startswith("image/") and url_imagem:
             return url_imagem
     return None
-
-# ============================================================
-# BUSCA DAS NOTÍCIAS
-# ============================================================
 
 def buscar_noticias():
     noticias = []
@@ -144,10 +131,6 @@ def buscar_noticias():
 
     return noticias
 
-# ============================================================
-# RENDERIZAÇÃO
-# ============================================================
-
 def gerar_cards(noticias):
     if not noticias:
         return '<div class="aviso-vazio">Nenhuma notícia encontrada.</div>'
@@ -182,7 +165,6 @@ def gerar_cards(noticias):
 
     return "\n".join(cards)
 
-
 def criar_index(noticias):
     cards_html = gerar_cards(noticias)
     horario = datetime.now().strftime("%d/%m/%Y às %H:%M")
@@ -193,7 +175,8 @@ def criar_index(noticias):
         slug = cat.lower().replace(" ", "-")
         filtros_html += f'<button class="btn-filtro" data-filter="{slug}">{cat}</button>\n'
 
-    html_template = '''<!DOCTYPE html>
+    # Template usando $variavel para evitar conflito com {} do CSS
+    raw_template = Template('''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -211,13 +194,7 @@ def criar_index(noticias):
             --border-color: #334155;
             --primary: #3b82f6;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
@@ -225,17 +202,8 @@ def criar_index(noticias):
             min-height: 100vh;
             padding: 30px 20px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            padding: 20px 0 40px;
-        }
-
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; padding: 20px 0 40px; }
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
@@ -244,163 +212,56 @@ def criar_index(noticias):
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
         }
-
-        .subtitulo {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .atualizacao {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
+        .subtitulo { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 8px; }
+        .atualizacao { color: var(--text-muted); font-size: 0.85rem; opacity: 0.8; }
         .filtros-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 35px;
+            display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 35px;
         }
-
         .btn-filtro {
-            background: var(--bg-card);
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
+            background: var(--bg-card); color: var(--text-muted); border: 1px solid var(--border-color);
+            padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 500; font-size: 0.9rem;
             transition: all 0.2s ease;
         }
-
         .btn-filtro:hover, .btn-filtro.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
+            background: var(--primary); color: #fff; border-color: var(--primary);
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
-
         .grade-noticias {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px;
         }
-
         .card-noticia {
-            background: var(--bg-card);
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
+            background: var(--bg-card); border-radius: 14px; overflow: hidden;
+            border: 1px solid var(--border-color); display: flex; flex-direction: column;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-
         .card-noticia:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
             border-color: var(--cor-categoria);
         }
-
-        .area-imagem {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .imagem-noticia {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .card-noticia:hover .imagem-noticia {
-            transform: scale(1.05);
-        }
-
-        .conteudo-noticia {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
+        .area-imagem { width: 100%; height: 180px; overflow: hidden; background: #000; }
+        .imagem-noticia { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .card-noticia:hover .imagem-noticia { transform: scale(1.05); }
+        .conteudo-noticia { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
         .badge {
-            align-self: flex-start;
-            background: var(--cor-categoria);
-            color: #ffffff;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
+            align-self: flex-start; background: var(--cor-categoria); color: #ffffff;
+            padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;
         }
-
-        .card-noticia h2 {
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .titulo-noticia {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .titulo-noticia:hover {
-            color: var(--primary);
-        }
-
+        .card-noticia h2 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 15px; font-weight: 600; }
+        .titulo-noticia { color: var(--text-main); text-decoration: none; transition: color 0.2s ease; }
+        .titulo-noticia:hover { color: var(--primary); }
         .rodape-card {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
+            margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+            padding-top: 15px; border-top: 1px solid var(--border-color);
         }
-
-        .data {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .botao-noticia {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: opacity 0.2s;
-        }
-
-        .botao-noticia:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-
+        .data { color: var(--text-muted); font-size: 0.8rem; }
+        .botao-noticia { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: opacity 0.2s; }
+        .botao-noticia:hover { opacity: 0.8; text-decoration: underline; }
         footer {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 50px;
-            padding: 20px 0;
-            border-top: 1px solid var(--border-color);
+            text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 50px;
+            padding: 20px 0; border-top: 1px solid var(--border-color);
         }
-
-        .escondido {
-            display: none !important;
-        }
-
+        .escondido { display: none !important; }
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
             .grade-noticias { grid-template-columns: 1fr; }
@@ -412,15 +273,15 @@ def criar_index(noticias):
         <header>
             <h1>Radar Logístico</h1>
             <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
-            <p class="atualizacao">Última atualização: __HORARIO__ | __QUANTIDADE__ notícias carregadas</p>
+            <p class="atualizacao">Última atualização: $horario | $quantidade notícias carregadas</p>
         </header>
 
         <div class="filtros-container">
-            __FILTROS__
+            $filtros
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            __CARDS__
+            $cards
         </main>
 
         <footer>
@@ -448,18 +309,17 @@ def criar_index(noticias):
         });
     </script>
 </body>
-</html>'''
+</html>''')
 
-    html_final = (
-        html_template.replace("__HORARIO__", horario)
-        .replace("__QUANTIDADE__", quantidade)
-        .replace("__FILTROS__", filtros_html)
-        .replace("__CARDS__", cards_html)
+    html_final = raw_template.substitute(
+        horario=horario,
+        quantidade=quantidade,
+        filtros=filtros_html,
+        cards=cards_html
     )
 
     CAMINHO_INDEX.write_text(html_final, encoding="utf-8")
     print(f"Página gerada com sucesso em: {CAMINHO_INDEX}")
-
 
 if __name__ == "__main__":
     lista = buscar_noticias()
