@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Logístico & Intralogístico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --primary: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .atualizacao {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .filtros-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .btn-filtro {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-filtro:hover, .btn-filtro.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .grade-noticias {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card-noticia {
+            background: var(--bg-card);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card-noticia:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            border-color: var(--cor-categoria);
+        }
+
+        .area-imagem {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .imagem-noticia {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card-noticia:hover .imagem-noticia {
+            transform: scale(1.05);
+        }
+
+        .conteudo-noticia {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .badge {
+            align-self: flex-start;
+            background: var(--cor-categoria);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .card-noticia h2 {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .titulo-noticia {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .titulo-noticia:hover {
+            color: var(--primary);
+        }
+
+        .rodape-card {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .data {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .botao-noticia {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+
+        .botao-noticia:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .escondido {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grade-noticias { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Radar Logístico</h1>
+            <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
+            <p class="atualizacao">Aguardando primeira execução do fluxo do GitHub Actions...</p>
+        </header>
+
+        <div class="filtros-container">
+            <button class="btn-filtro active" data-filter="todos">Todas</button>
+            <button class="btn-filtro" data-filter="intralogística">Intralogística</button>
+            <button class="btn-filtro" data-filter="armazenagem">Armazenagem</button>
+            <button class="btn-filtro" data-filter="automação-logística">Automação Logística</button>
+            <button class="btn-filtro" data-filter="supply-chain">Supply Chain</button>
+        </div>
+
+        <main class="grade-noticias" id="gridNoticias">
+            <!-- As notícias serão preenchidas automaticamente aqui -->
+        </main>
+
+        <footer>
+            Radar Logístico • Notícias atualizadas automaticamente via Google News.
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.card-noticia');
+
+                cards.forEach(card => {
+                    if (filter === 'todos' || card.getAttribute('data-categoria') === filter) {
+                        card.classList.remove('escondido');
+                    } else {
+                        card.classList.add('escondido');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
