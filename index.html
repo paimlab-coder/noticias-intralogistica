@@ -1,35 +1,84 @@
-name: Atualizar Notícias
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-on:
-  schedule:
-    - cron: "*/30 * * * *"
+<title>Radar de Notícias Logística & Intralogística</title>
 
-  workflow_dispatch:
+<style>
+body {
+    font-family: Segoe UI, Arial, sans-serif;
+    background:#f4f7f6;
+    margin:0;
+    padding:20px;
+}
 
-permissions:
-  contents: write
+.container {
+    max-width:1000px;
+    margin:auto;
+}
 
-jobs:
-  update:
+header{
+    text-align:center;
+    border-bottom:3px solid #0056b3;
+    margin-bottom:20px;
+    padding-bottom:20px;
+}
 
-    runs-on: ubuntu-latest
+h1{
+    color:#0056b3;
+}
 
-    steps:
+.card-noticia{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    margin-bottom:15px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
 
-      - uses: actions/checkout@v4
+.badge{
+    background:#0056b3;
+    color:white;
+    padding:4px 8px;
+    border-radius:4px;
+    font-size:12px;
+}
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+.card-noticia a{
+    color:#222;
+    text-decoration:none;
+}
 
-      - run: pip install feedparser
+.card-noticia a:hover{
+    color:#0056b3;
+}
+</style>
 
-      - run: python noticias.py
+</head>
 
-      - run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+<body>
 
-          git add index.html
-          git commit -m "Atualizando notícias" || exit 0
-          git push
+<div class="container">
+
+<header>
+<h1>Radar Logística & Intralogística</h1>
+
+<p>
+Última atualização:
+<!-- ULTIMA_ATUALIZACAO -->
+</p>
+
+</header>
+
+<main>
+
+<!-- NOTICIAS_AQUI -->
+
+</main>
+
+</div>
+
+</body>
+</html>
