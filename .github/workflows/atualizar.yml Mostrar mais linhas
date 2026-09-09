@@ -1,12 +1,34 @@
+no index 
+
+
+
 name: Atualizar Noticias
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  teste:
+  atualizar:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Teste
-        run: echo "Funcionou"
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python noticias.py
+
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add index.html
+          git commit -m "Atualizacao" || echo "Sem alteracoes"
+          git push
+
+??
