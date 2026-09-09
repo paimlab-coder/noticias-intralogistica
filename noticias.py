@@ -3,6 +3,10 @@ from datetime import datetime
 html = f"""
 <!DOCTYPE html>
 <html>
+<head>
+<title>Radar Logístico</title>
+</head>
+
 <body>
 
 <h1>Radar Logística & Intralogística</h1>
