@@ -450,9 +450,6 @@ def criar_index(noticias):
 </body>
 </html>'''
 
-# Para isto (com chaves duplas):
-'''
-
     html_final = (
         html_template.replace("__HORARIO__", horario)
         .replace("__QUANTIDADE__", quantidade)
