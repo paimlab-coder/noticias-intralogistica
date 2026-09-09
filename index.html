@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
 
@@ -17,94 +18,133 @@
 
         body {
             font-family: "Segoe UI", Arial, sans-serif;
-            background: #f4f7f6;
-            color: #333;
+            background: #eef3f6;
+            color: #263238;
             margin: 0;
-            padding: 20px;
         }
 
-        .container {
-            max-width: 1050px;
+        /* CABEÇALHO */
+
+        .cabecalho {
+            background:
+                linear-gradient(
+                    135deg,
+                    #003f7d,
+                    #0072ce
+                );
+            color: white;
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        .cabecalho-conteudo {
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        header {
-            text-align: center;
-            border-bottom: 3px solid #0056b3;
-            margin-bottom: 30px;
-            padding: 20px 10px;
-        }
-
-        h1 {
-            color: #0056b3;
+        .cabecalho h1 {
             margin: 0 0 10px;
+            font-size: 34px;
         }
 
-        .subtitulo {
-            color: #52616b;
-            margin: 0 0 8px;
+        .cabecalho .subtitulo {
+            margin: 0 0 14px;
+            font-size: 17px;
+            opacity: 0.92;
         }
 
-        .atualizacao {
-            color: #777;
-            font-size: 13px;
+        .cabecalho .atualizacao {
             margin: 0;
+            font-size: 13px;
+            opacity: 0.80;
         }
+
+        /* CONTEÚDO */
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+
+        .titulo-secao {
+            margin: 0 0 22px;
+            color: #12344d;
+            font-size: 23px;
+        }
+
+        /* GRADE DE NOTÍCIAS */
 
         .grade-noticias {
             display: grid;
-            grid-template-columns: repeat(
-                2,
-                minmax(0, 1fr)
-            );
-            gap: 20px;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            gap: 22px;
         }
 
+        /* CARD */
+
         .card-noticia {
-            background: #ffffff;
-            border-top: 5px solid var(
-                --cor-categoria,
-                #0056b3
-            );
-            border-radius: 10px;
+            --cor-categoria: #0056b3;
+
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 3px 12px
-                rgba(0, 0, 0, 0.10);
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.10);
+
+            border-top:
+                5px solid var(--cor-categoria);
+
             display: flex;
             flex-direction: column;
             min-width: 0;
+
             transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+                transform 0.20s ease,
+                box-shadow 0.20s ease;
         }
 
         .card-noticia:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 18px
-                rgba(0, 0, 0, 0.14);
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 9px 22px rgba(0, 0, 0, 0.15);
         }
+
+        /* IMAGEM */
 
         .area-imagem {
             width: 100%;
-            height: 180px;
+            height: 190px;
             overflow: hidden;
-            background: #dfe7ec;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--cor-categoria),
+                    #102a43
+                );
         }
 
         .imagem-noticia {
+            display: block;
             width: 100%;
             height: 100%;
-            display: block;
             object-fit: cover;
-            transition: transform 0.3s ease;
+
+            transition:
+                transform 0.30s ease;
         }
 
         .card-noticia:hover .imagem-noticia {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
+        /* INFORMAÇÕES */
+
         .conteudo-noticia {
-            padding: 20px;
+            padding: 21px;
+
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -113,60 +153,63 @@
 
         .badge {
             align-self: flex-start;
-            background: var(
-                --cor-categoria,
-                #0056b3
-            );
-            color: #ffffff;
-            padding: 5px 9px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
+
+            background: var(--cor-categoria);
+            color: white;
+
+            padding: 5px 10px;
+            border-radius: 20px;
+
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         .card-noticia h2 {
+            margin: 15px 0 12px;
             font-size: 19px;
-            line-height: 1.4;
-            margin: 14px 0 10px;
+            line-height: 1.38;
+
             overflow-wrap: anywhere;
         }
 
         .titulo-noticia {
-            color: #222;
+            color: #172b3a;
             text-decoration: none;
         }
 
         .titulo-noticia:hover {
-            color: var(
-                --cor-categoria,
-                #0056b3
-            );
-            text-decoration: underline;
+            color: var(--cor-categoria);
         }
 
         .data {
-            color: #777;
+            color: #71808a;
             font-size: 13px;
-            margin: 0 0 18px;
+            margin: 0 0 20px;
         }
+
+        /* BOTÃO */
 
         .botao-noticia {
             display: inline-block;
             align-self: flex-start;
+
             margin-top: auto;
-            background: var(
-                --cor-categoria,
-                #0056b3
-            );
-            color: #ffffff;
-            padding: 10px 16px;
-            border-radius: 6px;
+            padding: 10px 17px;
+
+            background: var(--cor-categoria);
+            color: white;
+
+            border-radius: 7px;
             text-decoration: none;
-            font-weight: bold;
+
             font-size: 14px;
+            font-weight: 700;
+
             transition:
-                filter 0.2s ease,
-                transform 0.2s ease;
+                filter 0.20s ease,
+                transform 0.20s ease;
         }
 
         .botao-noticia:hover {
@@ -174,20 +217,50 @@
             transform: translateY(-1px);
         }
 
-        .card-aviso {
+        /* MENSAGEM SEM NOTÍCIAS */
+
+        .mensagem-vazia {
             grid-column: 1 / -1;
+
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+
+            box-shadow:
+                0 4px 14px rgba(0, 0, 0, 0.08);
         }
+
+        /* RODAPÉ */
 
         footer {
-            color: #777;
+            margin-top: 40px;
+            padding: 25px 15px;
+
+            border-top: 1px solid #d5dde2;
+
+            color: #71808a;
             font-size: 12px;
             text-align: center;
-            padding: 30px 0 15px;
         }
 
-        @media (max-width: 750px) {
-            body {
-                padding: 12px;
+        /* CELULAR */
+
+        @media (max-width: 760px) {
+            .cabecalho {
+                padding: 32px 16px;
+            }
+
+            .cabecalho h1 {
+                font-size: 27px;
+            }
+
+            .cabecalho .subtitulo {
+                font-size: 15px;
+            }
+
+            .container {
+                padding: 24px 14px;
             }
 
             .grade-noticias {
@@ -195,967 +268,53 @@
             }
 
             .area-imagem {
-                height: 190px;
-            }
-
-            h1 {
-                font-size: 26px;
+                height: 200px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Radar Logístico &amp; Intralogístico</h1>
+
+    <header class="cabecalho">
+        <div class="cabecalho-conteudo">
+
+            <h1>
+                Radar Logístico &amp; Intralogístico
+            </h1>
 
             <p class="subtitulo">
-                Notícias sobre armazenagem, automação e Supply Chain
+                Notícias sobre armazenagem, automação,
+                intralogística e Supply Chain
             </p>
 
             <p class="atualizacao">
-                Última atualização: 09/09/2026 às 14:54
-                | 31 notícias
+                Última atualização:
+                <!-- ULTIMA_ATUALIZACAO -->
             </p>
-        </header>
+
+        </div>
+    </header>
+
+    <div class="container">
+
+        <h2 class="titulo-secao">
+            Últimas notícias
+        </h2>
 
         <main class="grade-noticias">
-            
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
 
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
+            <!-- NOTICIAS_AQUI -->
 
-                <h2>
-                    https://news.google.com/rss/articles/CBMijgFBVV95cUxOUTVNU0xJenNXRzU4RnhGX21mU25zNDdoekpvNm1UaFZ1SjZwTmtEUi1OOGMzTW56SzZZc2hWcl9pdVRBazBNbTgwX204eEVQdHFha1NrM2xhaFNJem01VjdCZDdLeURoZ1VROE9INkxDN3pHVUJNZTRGOHZQZG81SHpHV0IyaHFXSUhsSHhR?oc=5
-                        Automação logística evolui e exige projetos mais sofisticados de intralogística - MundoLogística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 24/08/2026 às 12:15
-                </p>
-
-                https://news.google.com/rss/articles/CBMijgFBVV95cUxOUTVNU0xJenNXRzU4RnhGX21mU25zNDdoekpvNm1UaFZ1SjZwTmtEUi1OOGMzTW56SzZZc2hWcl9pdVRBazBNbTgwX204eEVQdHFha1NrM2xhaFNJem01VjdCZDdLeURoZ1VROE9INkxDN3pHVUJNZTRGOHZQZG81SHpHV0IyaHFXSUhsSHhR?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiowFBVV95cUxQZkpxQUEwRnNPVjRLTGVfRmVRaThxNjVaRFpkUks4Nm9UeEJKRmx0azViZ0piZGVqWHVIUkhIRmFwNElnb3RFemxPdmxpU3Y1TkNTNFl2Skh4Rm9tUmtEaWNNQzd4T3Vlc2Vnek5TZEhNZHh4Zk85aE83ZkhYVVp6cDZPcVZQT2tRc2ctRUZEVGcxbDk5VEpYZWlpZzVHb3c4czR3?oc=5
-                        Baixa automação trava intralogística nos CDs brasileiros - Transporte Moderno
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 27/03/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMiowFBVV95cUxQZkpxQUEwRnNPVjRLTGVfRmVRaThxNjVaRFpkUks4Nm9UeEJKRmx0azViZ0piZGVqWHVIUkhIRmFwNElnb3RFemxPdmxpU3Y1TkNTNFl2Skh4Rm9tUmtEaWNNQzd4T3Vlc2Vnek5TZEhNZHh4Zk85aE83ZkhYVVp6cDZPcVZQT2tRc2ctRUZEVGcxbDk5VEpYZWlpZzVHb3c4czR3?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi4gFBVV95cUxOcEctRVRyaU4ybnAwRjRmSnVkSDRhSUVsNHU4bUpVVHVEd2txbW9pUlJQNHRhRGVCbkNvS3JjZy1SWk1Ibzk0X0Y4WEdXMzVTUXhRdDFTNEowSERLQ2EzM050T29lYlR3TnVIYW1fVXFldU04a3FrOGhpVGlCMUQ1eGVKbmVBZlU3czEwc053Z1hyN2FpVW9QaWVfbUJsYmJyaDFiQ25JbWNST3Vjbk5RMldVY2hXTFktckxReWZ3VXA1ZDNZNHU3ZndlTG9JZ2x6SEpDRWFpMm92OFd3SndrVjhn?oc=5
-                        Águia Sistemas leva ao Fórum E-Commerce Brasil debate sobre escalabilidade inteligente na intralogística - E-Commerce Brasil
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 09/07/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMi4gFBVV95cUxOcEctRVRyaU4ybnAwRjRmSnVkSDRhSUVsNHU4bUpVVHVEd2txbW9pUlJQNHRhRGVCbkNvS3JjZy1SWk1Ibzk0X0Y4WEdXMzVTUXhRdDFTNEowSERLQ2EzM050T29lYlR3TnVIYW1fVXFldU04a3FrOGhpVGlCMUQ1eGVKbmVBZlU3czEwc053Z1hyN2FpVW9QaWVfbUJsYmJyaDFiQ25JbWNST3Vjbk5RMldVY2hXTFktckxReWZ3VXA1ZDNZNHU3ZndlTG9JZ2x6SEpDRWFpMm92OFd3SndrVjhn?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi2gFBVV95cUxQVVU3Y19TLW16ZGhuR1VzOFJpQXMtZERMVHRxZHpNa2dQZUNqY2FuWmxDNWZzUHkwM0lMa1NXRnAxX3BhYUEzTjlpekxLaFFiS0NzeE1FbEl1NW55eGxnUlNfZFVRRTdzWnRYemtxbEFiVEYwUXhrT2F1bXJST2owRmJkNTF4V2RYbllxU2haVjNhX1JtTnowUThpVkNqZGplaDVPTUl1OEwyR3RqM09PWERtTTNtN1ZzOGxFUElTcC1VMUNXRGI0UGdQelpqOWNIRDdmVkxHOW1XUQ?oc=5
-                        Comau anuncia aquisição da brasileira Invent para ampliar atuação em intralogística - Tecnologística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 18/05/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMi2gFBVV95cUxQVVU3Y19TLW16ZGhuR1VzOFJpQXMtZERMVHRxZHpNa2dQZUNqY2FuWmxDNWZzUHkwM0lMa1NXRnAxX3BhYUEzTjlpekxLaFFiS0NzeE1FbEl1NW55eGxnUlNfZFVRRTdzWnRYemtxbEFiVEYwUXhrT2F1bXJST2owRmJkNTF4V2RYbllxU2haVjNhX1JtTnowUThpVkNqZGplaDVPTUl1OEwyR3RqM09PWERtTTNtN1ZzOGxFUElTcC1VMUNXRGI0UGdQelpqOWNIRDdmVkxHOW1XUQ?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMilAFBVV95cUxQYXNPSW1peWxYRjh3OVFQREJScUxBWWpyQWVvdXpCdndnajFOSjdncUpWOWY5eEhTa0laTTAweDBMNWFrTzRZM2ZBa3o3clZkX2dwLWdJVnRmZlVPOGJJOW4tcktnaUNmMnZpZWdySWJPS1BUMmJTVkZPMHlvQ0g2SWVBUjZOSVJyRGFWamEtYVlYTDR6?oc=5
-                        Robôs humanoides transformarão a intralogística antes do esperado - Frota&amp;Cia
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 08/07/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMilAFBVV95cUxQYXNPSW1peWxYRjh3OVFQREJScUxBWWpyQWVvdXpCdndnajFOSjdncUpWOWY5eEhTa0laTTAweDBMNWFrTzRZM2ZBa3o3clZkX2dwLWdJVnRmZlVPOGJJOW4tcktnaUNmMnZpZWdySWJPS1BUMmJTVkZPMHlvQ0g2SWVBUjZOSVJyRGFWamEtYVlYTDR6?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiugFBVV95cUxQczFVNkJBU0hJQ0Z5cVItdXFRbF9ZX2IwbDlzdEdmeWd4UnVER1gxZHJkVFNkYjkwYXIxV1hFNElfdGFfLUsyZXNJU2FVbkNneFRFM3o2YmFIcEZUaTh4c3h3WFNzcGVaSHpyeDJlWWc0T1VZU2p3UW1XWXAxSVBaNDhBdW1GdEhpVWtXVlFFRm5lRFNqR09FNm5QZVZuQUJPNGg0eDg3MERUTWNUQlgxYXVFQ0puVVM0SlHSAb8BQVVfeXFMTlhBZU14XzF3d0JSaE5MZ1RrOU9taVMtRVFMek9WWEdNbTdHME5vTHNWOTR6dTR0ekwtc3hKbTFBdVpBVU5LWjFGSm5CZjhiMll4bktfSmhGNWphenZkTjZEcDIyZUxPRWU1dHpkS3pKWmRYbTIwMnVocmtjaWd2dm93eFBqRzgxUGthYjVhTjB0ZW5LUGVTWVlrUUo3NTJWQXAyYVdxVzJxeXoxa2ZaSlZOVGlqMUFVM0xxVHQ5OU0?oc=5
-                        JSL (JSLG3) lança Intralog como nova empresa subsidiária, focada em intralogística - InfoMoney
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 25/03/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMiugFBVV95cUxQczFVNkJBU0hJQ0Z5cVItdXFRbF9ZX2IwbDlzdEdmeWd4UnVER1gxZHJkVFNkYjkwYXIxV1hFNElfdGFfLUsyZXNJU2FVbkNneFRFM3o2YmFIcEZUaTh4c3h3WFNzcGVaSHpyeDJlWWc0T1VZU2p3UW1XWXAxSVBaNDhBdW1GdEhpVWtXVlFFRm5lRFNqR09FNm5QZVZuQUJPNGg0eDg3MERUTWNUQlgxYXVFQ0puVVM0SlHSAb8BQVVfeXFMTlhBZU14XzF3d0JSaE5MZ1RrOU9taVMtRVFMek9WWEdNbTdHME5vTHNWOTR6dTR0ekwtc3hKbTFBdVpBVU5LWjFGSm5CZjhiMll4bktfSmhGNWphenZkTjZEcDIyZUxPRWU1dHpkS3pKWmRYbTIwMnVocmtjaWd2dm93eFBqRzgxUGthYjVhTjB0ZW5LUGVTWVlrUUo3NTJWQXAyYVdxVzJxeXoxa2ZaSlZOVGlqMUFVM0xxVHQ5OU0?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiswFBVV95cUxQV0g3TTRrajkwR0tLS1hLN2NUbnB4empNUUs1S3NFNjRiT2o5djlTWUtVMnhQNWtCNHhTbkdFSmE1SWZxdFRKODhlVVB4VnZXbGo0RXh0dHRPeU9VQ2FDUXctTWszXzJsbGYtWks2SE1IaTE1LXBROTFfMWZnQzVMajB6Z1A5R19QYjdmNy1pb2tQS21ESzFFa2xlcHZ3aFJKMkpnZ3RLWE1JTGNENHBJRXZSSQ?oc=5
-                        Intermodal 2026 lança Projeto Smart Intralogística - Portogente
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 26/03/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMiswFBVV95cUxQV0g3TTRrajkwR0tLS1hLN2NUbnB4empNUUs1S3NFNjRiT2o5djlTWUtVMnhQNWtCNHhTbkdFSmE1SWZxdFRKODhlVVB4VnZXbGo0RXh0dHRPeU9VQ2FDUXctTWszXzJsbGYtWks2SE1IaTE1LXBROTFfMWZnQzVMajB6Z1A5R19QYjdmNy1pb2tQS21ESzFFa2xlcHZ3aFJKMkpnZ3RLWE1JTGNENHBJRXZSSQ?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #0056b3;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDU2YjMiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpgogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgSW50cmFsb2fDrXN0aWNhCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Intralogística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMijgFBVV95cUxQZDI5eVQwWGM0QUI5a2JvZHMySE9Qb281U2pXVXgtU3NsWklQSllBeVkyZVJLSlZCb281c19BMkhteHdsQ2E5d19uOURTSi12Zi15c3oxUlk4aUJDbkVJRTZXMXlBUk9SekYwSWRvUDhBNE5aR3F3eUJMdlhnbzhXMjcyZkxLUWM0T2VzeWx3?oc=5
-                        Coca-Cola Andina e E80 Group: Um case de intralogística - MundoLogística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 13/05/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMijgFBVV95cUxQZDI5eVQwWGM0QUI5a2JvZHMySE9Qb281U2pXVXgtU3NsWklQSllBeVkyZVJLSlZCb281c19BMkhteHdsQ2E5d19uOURTSi12Zi15c3oxUlk4aUJDbkVJRTZXMXlBUk9SekYwSWRvUDhBNE5aR3F3eUJMdlhnbzhXMjcyZkxLUWM0T2VzeWx3?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi1wFBVV95cUxOa2tLM1FnVEc5dmVvU1BraDdFeUwwUUkzSUpXUldyRm1YUHBnSENVd1hKcmhocFpWX0wxYU9sY3RVT2hsdDFTOE12YVRiMWNVTHJWOE14cXZ6cV9ITnZra1VQMW9rQXBxeDNuNnZxc0MxQTVidURfYVhaQW9HN0FhSXU5NWJjU1JVM3NPRHdPTC1ENVB4bmhQQmdKTEdBQ0JEbjNjZXlqZ3E4WFhGY3pBemtrNXhNOGZTNjRkRjR3ODZEQW9oa2FXZXJTTUFFcF85c3hxaFZEWQ?oc=5
-                        Copagril vai investir R$ 200 milhões em novo complexo industrial para ampliar armazenagem e produção de rações - O Presente Rural
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 27/07/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMi1wFBVV95cUxOa2tLM1FnVEc5dmVvU1BraDdFeUwwUUkzSUpXUldyRm1YUHBnSENVd1hKcmhocFpWX0wxYU9sY3RVT2hsdDFTOE12YVRiMWNVTHJWOE14cXZ6cV9ITnZra1VQMW9rQXBxeDNuNnZxc0MxQTVidURfYVhaQW9HN0FhSXU5NWJjU1JVM3NPRHdPTC1ENVB4bmhQQmdKTEdBQ0JEbjNjZXlqZ3E4WFhGY3pBemtrNXhNOGZTNjRkRjR3ODZEQW9oa2FXZXJTTUFFcF85c3hxaFZEWQ?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMinwFBVV95cUxQS1M2dEpYNHRNMTlrMmsxV251WXl1WWh0T1dWd2Y1Qk9XU21RdTB5bVZBSUdPX2RSaTR6Z29UR2hNV1pzSW5JLS1xMXRqMzJJUlhUN08tcXFwbHNpZ0t5aEFrWTRkQzlIeUd6NkhaV3d5bV9kQjhFM2diMTBDQ0dnSXpMeVhwUVFDdWF4OU5EWXpZRUVvX0lRdFU3LVRFSE0?oc=5
-                        Coamo investirá R$ 64,2 milhões para ampliar armazenagem de grãos - CNN Brasil
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 16/07/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMinwFBVV95cUxQS1M2dEpYNHRNMTlrMmsxV251WXl1WWh0T1dWd2Y1Qk9XU21RdTB5bVZBSUdPX2RSaTR6Z29UR2hNV1pzSW5JLS1xMXRqMzJJUlhUN08tcXFwbHNpZ0t5aEFrWTRkQzlIeUd6NkhaV3d5bV9kQjhFM2diMTBDQ0dnSXpMeVhwUVFDdWF4OU5EWXpZRUVvX0lRdFU3LVRFSE0?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi4wFBVV95cUxPRi1mdFhxSE53THBjcS1hLVlHNGlTcGtfZWpock5PbUl4emlvdmNuVjJtTzBxbHprangwYzZjbWtDRHlJVHloYzRqcjdsM3Q1Tjl4ZDU4aWloSERXXzhTcVhDRnZkdnZuckR5dlBqRmZ4dGVxZEk5N2pwdFRxcTVPZkU3MC1jck1jYy1UNTFvZEN2OEVxR1VuX0pvWGJGeS1zVUNMNXVxbGw3eXZxQzRKSWZBa1VULWVsV2wyWU5wdEZnSkZNYkV2TTVGcXA4TGNCT2gzVXN5T0hUaExkbEp6TENJUdIB8gFBVV95cUxOTnpPX29qMU5Id1gxQXlMV2xtMFBVam8xOFBPYTJTdUV5VXZPUmVGLU1pdTByV0tackdqVWpMVlp0SlI3Y2MtaE5XbHhXel9PZjNLZjR1M1Q4M1RhQ2kzNHZ0dDlGM1U5WVVkb3Zja1Bfcm4ya0NMakJMVE5sLXlweW1jcXBpcmxjdFpscTFiNkR2X0tQdlo1bEF5RnJMNWJYaE9tNUppekhYRm9LVnlPVFhUclkwSmQxa2NYb05yeWRpRm9LVUtXdVhnVmJiNVQzdUJZcDBEb3R1QzRXdlpTQmhxUkY0ZEF1Mkh2TUZGTFQtUQ?oc=5
-                        Escassez de armazenagem pressiona logística e preços do agro - Valor Econômico
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 10/04/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMi4wFBVV95cUxPRi1mdFhxSE53THBjcS1hLVlHNGlTcGtfZWpock5PbUl4emlvdmNuVjJtTzBxbHprangwYzZjbWtDRHlJVHloYzRqcjdsM3Q1Tjl4ZDU4aWloSERXXzhTcVhDRnZkdnZuckR5dlBqRmZ4dGVxZEk5N2pwdFRxcTVPZkU3MC1jck1jYy1UNTFvZEN2OEVxR1VuX0pvWGJGeS1zVUNMNXVxbGw3eXZxQzRKSWZBa1VULWVsV2wyWU5wdEZnSkZNYkV2TTVGcXA4TGNCT2gzVXN5T0hUaExkbEp6TENJUdIB8gFBVV95cUxOTnpPX29qMU5Id1gxQXlMV2xtMFBVam8xOFBPYTJTdUV5VXZPUmVGLU1pdTByV0tackdqVWpMVlp0SlI3Y2MtaE5XbHhXel9PZjNLZjR1M1Q4M1RhQ2kzNHZ0dDlGM1U5WVVkb3Zja1Bfcm4ya0NMakJMVE5sLXlweW1jcXBpcmxjdFpscTFiNkR2X0tQdlo1bEF5RnJMNWJYaE9tNUppekhYRm9LVnlPVFhUclkwSmQxa2NYb05yeWRpRm9LVUtXdVhnVmJiNVQzdUJZcDBEb3R1QzRXdlpTQmhxUkY0ZEF1Mkh2TUZGTFQtUQ?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiygFBVV95cUxNaElVYWZYTDBfSEI3UlFmV1VUNl8yUHdoUEZiQTg1TDVuTDFtUDVIdlJMU2NFZGtQbU1NU3BXQjExT3hzOXRkYUZqOVI2aTNUcHd4NGx0WkJkZndIVl8zeWdhR3BicVE4Vm0waXVXLWQxYVlPSkZHd3Rjc1FzRkgtM25MRGZQX1lnVlBDNFNub18tb3VaYnJDaDlwQnJxWmpWMldUeXA5c05CUFR3MUM2NEFxYTZLU1YzUlNhNVRtWURPaFpLRjg3Q0Z3?oc=5
-                        (Vídeo) Incêndio atinge usina da Inpasa em Sinop (MT) e acende alerta para segurança em áreas de armazenagem - Visão Agro
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 17/06/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMiygFBVV95cUxNaElVYWZYTDBfSEI3UlFmV1VUNl8yUHdoUEZiQTg1TDVuTDFtUDVIdlJMU2NFZGtQbU1NU3BXQjExT3hzOXRkYUZqOVI2aTNUcHd4NGx0WkJkZndIVl8zeWdhR3BicVE4Vm0waXVXLWQxYVlPSkZHd3Rjc1FzRkgtM25MRGZQX1lnVlBDNFNub18tb3VaYnJDaDlwQnJxWmpWMldUeXA5c05CUFR3MUM2NEFxYTZLU1YzUlNhNVRtWURPaFpLRjg3Q0Z3?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMivAFBVV95cUxPYlJuOEpoV2RMYlk4bm1vYVVwYnpuNlFZV0ROeXV0VUt6Ym9HMUVKTlNqUmlVTlAzMXJrV0owOGIta1BvdVRTWWFjdDlPM1l3Qk0yTUtTbkthQTM3OXMzdnNqU2l6NXR4WHgxdzBnTlB5UG9hV181NXBNMExvanVvUGNHTHFsRzZ2UWpsaDN3YnJvNEVoVFhkcXBvM2hqNWZZdng0Mi1FRGF0dU1Bczl5N3pJN2xZMjZvclZ3dA?oc=5
-                        Indústria volta a estocar insumos e reacende demanda por galpões logísticos - Transporte Moderno
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 03/06/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMivAFBVV95cUxPYlJuOEpoV2RMYlk4bm1vYVVwYnpuNlFZV0ROeXV0VUt6Ym9HMUVKTlNqUmlVTlAzMXJrV0owOGIta1BvdVRTWWFjdDlPM1l3Qk0yTUtTbkthQTM3OXMzdnNqU2l6NXR4WHgxdzBnTlB5UG9hV181NXBNMExvanVvUGNHTHFsRzZ2UWpsaDN3YnJvNEVoVFhkcXBvM2hqNWZZdng0Mi1FRGF0dU1Bczl5N3pJN2xZMjZvclZ3dA?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMipgFBVV95cUxNOWdJNU1OT0FzaTJxQks3MzNKOWhCZVM2bEQxRDVBeG9JRnFNc1NOM0JUOENMUFEzenpkVE9zSDFZYThESE1pSm0zdDdZWlVKM0R5TlEyVE1ycFVuYk5ZX0llc3VydXJlcXpaOGVabkpSTVU4d1RQSS0yV216Sm9NTWZfNWJXVmNvSDJoeWYtSHZLcFVOdmt3TkxVNy1pZjRJd3lDaUpn?oc=5
-                        Incêndio atinge usina da Inpasa em Sinop (MT) e afeta setor de armazenagem - revistarpanews.com.br
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 17/06/2026 às 13:35
-                </p>
-
-                https://news.google.com/rss/articles/CBMipgFBVV95cUxNOWdJNU1OT0FzaTJxQks3MzNKOWhCZVM2bEQxRDVBeG9JRnFNc1NOM0JUOENMUFEzenpkVE9zSDFZYThESE1pSm0zdDdZWlVKM0R5TlEyVE1ycFVuYk5ZX0llc3VydXJlcXpaOGVabkpSTVU4d1RQSS0yV216Sm9NTWZfNWJXVmNvSDJoeWYtSHZLcFVOdmt3TkxVNy1pZjRJd3lDaUpn?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMilgFBVV95cUxQaXhqMHJkekRLbEpHRDZyUzAxVi1IUEdObGtQYy15UWxiUVd6YWY4QktmVTY5MGpEQzMxcEJ1eGpYazlEWjdGbFZVQzBpa3F5MWJ1aXA1cy1pVFR3anF1Y3pkS2txNk84NHJYczBqR2JRTVBqWkQ2bDVoRXJsSl80V3d6WUd4Y19TRWxaYkE0N3JESkZTNWc?oc=5
-                        PotatoEurope 2026 destaca ventilação em armazenagem - Revista Cultivar
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 18/03/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMilgFBVV95cUxQaXhqMHJkekRLbEpHRDZyUzAxVi1IUEdObGtQYy15UWxiUVd6YWY4QktmVTY5MGpEQzMxcEJ1eGpYazlEWjdGbFZVQzBpa3F5MWJ1aXA1cy1pVFR3anF1Y3pkS2txNk84NHJYczBqR2JRTVBqWkQ2bDVoRXJsSl80V3d6WUd4Y19TRWxaYkE0N3JESkZTNWc?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #d97706;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKWpAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXJtYXplbmFnZW0KICAgICAgICA8L3RleHQ+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMjc4IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiCiAgICAgICAgICAgIGZvbnQtc2l6ZT0iMTYiCiAgICAgICAgICAgIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC44MCkiPgogICAgICAgICAgICBSYWRhciBMb2fDrXN0aWNvCiAgICAgICAgPC90ZXh0PgogICAgPC9zdmc+CiAgICA=
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Armazenagem
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMirAJBVV95cUxQdFV6c2w3LWt1ZVRmZUd6Q21fYUdycjQ0eG5xbm01OE9PZnhfWllLaFZiZ2ZvSVVkU01aZndXNENqaXhCQnJnQnBtcmFibWVud2pucFRYY2RlWFJ1Ukh1ZDQzT2RGdzZuY3FfQXg3bXdFazhCU0pYeTI5dXJZc3N4eEhqZHF2M3V1cTJNV0hWQkV5bXpscURJUm1ZdGU2WTFhRndDQVY5bmxJTXRzd3VXcm4tOGFmb2t2U3NYdlhfVGZPT2pIM3Q4WWJnVGhEcE9BcWVPNUc5bVVoTXI2dlk5X01uNWpkRi1wWDBiYmVtX044aTBXUXB0NEluRENod19hWVVWQk5tbURGNGhtSnMxRjBvazRaMnRhSjlFX3RqMkx0T1pVWGg2VHNIa0U?oc=5
-                        Fabricante gaúcha de fechaduras investe R$ 150 milhões para superar R$ 1 bilhão em faturamento, criar 200 empregos e dobrar armazenagem, enquanto escolhe Santa Catarina para instalar novo centro logístico e acelerar entregas no Sul do Brasil - CPG Click Petróleo e Gás
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 03/06/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMirAJBVV95cUxQdFV6c2w3LWt1ZVRmZUd6Q21fYUdycjQ0eG5xbm01OE9PZnhfWllLaFZiZ2ZvSVVkU01aZndXNENqaXhCQnJnQnBtcmFibWVud2pucFRYY2RlWFJ1Ukh1ZDQzT2RGdzZuY3FfQXg3bXdFazhCU0pYeTI5dXJZc3N4eEhqZHF2M3V1cTJNV0hWQkV5bXpscURJUm1ZdGU2WTFhRndDQVY5bmxJTXRzd3VXcm4tOGFmb2t2U3NYdlhfVGZPT2pIM3Q4WWJnVGhEcE9BcWVPNUc5bVVoTXI2dlk5X01uNWpkRi1wWDBiYmVtX044aTBXUXB0NEluRENod19hWVVWQk5tbURGNGhtSnMxRjBvazRaMnRhSjlFX3RqMkx0T1pVWGg2VHNIa0U?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiigFBVV95cUxPUVcwbkZGSjJNUzNvTzJCa3pmSFo3VS01RUFYWHBWUG90WlRMd29JVWwzZHhzZUlLRHBxdUZIWEdpQTl4YzBOODRWS29aY2l1QXpsb05KVGxmRVJSZEExZ3BZb3VuamxIajUybXJuX1JWR0N1UllMQlRxY3FaY1ZwUzZSakg5ZjRQcnc?oc=5
-                        Logística do Futuro: Luca Guidetti da E80 Group - MundoLogística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 07/09/2026 às 16:01
-                </p>
-
-                https://news.google.com/rss/articles/CBMiigFBVV95cUxPUVcwbkZGSjJNUzNvTzJCa3pmSFo3VS01RUFYWHBWUG90WlRMd29JVWwzZHhzZUlLRHBxdUZIWEdpQTl4YzBOODRWS29aY2l1QXpsb05KVGxmRVJSZEExZ3BZb3VuamxIajUybXJuX1JWR0N1UllMQlRxY3FaY1ZwUzZSakg5ZjRQcnc?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMitAFBVV95cUxOVFJKUXdVdHdDc0ZQdXVNNHE5azNQRXl0NWx2VHdVUTJ5bjFGUlB3WVhQaVVEOVA1aVlmNXdrbS1Fd3V1X0VGUVpuRXQyMkRDSFlUMVp0WVNHX3RVZ1ZDTXdwWGJKQ3ZTVWdLZ0lUd2pSN0lRdnlyazRHSThJSWR2TV82dU1DbDlqTnp5U25tbEUzd2E5NkFDdm1vRk1iaVBfX05xR2ZsVUlaR3JVUjg0VWlORmY?oc=5
-                        Águia Sistemas leva robôs e automação para feira de logística no Brasil - bra1.com.br
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 09/09/2026 às 15:54
-                </p>
-
-                https://news.google.com/rss/articles/CBMitAFBVV95cUxOVFJKUXdVdHdDc0ZQdXVNNHE5azNQRXl0NWx2VHdVUTJ5bjFGUlB3WVhQaVVEOVA1aVlmNXdrbS1Fd3V1X0VGUVpuRXQyMkRDSFlUMVp0WVNHX3RVZ1ZDTXdwWGJKQ3ZTVWdLZ0lUd2pSN0lRdnlyazRHSThJSWR2TV82dU1DbDlqTnp5U25tbEUzd2E5NkFDdm1vRk1iaVBfX05xR2ZsVUlaR3JVUjg0VWlORmY?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMinAFBVV95cUxQdGtJUzgxbnhiWGJFREoyTERsLWhieUd5OG1HUXBHMjRYU1JXbmJrUlhWZFRnUVltR2NxOFpmMElNN19CRFpMeXNPdzNISHhPckNnYmM2d1R5OGJ0Vkx4TGhqTjJya1o0Z2xMdEdpcF9BNXVXbzRqWm9CQVRDTEh5enFYRmkyTk5hempJOEE2VlpxX2s1Rl9ydFVtT1U?oc=5
-                        Mercado de automação logística deve dobrar até 2032 - Transporte Moderno
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 21/08/2026 às 16:52
-                </p>
-
-                https://news.google.com/rss/articles/CBMinAFBVV95cUxQdGtJUzgxbnhiWGJFREoyTERsLWhieUd5OG1HUXBHMjRYU1JXbmJrUlhWZFRnUVltR2NxOFpmMElNN19CRFpMeXNPdzNISHhPckNnYmM2d1R5OGJ0Vkx4TGhqTjJya1o0Z2xMdEdpcF9BNXVXbzRqWm9CQVRDTEh5enFYRmkyTk5hempJOEE2VlpxX2s1Rl9ydFVtT1U?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMitgFBVV95cUxOQUdIVmpoNERFVldOR3ZaSFJ2UHB3OEpmeE9MVEpkc0c2U3A0Tm1yV211MDhib09tZ3drdXRCcEl1N29FaGt0bFRPbWJjTHFVOXZJWFRXd0N3cGt5SmJHV09QMTNyakdNWGlPdGVCVnk3cTBpWnhMWktBUWV6bVEwY2twT0dvM2Z2RWdXZGk4RGNUX0s1T1dTbkMxajBBeURTSnhEVm40NHp1RmxodFo3Q1JiM3JLUQ?oc=5
-                        Logística evolui com automação, mas segurança segue como tema central das operações - Portal ERP
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 28/08/2026 às 16:04
-                </p>
-
-                https://news.google.com/rss/articles/CBMitgFBVV95cUxOQUdIVmpoNERFVldOR3ZaSFJ2UHB3OEpmeE9MVEpkc0c2U3A0Tm1yV211MDhib09tZ3drdXRCcEl1N29FaGt0bFRPbWJjTHFVOXZJWFRXd0N3cGt5SmJHV09QMTNyakdNWGlPdGVCVnk3cTBpWnhMWktBUWV6bVEwY2twT0dvM2Z2RWdXZGk4RGNUX0s1T1dTbkMxajBBeURTSnhEVm40NHp1RmxodFo3Q1JiM3JLUQ?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMikAFBVV95cUxOVmZ1RXI4X2dWWU93YWh5RkRIcmFVblRzekQ2RElaNVppWnhPc3VsZk5Da2RFUG94T1JfZ0pnUzFycTR5bzlJNDFYdnRaODZ2N205bjQzNnhVS2J0OVZjRm95cjNoenBINWs5bEhldENLVmtqU2tBWFVtWG5UVFdBVVphMjVwNGQ1QmwxRjJBSkE?oc=5
-                        Robôs ampliam capacidade logística na Argentina - Jornal Portuário
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 05/09/2026 às 14:43
-                </p>
-
-                https://news.google.com/rss/articles/CBMikAFBVV95cUxOVmZ1RXI4X2dWWU93YWh5RkRIcmFVblRzekQ2RElaNVppWnhPc3VsZk5Da2RFUG94T1JfZ0pnUzFycTR5bzlJNDFYdnRaODZ2N205bjQzNnhVS2J0OVZjRm95cjNoenBINWs5bEhldENLVmtqU2tBWFVtWG5UVFdBVVphMjVwNGQ1QmwxRjJBSkE?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi0gFBVV95cUxNTlk5eVNYOHc1QjNfcG52U296cnFsdmZ5RjQ1SjFhV21pWS0tQlJ5a2RWb0RJNE1acnRGaEtscnlFRnlvSTZFOUtQQUlFbG9rTXhnaUNwcXhWWDZpQU1fdkZPdWFUQmJDVk1YSGQwX2FYQUo2ci1TUXljSFVxWjV1bnhuakZmSmFOcWhlc0h0SmlSZndTb2ctMWVYTkpPeTEyZWFJMGFlaF9Jd2ItQWh2a3o0TTVyYTJmUlhqTHRPb2RCeXR5ZUsyck1mbEtfVXJuN0E?oc=5
-                        Selbetti adquire Zecode e amplia atuação em automação para varejo e logística - Tecnologística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 27/05/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMi0gFBVV95cUxNTlk5eVNYOHc1QjNfcG52U296cnFsdmZ5RjQ1SjFhV21pWS0tQlJ5a2RWb0RJNE1acnRGaEtscnlFRnlvSTZFOUtQQUlFbG9rTXhnaUNwcXhWWDZpQU1fdkZPdWFUQmJDVk1YSGQwX2FYQUo2ci1TUXljSFVxWjV1bnhuakZmSmFOcWhlc0h0SmlSZndTb2ctMWVYTkpPeTEyZWFJMGFlaF9Jd2ItQWh2a3o0TTVyYTJmUlhqTHRPb2RCeXR5ZUsyck1mbEtfVXJuN0E?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #6d28d9;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2ZDI4ZDkiIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKamQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgQXV0b21hw6fDo28gTG9nw61zdGljYQogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNzgiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIxNiIKICAgICAgICAgICAgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjgwKSI+CiAgICAgICAgICAgIFJhZGFyIExvZ8Otc3RpY28KICAgICAgICA8L3RleHQ+CiAgICA8L3N2Zz4KICAgIA==
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Automação Logística
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMinwFBVV95cUxNbFFoM3VQWC05bHVvOGFKRTg4UVZTVjRMOGg3ZTFVb3FnSGl0VTBWMHNLNTF4Unp3Uk1FdlZyZjlJRXdjM0JjXzNVSFpUbVNpSHhPY2syb3dFTjFqSUZ6VDFMbkxYUWg1MTA0Z3Q0SGtRUm1CWmdqWEFJQ2xURW53MDJqMno1WVp2TGo1SE5aX3dZSUthN0h4R0RxbktaUk0?oc=5
-                        Armazenagem flexível ganha protagonismo com avanço da automação - CNN Brasil
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 23/05/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMinwFBVV95cUxNbFFoM3VQWC05bHVvOGFKRTg4UVZTVjRMOGg3ZTFVb3FnSGl0VTBWMHNLNTF4Unp3Uk1FdlZyZjlJRXdjM0JjXzNVSFpUbVNpSHhPY2syb3dFTjFqSUZ6VDFMbkxYUWg1MTA0Z3Q0SGtRUm1CWmdqWEFJQ2xURW53MDJqMno1WVp2TGo1SE5aX3dZSUthN0h4R0RxbktaUk0?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiogFBVV95cUxQU2pqLVN5NWhWQzh4c2RsMHlaQ1hud3BrODhEM2hxN2lZOTJmQTBOVk5Ia01Rd0ZlRHNWN1d0M2sxQ0RRWk9kMURGSFdxdkdmM3JzemJNSU1ocEg1ZHBJMGxuM2FGaDVOWE5jVmxUVEVodmo3dlhjeUtUTWxzemFYS3pmQ25QVmd6bS02aHcwV09uLW56RzlXN18yU19Ta2xHeGc?oc=5
-                        DHL Supply Chain amplia operação logística da Bristol Myers Squibb em Extrema (MG) - MundoLogística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 04/09/2026 às 14:40
-                </p>
-
-                https://news.google.com/rss/articles/CBMiogFBVV95cUxQU2pqLVN5NWhWQzh4c2RsMHlaQ1hud3BrODhEM2hxN2lZOTJmQTBOVk5Ia01Rd0ZlRHNWN1d0M2sxQ0RRWk9kMURGSFdxdkdmM3JzemJNSU1ocEg1ZHBJMGxuM2FGaDVOWE5jVmxUVEVodmo3dlhjeUtUTWxzemFYS3pmQ25QVmd6bS02aHcwV09uLW56RzlXN18yU19Ta2xHeGc?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMieEFVX3lxTE9Lc1FLV2ZabGFJZTJHeUhzOFV4Tjg2UGRJelFobmlTQ3F2WHh0cVlRQThfUlN4UHRMRVJNejYwSkcyV0VJZ1JwN3F5ZDBKV3J5MFp5MUZkeXB2d1M1OGUyYm5UZmU5NE1OcGdYTWx0MVB2OUdJMm9hNg?oc=5
-                        Biofarmacêutica sai de São Paulo e transfere operação logística para Minas Gerais; veja o que motivou a decisão - Diário do Comércio
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 08/09/2026 às 21:16
-                </p>
-
-                https://news.google.com/rss/articles/CBMieEFVX3lxTE9Lc1FLV2ZabGFJZTJHeUhzOFV4Tjg2UGRJelFobmlTQ3F2WHh0cVlRQThfUlN4UHRMRVJNejYwSkcyV0VJZ1JwN3F5ZDBKV3J5MFp5MUZkeXB2d1M1OGUyYm5UZmU5NE1OcGdYTWx0MVB2OUdJMm9hNg?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMiwAFBVV95cUxQZ3FXUWdaNDBmRl83dWJ4WE45S0JOS3JKYUotT1JScTNJTjh5dkh4NFRLVWZPRDFKZTlxekoxVGNKaHhtenlfX3k5blJ4ZVEwQVdOTGVVMjJwdjFSR1JFb0J6YmlwcTlNcHliUFd5bWVaeW1iMXFPT1ZQdmFBaWFSU3FOQ0Fyeno3by1yUjY0Rzkwb2hrU0NKY21kdGlfd0JValYtVkNrS3RHMWxyZ3Y4bEt5NGdwdGVMU2Fhd0FMVVQ?oc=5
-                        Logística inteligente para um Brasil resiliente - diariodonordeste.verdesmares.com.br
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 08/09/2026 às 09:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMiwAFBVV95cUxQZ3FXUWdaNDBmRl83dWJ4WE45S0JOS3JKYUotT1JScTNJTjh5dkh4NFRLVWZPRDFKZTlxekoxVGNKaHhtenlfX3k5blJ4ZVEwQVdOTGVVMjJwdjFSR1JFb0J6YmlwcTlNcHliUFd5bWVaeW1iMXFPT1ZQdmFBaWFSU3FOQ0Fyeno3by1yUjY0Rzkwb2hrU0NKY21kdGlfd0JValYtVkNrS3RHMWxyZ3Y4bEt5NGdwdGVMU2Fhd0FMVVQ?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMinwFBVV95cUxPQkJ1RmNLaFlTLTFaQm5zcV83QWpWemcwSjFmaWM3X2NpTkc2M0VDN1p2SllORUNPWl9kUzh0eW9WNm1CMmE0TC1TOHVjUkwtVjNZOEVybklhc2hfTTdsSHFCWVJoeWVuVWtEZ0luTUxQVlkyT0dDSktON3ZPV2R1Smo1SW9WZUFHbktxcW9YZkRCdnBhUnJrV0ZCbHRoelk?oc=5
-                        Vinícius Andrade assume Supply Chain da Syngenta no Brasil - Revista Cultivar
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 24/08/2026 às 07:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMinwFBVV95cUxPQkJ1RmNLaFlTLTFaQm5zcV83QWpWemcwSjFmaWM3X2NpTkc2M0VDN1p2SllORUNPWl9kUzh0eW9WNm1CMmE0TC1TOHVjUkwtVjNZOEVybklhc2hfTTdsSHFCWVJoeWVuVWtEZ0luTUxQVlkyT0dDSktON3ZPV2R1Smo1SW9WZUFHbktxcW9YZkRCdnBhUnJrV0ZCbHRoelk?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMifkFVX3lxTE5HUjczS0JMQWtJbWZ6MDh5UFF4aGYtWllSVjVCYUVybG5BcUNHZnphcUtxaTNrZnE2MlRXa085eW40eXFOdlV4SE9zdFZKSWZGZlFZNkN2UjMyb2k3ZEt6Mi02VVg4TVJ0UTA2YnhJRnQ3OTBDV0hPbEtNUkR1Zw?oc=5
-                        Analista de Supply Chain - Salário 2026, Piso Salarial - salario.com.br
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 03/09/2026 às 18:02
-                </p>
-
-                https://news.google.com/rss/articles/CBMifkFVX3lxTE5HUjczS0JMQWtJbWZ6MDh5UFF4aGYtWllSVjVCYUVybG5BcUNHZnphcUtxaTNrZnE2MlRXa085eW40eXFOdlV4SE9zdFZKSWZGZlFZNkN2UjMyb2k3ZEt6Mi02VVg4TVJ0UTA2YnhJRnQ3OTBDV0hPbEtNUkR1Zw?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi9AFBVV95cUxQSGM1QjVXVkJsOFhXZ2czMDdmd2NscVYwdjF5Yk1lNnhjWW50ZTcxcnNaZjlQU0ktRWVxQVNaSEU0Q2x6ZHhxQ2lVQjJQSjR4MGZKQVB5WVBSRnNuNDJ1cGcyVVdnclNNZmR2NkNVdkhEc1BvR29zN0RjZl9LNFI4WjVVTnJ0M0tWMHRuMXg0YVpGVnh2czIyS1dXMm1FU3paOHY1SEIyMW4wOU5DdEdrY1VQbFQxQVJxdzdzX045MmN1YXk4TFhwOXRneG9Kc3R1MURqLWYyaU41UGQtNE4tUXgwVnhRekRjbUpRNS1zU0o5OHFW?oc=5
-                        Blockforce e Cardano Foundation firmam parceria para ampliar rastreabilidade com blockchain no Brasil - Tecnologística
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 04/09/2026 às 11:00
-                </p>
-
-                https://news.google.com/rss/articles/CBMi9AFBVV95cUxQSGM1QjVXVkJsOFhXZ2czMDdmd2NscVYwdjF5Yk1lNnhjWW50ZTcxcnNaZjlQU0ktRWVxQVNaSEU0Q2x6ZHhxQ2lVQjJQSjR4MGZKQVB5WVBSRnNuNDJ1cGcyVVdnclNNZmR2NkNVdkhEc1BvR29zN0RjZl9LNFI4WjVVTnJ0M0tWMHRuMXg0YVpGVnh2czIyS1dXMm1FU3paOHY1SEIyMW4wOU5DdEdrY1VQbFQxQVJxdzdzX045MmN1YXk4TFhwOXRneG9Kc3R1MURqLWYyaU41UGQtNE4tUXgwVnhRekRjbUpRNS1zU0o5OHFW?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMipAFBVV95cUxNa0VoaHpRNTJjUHlCaThYTmstblZBd082dWtoSnJwSnpKNkJrUUJ5WEdKamFnU3lPOHpLSWdqQmVFUjBRcWVabWQxbEZxY19EaWxTQUx5RG5GRmphb1REX0hsR0ZydmtwblFOUFFnNXJudUtVeTlJV09zYmN4dHFuUnJnU3JIWHhBaDVWUjdnTnA5LWc1ZFJ0S2dwaDZaZGwzenBCYg?oc=5
-                        Comércio exterior usa IA para driblar incertezas - CNN Brasil
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 02/09/2026 às 18:42
-                </p>
-
-                https://news.google.com/rss/articles/CBMipAFBVV95cUxNa0VoaHpRNTJjUHlCaThYTmstblZBd082dWtoSnJwSnpKNkJrUUJ5WEdKamFnU3lPOHpLSWdqQmVFUjBRcWVabWQxbEZxY19EaWxTQUx5RG5GRmphb1REX0hsR0ZydmtwblFOUFFnNXJudUtVeTlJV09zYmN4dHFuUnJnU3JIWHhBaDVWUjdnTnA5LWc1ZFJ0S2dwaDZaZGwzenBCYg?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
-
-        <article
-            class="card-noticia"
-            style="--cor-categoria: #047857;"
-        >
-            <div class="area-imagem">
-                data:image/svg+xml;base64,CiAgICA8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgICAgd2lkdGg9IjYwMCIKICAgICAgICAgaGVpZ2h0PSIzMjAiCiAgICAgICAgIHZpZXdCb3g9IjAgMCA2MDAgMzIwIj4KCiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudAogICAgICAgICAgICAgICAgaWQ9ImZ1bmRvIgogICAgICAgICAgICAgICAgeDE9IjAiCiAgICAgICAgICAgICAgICB5MT0iMCIKICAgICAgICAgICAgICAgIHgyPSIxIgogICAgICAgICAgICAgICAgeTI9IjEiPgoKICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNDc4NTciIC8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDJhNDMiIC8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgoKICAgICAgICA8cmVjdAogICAgICAgICAgICB3aWR0aD0iNjAwIgogICAgICAgICAgICBoZWlnaHQ9IjMyMCIKICAgICAgICAgICAgcng9IjE4IgogICAgICAgICAgICBmaWxsPSJ1cmwoI2Z1bmRvKSIKICAgICAgICAvPgoKICAgICAgICA8Y2lyY2xlCiAgICAgICAgICAgIGN4PSIzMDAiCiAgICAgICAgICAgIGN5PSIxMjUiCiAgICAgICAgICAgIHI9IjcwIgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTQpIgogICAgICAgIC8+CgogICAgICAgIDx0ZXh0CiAgICAgICAgICAgIHg9IjMwMCIKICAgICAgICAgICAgeT0iMTU1IgogICAgICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgICAgICBmb250LXNpemU9IjgyIgogICAgICAgICAgICBmaWxsPSJ3aGl0ZSI+CiAgICAgICAgICAgIOKHhAogICAgICAgIDwvdGV4dD4KCiAgICAgICAgPHRleHQKICAgICAgICAgICAgeD0iMzAwIgogICAgICAgICAgICB5PSIyNDUiCiAgICAgICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgICAgICAgIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIKICAgICAgICAgICAgZm9udC1zaXplPSIyOCIKICAgICAgICAgICAgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICAgICAgICAgIGZpbGw9IndoaXRlIj4KICAgICAgICAgICAgU3VwcGx5IENoYWluCiAgICAgICAgPC90ZXh0PgoKICAgICAgICA8dGV4dAogICAgICAgICAgICB4PSIzMDAiCiAgICAgICAgICAgIHk9IjI3OCIKICAgICAgICAgICAgdGV4dC1hbmNob3I9Im1pZGRsZSIKICAgICAgICAgICAgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIgogICAgICAgICAgICBmb250LXNpemU9IjE2IgogICAgICAgICAgICBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuODApIj4KICAgICAgICAgICAgUmFkYXIgTG9nw61zdGljbwogICAgICAgIDwvdGV4dD4KICAgIDwvc3ZnPgogICAg
-            </div>
-
-            <div class="conteudo-noticia">
-                <span class="badge">
-                    Supply Chain
-                </span>
-
-                <h2>
-                    https://news.google.com/rss/articles/CBMi2gFBVV95cUxNaXYzY3VvbDZRZ0Q3d0tQZnBUTmpVaDdPcTBQZkRZS0NVcjltQ2xHb1dpbE9QQXNKNWRhT2JvdXZhaUJvZUxWcUQwcEFTRHdTT2RUd184YlktOGkxaE5vU0dBVDhfVTF3TU1IcFFud1lYNmZUMmNOQmlWeHF2TlZZRWVtdmVGQ0RpZVJDSEVudnlBeG5MRFE3eDlOZHlDZ0pESXBwcjBMMWExdW1RWFljOEE1bUVoeVczbGs1MHlpVXhuTkdramJIaWFyaEJCVGJ2T1dxRDlTcThhdw?oc=5
-                        São Paulo sedia TNS Summit e Logística do Futuro para acelerar a transformação digital da cadeia de suprimentos - Brasil Inovador
-                    </a>
-                </h2>
-
-                <p class="data">
-                    Publicado em: 05/09/2026 às 17:37
-                </p>
-
-                https://news.google.com/rss/articles/CBMi2gFBVV95cUxNaXYzY3VvbDZRZ0Q3d0tQZnBUTmpVaDdPcTBQZkRZS0NVcjltQ2xHb1dpbE9QQXNKNWRhT2JvdXZhaUJvZUxWcUQwcEFTRHdTT2RUd184YlktOGkxaE5vU0dBVDhfVTF3TU1IcFFud1lYNmZUMmNOQmlWeHF2TlZZRWVtdmVGQ0RpZVJDSEVudnlBeG5MRFE3eDlOZHlDZ0pESXBwcjBMMWExdW1RWFljOEE1bUVoeVczbGs1MHlpVXhuTkdramJIaWFyaEJCVGJ2T1dxRDlTcThhdw?oc=5
-                    Ler notícia
-                </a>
-            </div>
-        </article>
-        
         </main>
 
         <footer>
-            Notícias obtidas por pesquisa no Google News.
+            Conteúdo agregado por pesquisa no Google News.
+            Os títulos direcionam para as publicações originais.
         </footer>
+
     </div>
+
 </body>
+
 </html>
