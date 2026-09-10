@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radar Logístico & Intralogístico</title>
+    <title>Radar Logístico | Bertolini Sistemas de Armazenagem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+    .logo-bsa {
+        display: block;
+        width: 220px;
+        max-width: 80%
+        height: auto;
+        margin-bottom: 0 auto 24px;
+        filter: drop-shadow(0 6px 18px rgba(0,0,0,.45));
+}
+
         :root {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
+            --bg-body: #07111f;
+            --bg-card: rgba(15,28,45,.92);
             --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --primary: #3b82f6;
+            --text-muted: #b7c3d1;
+            --border-color: rgba(255,255,255,.12);
+            --primary: #005ca9;
         }
 
         * {
@@ -29,6 +38,21 @@
             color: var(--text-main);
             min-height: 100vh;
             padding: 30px 20px;
+
+            background-color: #07111f;
+            background-image:
+                linear-gradient(
+                    180deg, 
+                    rgba(4, 12, 24, 0.70) 0%,
+                    rgba(7, 17, 31, 0.88) 42%,
+                    rgba(15, 23, 42, 0.98) 100%
+                ),
+                url("img/fundo-autoportante.webp");
+
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: fixed;        
         }
 
         .container {
@@ -38,16 +62,26 @@
 
         header {
             text-align: center;
-            padding: 20px 0 40px;
+            padding: 55px 30px 60px;
+            margin-bottom: 30px;
+
+            background: rgba(5,15,28,.55);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 18px;
+
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,.35);
         }
 
         h1 {
-            font-size: 2.5rem;
+            color: #ffffff;
+            font-size: clamp(2rem, 5vw, 3.4rem);
             font-weight: 700;
-            background: linear-gradient(to right, #3b82f6, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+            text-shadow: 0 4px 18px rgba(0,0,0,.55);
         }
 
         .subtitulo {
@@ -96,13 +130,24 @@
         }
 
         .card-noticia {
-            background: var(--bg-card);
+            background: rgba(15,28,45,.92);
+
             border-radius: 14px;
             overflow: hidden;
-            border: 1px solid var(--border-color);
+
+            border: 1px solid rgba(255,255,255,.10);
+
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            box-shadow: 0 12px 30px rgba(0,0,0,.25);
+
             display: flex;
             flex-direction: column;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+            transition:
+                transform .25s ease,    
+                box-shadow .25s ease;
         }
 
         .card-noticia:hover {
@@ -215,11 +260,28 @@
 <body>
     <div class="container">
         <header>
-            <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg"alt="Bertolini Sistemas de Armazenagem"style="width:180px; margin-bottom:15px;">
+            <img
+                src="logo-bsa.png"
+                alt="Bertolini Sistemas de Armazenagem"
+                class="logo-bsa">
+
             <h1>Radar Logístico</h1>
-            <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
-            <p class="atualizacao">Última atualização: 10/09/2026 às 11:55 | 32 notícias carregadas</p>
-        </header>
+
+            <p class=" <p class="atualizacao">
+                Última atualização: 10/09/2026 às 13:53 |
+                32 notícias carregadas
+            </p>
+
+    <p class="subtitulo">
+        Informações em tempo real sobre intralogística e Supply Chain
+    </p>
+
+    <p class="atualizacao">
+        Última atualização: 10/09/2026 às 13:53 |
+        32 notícias carregadas
+    </p>
+
+</header> 
 
         <div class="filtros-container">
             <button class="btn-filtro active" data-filter="todos">Todas</button>
@@ -234,13 +296,13 @@
             
         <article class="card-noticia" data-categoria="intralogística" style="--cor-categoria: #2563eb;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Automação logística evolui e exige projetos mais sofisticados de intralogística - Mundo Logística" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Automação logística evolui e exige projetos mais sofisticados de intralogística - mundologistica.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Intralogística</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxOUTVNU0xJenNXRzU4RnhGX21mU25zNDdoekpvNm1UaFZ1SjZwTmtEUi1OOGMzTW56SzZZc2hWcl9pdVRBazBNbTgwX204eEVQdHFha1NrM2xhaFNJem01VjdCZDdLeURoZ1VROE9INkxDN3pHVUJNZTRGOHZQZG81SHpHV0IyaHFXSUhsSHhR?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Automação logística evolui e exige projetos mais sofisticados de intralogística - Mundo Logística
+                        Automação logística evolui e exige projetos mais sofisticados de intralogística - mundologistica.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -274,13 +336,13 @@
 
         <article class="card-noticia" data-categoria="intralogística" style="--cor-categoria: #2563eb;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Águia Sistemas leva ao Fórum E-Commerce Brasil debate sobre escalabilidade inteligente na intralogística - ecommercebrasil.com.br" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Águia Sistemas leva ao Fórum E-Commerce Brasil debate sobre escalabilidade inteligente na intralogística - E-Commerce Brasil" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Intralogística</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxOcEctRVRyaU4ybnAwRjRmSnVkSDRhSUVsNHU4bUpVVHVEd2txbW9pUlJQNHRhRGVCbkNvS3JjZy1SWk1Ibzk0X0Y4WEdXMzVTUXhRdDFTNEowSERLQ2EzM050T29lYlR3TnVIYW1fVXFldU04a3FrOGhpVGlCMUQ1eGVKbmVBZlU3czEwc053Z1hyN2FpVW9QaWVfbUJsYmJyaDFiQ25JbWNST3Vjbk5RMldVY2hXTFktckxReWZ3VXA1ZDNZNHU3ZndlTG9JZ2x6SEpDRWFpMm92OFd3SndrVjhn?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Águia Sistemas leva ao Fórum E-Commerce Brasil debate sobre escalabilidade inteligente na intralogística - ecommercebrasil.com.br
+                        Águia Sistemas leva ao Fórum E-Commerce Brasil debate sobre escalabilidade inteligente na intralogística - E-Commerce Brasil
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -354,13 +416,13 @@
 
         <article class="card-noticia" data-categoria="intralogística" style="--cor-categoria: #2563eb;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Automação e intralogística: Corrida bilionária dos armazéns - Mundo Logística" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Automação e intralogística: Corrida bilionária dos armazéns - mundologistica.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Intralogística</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxQaHNFSWFKX042Zk5sUm01ZUFwWGlBX2k4VGRCNjRiZDhqcUk3azFGVEdxMlhwMWVoLWlkRjBfUHJ5RHd5UFlQa1hneU1TdDZ3VEpJWkluZmFMdU54MVd4Q1Z5cTY3cWw0NjFmM0lxYm5xZ0pnbldWQTI5Z0Q4amRLTzJ1cmVYS1gzWm9kZTB1TDRvQ2U0aEE?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Automação e intralogística: Corrida bilionária dos armazéns - Mundo Logística
+                        Automação e intralogística: Corrida bilionária dos armazéns - mundologistica.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -374,13 +436,13 @@
 
         <article class="card-noticia" data-categoria="intralogística" style="--cor-categoria: #2563eb;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Intermodal 2026 lança Projeto Smart Intralogística - Portogente" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyNTYzZWIiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pamPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5JbnRyYWxvZ8Otc3RpY2E8L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Intermodal 2026 lança Projeto Smart Intralogística - portogente.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Intralogística</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxQV0g3TTRrajkwR0tLS1hLN2NUbnB4empNUUs1S3NFNjRiT2o5djlTWUtVMnhQNWtCNHhTbkdFSmE1SWZxdFRKODhlVVB4VnZXbGo0RXh0dHRPeU9VQ2FDUXctTWszXzJsbGYtWks2SE1IaTE1LXBROTFfMWZnQzVMajB6Z1A5R19QYjdmNy1pb2tQS21ESzFFa2xlcHZ3aFJKMkpnZ3RLWE1JTGNENHBJRXZSSQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Intermodal 2026 lança Projeto Smart Intralogística - Portogente
+                        Intermodal 2026 lança Projeto Smart Intralogística - portogente.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -454,13 +516,13 @@
 
         <article class="card-noticia" data-categoria="armazenagem" style="--cor-categoria: #d97706;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pakPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5Bcm1hemVuYWdlbTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=" alt="Escassez de armazenagem pressiona logística e preços do agro - valor.globo.com" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNkOTc3MDYiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pakPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5Bcm1hemVuYWdlbTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=" alt="Escassez de armazenagem pressiona logística e preços do agro - Valor Econômico" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Armazenagem</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMi4wFBVV95cUxPRi1mdFhxSE53THBjcS1hLVlHNGlTcGtfZWpock5PbUl4emlvdmNuVjJtTzBxbHprangwYzZjbWtDRHlJVHloYzRqcjdsM3Q1Tjl4ZDU4aWloSERXXzhTcVhDRnZkdnZuckR5dlBqRmZ4dGVxZEk5N2pwdFRxcTVPZkU3MC1jck1jYy1UNTFvZEN2OEVxR1VuX0pvWGJGeS1zVUNMNXVxbGw3eXZxQzRKSWZBa1VULWVsV2wyWU5wdEZnSkZNYkV2TTVGcXA4TGNCT2gzVXN5T0hUaExkbEp6TENJUdIB8gFBVV95cUxOTnpPX29qMU5Id1gxQXlMV2xtMFBVam8xOFBPYTJTdUV5VXZPUmVGLU1pdTByV0tackdqVWpMVlp0SlI3Y2MtaE5XbHhXel9PZjNLZjR1M1Q4M1RhQ2kzNHZ0dDlGM1U5WVVkb3Zja1Bfcm4ya0NMakJMVE5sLXlweW1jcXBpcmxjdFpscTFiNkR2X0tQdlo1bEF5RnJMNWJYaE9tNUppekhYRm9LVnlPVFhUclkwSmQxa2NYb05yeWRpRm9LVUtXdVhnVmJiNVQzdUJZcDBEb3R1QzRXdlpTQmhxUkY0ZEF1Mkh2TUZGTFQtUQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Escassez de armazenagem pressiona logística e preços do agro - valor.globo.com
+                        Escassez de armazenagem pressiona logística e preços do agro - Valor Econômico
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -554,13 +616,13 @@
 
         <article class="card-noticia" data-categoria="automação-logística" style="--cor-categoria: #7c3aed;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pqZPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5BdXRvbWHDp8OjbyBMb2fDrXN0aWNhPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIgbGV0dGVyLXNwYWNpbmc9IjIiPlJBREFSIExPR8ONU1RJQ088L3RleHQ+Cjwvc3ZnPg==" alt="Logística do Futuro: Luca Guidetti da E80 Group - Mundo Logística" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pqZPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5BdXRvbWHDp8OjbyBMb2fDrXN0aWNhPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIgbGV0dGVyLXNwYWNpbmc9IjIiPlJBREFSIExPR8ONU1RJQ088L3RleHQ+Cjwvc3ZnPg==" alt="Logística do Futuro: Luca Guidetti da E80 Group - mundologistica.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Automação Logística</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPUVcwbkZGSjJNUzNvTzJCa3pmSFo3VS01RUFYWHBWUG90WlRMd29JVWwzZHhzZUlLRHBxdUZIWEdpQTl4YzBOODRWS29aY2l1QXpsb05KVGxmRVJSZEExZ3BZb3VuamxIajUybXJuX1JWR0N1UllMQlRxY3FaY1ZwUzZSakg5ZjRQcnc?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Logística do Futuro: Luca Guidetti da E80 Group - Mundo Logística
+                        Logística do Futuro: Luca Guidetti da E80 Group - mundologistica.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -674,13 +736,13 @@
 
         <article class="card-noticia" data-categoria="automação-logística" style="--cor-categoria: #7c3aed;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pqZPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5BdXRvbWHDp8OjbyBMb2fDrXN0aWNhPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIgbGV0dGVyLXNwYWNpbmc9IjIiPlJBREFSIExPR8ONU1RJQ088L3RleHQ+Cjwvc3ZnPg==" alt="Robôs ampliam capacidade logística na Argentina - Jornal Portuário" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM3YzNhZWQiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4pqZPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5BdXRvbWHDp8OjbyBMb2fDrXN0aWNhPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIgbGV0dGVyLXNwYWNpbmc9IjIiPlJBREFSIExPR8ONU1RJQ088L3RleHQ+Cjwvc3ZnPg==" alt="Robôs ampliam capacidade logística na Argentina - jornalportuario.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Automação Logística</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOVmZ1RXI4X2dWWU93YWh5RkRIcmFVblRzekQ2RElaNVppWnhPc3VsZk5Da2RFUG94T1JfZ0pnUzFycTR5bzlJNDFYdnRaODZ2N205bjQzNnhVS2J0OVZjRm95cjNoenBINWs5bEhldENLVmtqU2tBWFVtWG5UVFdBVVphMjVwNGQ1QmwxRjJBSkE?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Robôs ampliam capacidade logística na Argentina - Jornal Portuário
+                        Robôs ampliam capacidade logística na Argentina - jornalportuario.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -714,13 +776,13 @@
 
         <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #059669;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Amazon e DHL Supply Chain inauguram centro de distribuição no Espírito Santo - Mundo Logística" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Amazon e DHL Supply Chain inauguram centro de distribuição no Espírito Santo - mundologistica.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Supply Chain</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxOMXVRbjRwV0pFdlJKdkd2VXNuX3daZXJRVHEyZ2M0MlA0QWM1MUQ3LUhqTzdJWEhzN3AwcEd6UUlQNXdfQ3FsMlEtbk1VTFlocWhIVWt3WjdJbnVVZkRVTXhVNzZldmdNZnZpeTh5S0ZqcHFRNFExeXJJUE0ybl9VcFIzYWE1VkdNOE1DdnRfUWJDUEl3ckFIX2ljUlhEZw?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Amazon e DHL Supply Chain inauguram centro de distribuição no Espírito Santo - Mundo Logística
+                        Amazon e DHL Supply Chain inauguram centro de distribuição no Espírito Santo - mundologistica.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -734,13 +796,13 @@
 
         <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #059669;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="MLOG Awards 2026 premia os executivos de Logística e Supply Chain; saiba quem são - Mundo Logística" class="imagem-noticia" loading="lazy">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="MLOG Awards 2026 premia os executivos de Logística e Supply Chain; saiba quem são - mundologistica.com.br" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">Supply Chain</span>
                 <h2>
                     <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNOTlaaFYyQ3ZZaW9QTDc1bEMtYWxpalhIUW1sTkFIOEVFYXE2YThZek9BRXZjVks0bmVNZnMtSlkwTExiWUtRX3ZzLVI3QWdfMVNPUklNMERreTZyTEVCRE1VZEFNRHZEdml0YnE1MmJ6b2wybHZPbk1kVjlNNDNLZkJoTHhvMXlBN2V4SmVmVTdXMU1qQlg1Wi1pWGtCN3pOVWVN?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        MLOG Awards 2026 premia os executivos de Logística e Supply Chain; saiba quem são - Mundo Logística
+                        MLOG Awards 2026 premia os executivos de Logística e Supply Chain; saiba quem são - mundologistica.com.br
                     </a>
                 </h2>
                 <div class="rodape-card">
@@ -814,26 +876,6 @@
 
         <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #059669;">
             <div class="area-imagem">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Analista de Supply Chain - Salário 2026, Piso Salarial - Portal Salário" class="imagem-noticia" loading="lazy">
-            </div>
-            <div class="conteudo-noticia">
-                <span class="badge">Supply Chain</span>
-                <h2>
-                    <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5HUjczS0JMQWtJbWZ6MDh5UFF4aGYtWllSVjVCYUVybG5BcUNHZnphcUtxaTNrZnE2MlRXa085eW40eXFOdlV4SE9zdFZKSWZGZlFZNkN2UjMyb2k3ZEt6Mi02VVg4TVJ0UTA2YnhJRnQ3OTBDV0hPbEtNUkR1Zw?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Analista de Supply Chain - Salário 2026, Piso Salarial - Portal Salário
-                    </a>
-                </h2>
-                <div class="rodape-card">
-                    <span class="data">🕒 03/09/2026 às 18:02</span>
-                    <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5HUjczS0JMQWtJbWZ6MDh5UFF4aGYtWllSVjVCYUVybG5BcUNHZnphcUtxaTNrZnE2MlRXa085eW40eXFOdlV4SE9zdFZKSWZGZlFZNkN2UjMyb2k3ZEt6Mi02VVg4TVJ0UTA2YnhJRnQ3OTBDV0hPbEtNUkR1Zw?oc=5" target="_blank" rel="noopener" class="botao-noticia">
-                        Acessar ↗
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #059669;">
-            <div class="area-imagem">
                 <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Do risco à resiliência: como preparar cadeias de suprimentos no Brasil para um novo cenário global - Tecnologística" class="imagem-noticia" loading="lazy">
             </div>
             <div class="conteudo-noticia">
@@ -846,6 +888,26 @@
                 <div class="rodape-card">
                     <span class="data">🕒 01/04/2026 às 07:00</span>
                     <a href="https://news.google.com/rss/articles/CBMi6AFBVV95cUxOaGZ4R3RkcjNFNl8xOVYtQ3VDd3JzeHNYa0RKc1NUeGRpcHJTMkJTSkdYbElHMGt6WEZjdFlmMGRkWU9HRzFmZXJxTVpMdS1pdEthRlNxZlRlT0RLM2l2bllPWnlNQnBvWDMzM0NKU0liNDlGTDVrQnZ1aENyVzhYVGR0czZpcmxIRUk2RlZfV2RIMVA5NTNfUXI4UXhCLVo0bUpWZ0xLZWpvdGI1VmdHaWRTMWpqejh2TXRzRVhtMHVWZlczTVAtNGUyZnYyV0ZEYXNRcmVJV3RLQUVPNVFOMjk3VkdEd1Ry?oc=5" target="_blank" rel="noopener" class="botao-noticia">
+                        Acessar ↗
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #059669;">
+            <div class="area-imagem">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwNTk2NjkiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+4oeEPC90ZXh0PgogICAgPHRleHQgeD0iMzAwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIj5TdXBwbHkgQ2hhaW48L3RleHQ+CiAgICA8dGV4dCB4PSIzMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIiBsZXR0ZXItc3BhY2luZz0iMiI+UkFEQVIgTE9Hw41TVElDTzwvdGV4dD4KPC9zdmc+" alt="Analista de Supply Chain - Salário 2026, Piso Salarial - Portal Salário" class="imagem-noticia" loading="lazy">
+            </div>
+            <div class="conteudo-noticia">
+                <span class="badge">Supply Chain</span>
+                <h2>
+                    <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5HUjczS0JMQWtJbWZ6MDh5UFF4aGYtWllSVjVCYUVybG5BcUNHZnphcUtxaTNrZnE2MlRXa085eW40eXFOdlV4SE9zdFZKSWZGZlFZNkN2UjMyb2k3ZEt6Mi02VVg4TVJ0UTA2YnhJRnQ3OTBDV0hPbEtNUkR1Zw?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                        Analista de Supply Chain - Salário 2026, Piso Salarial - Portal Salário
+                    </a>
+                </h2>
+                <div class="rodape-card">
+                    <span class="data">🕒 03/09/2026 às 18:02</span>
+                    <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5HUjczS0JMQWtJbWZ6MDh5UFF4aGYtWllSVjVCYUVybG5BcUNHZnphcUtxaTNrZnE2MlRXa085eW40eXFOdlV4SE9zdFZKSWZGZlFZNkN2UjMyb2k3ZEt6Mi02VVg4TVJ0UTA2YnhJRnQ3OTBDV0hPbEtNUkR1Zw?oc=5" target="_blank" rel="noopener" class="botao-noticia">
                         Acessar ↗
                     </a>
                 </div>
