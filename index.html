@@ -15,7 +15,6 @@
             --text-muted: #94a3b8;
             --border-color: #334155;
             --primary: #3b82f6;
-            --cor-categoria: #2563eb;
         }
 
         * {
@@ -134,4 +133,158 @@
             transition: transform 0.3s ease;
         }
 
-        .card-noticia:hover .imagem-not
+        .card-noticia:hover .imagem-noticia {
+            transform: scale(1.05);
+        }
+
+        .conteudo-noticia {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .badge {
+            align-self: flex-start;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .card-noticia h2 {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .titulo-noticia {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .titulo-noticia:hover {
+            color: var(--primary);
+        }
+
+        .rodape-card {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .data {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .botao-noticia {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+
+        .botao-noticia:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .aviso-vazio {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .escondido {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grade-noticias { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
+            <h1>Radar Logístico</h1>
+            <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
+            <p class="atualizacao" id="infoAtualizacao">Última atualização: --/--/---- | Carregando...</p>
+        </header>
+
+        <div class="filtros-container">
+            <button class="btn-filtro active" data-filter="todos">Todas</button>
+            <button class="btn-filtro" data-filter="intralogística">Intralogística</button>
+            <button class="btn-filtro" data-filter="armazenagem">Armazenagem</button>
+            <button class="btn-filtro" data-filter="automação">Automação Logística</button>
+            <button class="btn-filtro" data-filter="supply-chain">Supply Chain</button>
+            <button class="btn-filtro" data-filter="mundo-logística">Mundo Logística</button>
+        </div>
+
+        <main class="grade-noticias" id="gridNoticias">
+            <div class="aviso-vazio">Carregando notícias...</div>
+        </main>
+
+        <footer>
+            Radar Logístico • Notícias e tendências do mercado de armazenagem e movimentação.
+        </footer>
+    </div>
+
+    <script>
+        const noticias = [
+            {
+                titulo: "Avanços em Sistemas de Armazenagem Automática e WMS no Brasil",
+                categoria: "intralogística",
+                data: "19/10/2026",
+                link: "#",
+                imagem: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop"
+            },
+            {
+                titulo: "Tendências para Operações de Mapeamento de Frota e Estruturas Porta-Paletes",
+                categoria: "armazenagem",
+                data: "18/10/2026",
+                link: "#",
+                imagem: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop"
+            },
+            {
+                titulo: "Automação em Armazéns: Robôs Móveis Autônomos (AMR) Ganham Espaço",
+                categoria: "automação",
+                data: "17/10/2026",
+                link: "#",
+                imagem: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&auto=format&fit=crop"
+            },
+            {
+                titulo: "Resiliência na Cadeia de Suprimentos: Desafios do Supply Chain para 2027",
+                categoria: "supply-chain",
+                data: "16/10/2026",
+                link: "#",
+                imagem: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&auto=format&fit=crop"
+            },
+            {
+                titulo: "Panorama da Movimentação de Cargas na América Latina",
+                categoria: "mundo-logística",
+                data: "
