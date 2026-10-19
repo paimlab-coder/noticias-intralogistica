@@ -450,3 +450,4 @@ if __name__ == "__main__":
   noticias = buscar_noticias()
   noticias.sort(key=ordenar_data, reverse=True)
   criar_index(noticias)
+  
