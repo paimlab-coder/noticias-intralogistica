@@ -8,7 +8,7 @@ import html
 import base64
 
 # ============================================================
-# CONFIGURAÇÕES
+# CONFIGURAÇÕES E CATEGORIAS
 # ============================================================
 
 PASTA_PROJETO = Path(__file__).resolve().parent
@@ -20,6 +20,10 @@ PESQUISAS = {
     "Armazenagem": "armazenagem industrial",
     "Automação Logística": "automação logística",
     "Supply Chain": "supply chain Brasil",
+    "Logweb": "site:logweb.com.br logística",
+    "Fator Brasil": "site:fatorbrasil.com.br logística",
+    "Mundo Logística": "site:mundologistica.com.br logística",
+    "Tecnologística": "site:tecnologistica.com.br logística",
 }
 
 CORES_CATEGORIAS = {
@@ -27,6 +31,10 @@ CORES_CATEGORIAS = {
     "Armazenagem": "#d97706",
     "Automação Logística": "#7c3aed",
     "Supply Chain": "#059669",
+    "Logweb": "#005CA9",
+    "Fator Brasil": "#0F766E",
+    "Mundo Logística": "#C2410C",
+    "Tecnologística": "#1E3A8A",
 }
 
 ICONES_CATEGORIAS = {
@@ -34,6 +42,10 @@ ICONES_CATEGORIAS = {
     "Armazenagem": "▤",
     "Automação Logística": "⚙",
     "Supply Chain": "⇄",
+    "Logweb": "🚚",
+    "Fator Brasil": "📦",
+    "Mundo Logística": "🏭",
+    "Tecnologística": "⚙",
 }
 
 # ============================================================
@@ -96,8 +108,15 @@ def procurar_imagem(item):
             return url_imagem
     return None
 
+
+def ordenar_data(item):
+    try:
+        return datetime.strptime(item["data"], "%d/%m/%Y às %H:%M")
+    except Exception:
+        return datetime.min
+
 # ============================================================
-# BUSCA DAS NOTÍCIAS
+# BUSCA DAS NOTÍCIAS VIA GOOGLE NEWS
 # ============================================================
 
 def buscar_noticias():
@@ -108,7 +127,7 @@ def buscar_noticias():
         termo = quote_plus(pesquisa)
         url = f"https://news.google.com/rss/search?q={termo}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
 
-        print(f"Consultando: {categoria}")
+        print(f"Consultando Google News: {categoria}")
         requisicao = Request(
             url,
             headers={
@@ -145,7 +164,7 @@ def buscar_noticias():
     return noticias
 
 # ============================================================
-# GERAÇÃO DO INDEX.HTML
+# GERAÇÃO DO HTML
 # ============================================================
 
 def gerar_cards(noticias):
@@ -234,6 +253,14 @@ def criar_index(noticias):
         header {
             text-align: center;
             padding: 20px 0 40px;
+        }
+
+        .logo-bsa {
+            display: block;
+            width: 220px;
+            max-width: 80%;
+            height: auto;
+            margin: 0 auto 24px;
         }
 
         h1 {
@@ -410,6 +437,7 @@ def criar_index(noticias):
 <body>
     <div class="container">
         <header>
+            <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             <h1>Radar Logístico</h1>
             <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
             <p class="atualizacao">Última atualização: __HORARIO__ | __QUANTIDADE__ notícias carregadas</p>
@@ -460,7 +488,11 @@ def criar_index(noticias):
     CAMINHO_INDEX.write_text(html_final, encoding="utf-8")
     print(f"Página gerada com sucesso em: {CAMINHO_INDEX}")
 
+# ============================================================
+# EXECUÇÃO PRINCIPAL
+# ============================================================
 
 if __name__ == "__main__":
-    lista = buscar_noticias()
-    criar_index(lista)
+    noticias = buscar_noticias()
+    noticias.sort(key=ordenar_data, reverse=True)
+    criar_index(noticias)
