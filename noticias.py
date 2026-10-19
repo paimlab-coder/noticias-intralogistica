@@ -6,6 +6,8 @@ from email.utils import parsedate_to_datetime
 import xml.etree.ElementTree as ET
 import html
 import base64
+import unicodedata
+import re
 
 # ============================================================
 # CONFIGURAÇÕES E CATEGORIAS
@@ -52,6 +54,12 @@ ICONES_CATEGORIAS = {
 # FUNÇÕES AUXILIARES
 # ============================================================
 
+def gerar_slug(texto):
+    """Remove acentos e carateres especiais para garantir filtros compatíveis no HTML."""
+    nfkd = unicodedata.normalize('NFKD', texto)
+    sem_acentos = "".join([c for c in nfkd if not unicodedata.combining(c)])
+    return re.sub(r'[^a-zA-Z0-9]+', '-', sem_acentos).strip('-').lower()
+
 def criar_imagem_padrao(categoria):
     cor = CORES_CATEGORIAS.get(categoria, "#2563eb")
     icone = ICONES_CATEGORIAS.get(categoria, "▦")
@@ -73,7 +81,6 @@ def criar_imagem_padrao(categoria):
     svg_base64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
     return f"data:image/svg+xml;base64,{svg_base64}"
 
-
 def formatar_data(data_original):
     if not data_original:
         return "Data não informada"
@@ -83,12 +90,10 @@ def formatar_data(data_original):
     except (TypeError, ValueError):
         return data_original
 
-
 def obter_texto(elemento, valor_padrao=""):
     if elemento is not None and elemento.text:
         return elemento.text.strip()
     return valor_padrao
-
 
 def procurar_imagem(item):
     namespaces = {"media": "http://search.yahoo.com/mrss/"}
@@ -107,7 +112,6 @@ def procurar_imagem(item):
         if tipo.startswith("image/") and url_imagem:
             return url_imagem
     return None
-
 
 def ordenar_data(item):
     try:
@@ -174,13 +178,13 @@ def gerar_cards(noticias):
     cards = []
     for noticia in noticias:
         cat_orig = noticia["categoria"]
-        cat_slug = cat_orig.lower().replace(" ", "-")
+        cat_slug = gerar_slug(cat_orig)
         cor = CORES_CATEGORIAS.get(cat_orig, "#2563eb")
 
         card = f'''
         <article class="card-noticia" data-categoria="{cat_slug}" style="--cor-categoria: {cor};">
             <div class="area-imagem">
-                <img src="{html.escape(noticia['imagem'], quote=True)}" alt="{html.escape(noticia['titulo'])}" class="imagem-noticia" loading="lazy">
+                <img src="{html.escape(noticia['imagem'], quote=True)}" alt="{html.escape(noticia['titulo'])}" class="imagem-noticia" loading="lazy" onerror="this.onerror=null; this.src='{criar_imagem_padrao(cat_orig)}';">
             </div>
             <div class="conteudo-noticia">
                 <span class="badge">{html.escape(cat_orig)}</span>
@@ -201,7 +205,6 @@ def gerar_cards(noticias):
 
     return "\n".join(cards)
 
-
 def criar_index(noticias):
     cards_html = gerar_cards(noticias)
     horario = datetime.now().strftime("%d/%m/%Y às %H:%M")
@@ -209,7 +212,7 @@ def criar_index(noticias):
 
     filtros_html = '<button class="btn-filtro active" data-filter="todos">Todas</button>\n'
     for cat in PESQUISAS.keys():
-        slug = cat.lower().replace(" ", "-")
+        slug = gerar_slug(cat)
         filtros_html += f'<button class="btn-filtro" data-filter="{slug}">{cat}</button>\n'
 
     html_template = '''<!DOCTYPE html>
@@ -413,6 +416,13 @@ def criar_index(noticias):
         .botao-noticia:hover {
             opacity: 0.8;
             text-decoration: underline;
+        }
+
+        .aviso-vazio {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: var(--text-muted);
         }
 
         footer {
