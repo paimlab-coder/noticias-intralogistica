@@ -1,4 +1,242 @@
-<!DOCTYPE html>
+import base64
+from datetime import datetime
+from email.utils import parsedate_to_datetime
+import html
+from pathlib import Path
+import re
+import unicodedata
+from urllib.parse import quote_plus
+from urllib.request import Request, urlopen
+import xml.etree.ElementTree as ET
+
+# ============================================================
+# CONFIGURAÇÕES E CATEGORIAS
+# ============================================================
+
+PASTA_PROJETO = Path(__file__).resolve().parent
+CAMINHO_INDEX = PASTA_PROJETO / "index.html"
+LIMITE_POR_CATEGORIA = 8
+
+PESQUISAS = {
+    "Intralogística": "intralogística OR intralogistica",
+    "Armazenagem": "armazenagem industrial",
+    "Automação Logística": "automação logística",
+    "Supply Chain": "supply chain Brasil",
+    "Logweb": "site:logweb.com.br logística",
+    "Fator Brasil": "site:fatorbrasil.com.br logística",
+    "Mundo Logística": "site:mundologistica.com.br logística",
+    "Tecnologística": "site:tecnologistica.com.br logística",
+}
+
+CORES_CATEGORIAS = {
+    "Intralogística": "#2563eb",
+    "Armazenagem": "#d97706",
+    "Automação Logística": "#7c3aed",
+    "Supply Chain": "#059669",
+    "Logweb": "#005CA9",
+    "Fator Brasil": "#0F766E",
+    "Mundo Logística": "#C2410C",
+    "Tecnologística": "#1E3A8A",
+}
+
+ICONES_CATEGORIAS = {
+    "Intralogística": "▦",
+    "Armazenagem": "▤",
+    "Automação Logística": "⚙",
+    "Supply Chain": "⇄",
+    "Logweb": "🚚",
+    "Fator Brasil": "📦",
+    "Mundo Logística": "🏭",
+    "Tecnologística": "⚙",
+}
+
+# ============================================================
+# FUNÇÕES AUXILIARES
+# ============================================================
+
+
+def gerar_slug(texto):
+  """Remove acentos e caracteres especiais para garantir compatibilidade nos filtros HTML."""
+  nfkd = unicodedata.normalize("NFKD", texto)
+  sem_acentos = "".join([c for c in nfkd if not unicodedata.combining(c)])
+  return re.sub(r"[^a-zA-Z0-9]+", "-", sem_acentos).strip("-").lower()
+
+
+def criar_imagem_padrao(categoria):
+  cor = CORES_CATEGORIAS.get(categoria, "#2563eb")
+  icone = ICONES_CATEGORIAS.get(categoria, "▦")
+
+  svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="600" height="320" viewBox="0 0 600 320">
+    <defs>
+        <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="{cor}" />
+            <stop offset="100%" stop-color="#0f172a" />
+        </linearGradient>
+    </defs>
+    <rect width="600" height="320" rx="16" fill="url(#fundo)"/>
+    <circle cx="300" cy="120" r="60" fill="rgba(255,255,255,0.12)"/>
+    <text x="300" y="145" text-anchor="middle" font-size="64" fill="white">{icone}</text>
+    <text x="300" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="white">{html.escape(categoria)}</text>
+    <text x="300" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.7)" letter-spacing="2">RADAR LOGÍSTICO</text>
+</svg>"""
+
+  svg_base64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
+  return f"data:image/svg+xml;base64,{svg_base64}"
+
+
+def formatar_data(data_original):
+  if not data_original:
+    return "Data não informada"
+  try:
+    data_convertida = parsedate_to_datetime(data_original)
+    return data_convertida.strftime("%d/%m/%Y às %H:%M")
+  except (TypeError, ValueError):
+    return data_original
+
+
+def obter_texto(elemento, valor_padrao=""):
+  if elemento is not None and elemento.text:
+    return elemento.text.strip()
+  return valor_padrao
+
+
+def procurar_imagem(item):
+  namespaces = {"media": "http://search.yahoo.com/mrss/"}
+  media_content = item.find("media:content", namespaces)
+  if media_content is not None and media_content.get("url"):
+    return media_content.get("url")
+
+  media_thumbnail = item.find("media:thumbnail", namespaces)
+  if media_thumbnail is not None and media_thumbnail.get("url"):
+    return media_thumbnail.get("url")
+
+  enclosure = item.find("enclosure")
+  if enclosure is not None:
+    tipo = enclosure.get("type", "")
+    url_imagem = enclosure.get("url", "")
+    if tipo.startswith("image/") and url_imagem:
+      return url_imagem
+  return None
+
+
+def ordenar_data(item):
+  try:
+    return datetime.strptime(item["data"], "%d/%m/%Y às %H:%M")
+  except Exception:
+    return datetime.min
+
+
+# ============================================================
+# BUSCA DAS NOTÍCIAS VIA GOOGLE NEWS
+# ============================================================
+
+
+def buscar_noticias():
+  noticias = []
+  links_encontrados = set()
+
+  for categoria, pesquisa in PESQUISAS.items():
+    termo = quote_plus(pesquisa)
+    url = f"https://news.google.com/rss/search?q={termo}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
+
+    print(f"Consultando Google News: {categoria}")
+    requisicao = Request(
+        url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                " (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            )
+        },
+    )
+
+    try:
+      with urlopen(requisicao, timeout=30) as resposta:
+        conteudo_xml = resposta.read()
+        raiz = ET.fromstring(conteudo_xml)
+        itens = raiz.findall(".//item")
+
+        for item in itens[:LIMITE_POR_CATEGORIA]:
+          titulo = obter_texto(item.find("title"), "Notícia sem título")
+          link = obter_texto(item.find("link"), "#")
+          data_original = obter_texto(item.find("pubDate"), "")
+          imagem = procurar_imagem(item) or criar_imagem_padrao(categoria)
+
+          if link in links_encontrados:
+            continue
+
+          links_encontrados.add(link)
+          noticias.append({
+              "categoria": categoria,
+              "titulo": titulo,
+              "link": link,
+              "imagem": imagem,
+              "data": formatar_data(data_original),
+          })
+    except Exception as erro:
+      print(f"Erro ao consultar {categoria}: {erro}")
+
+  return noticias
+
+
+# ============================================================
+# GERAÇÃO DO HTML
+# ============================================================
+
+
+def gerar_cards(noticias):
+  if not noticias:
+    return (
+        '<div class="aviso-vazio">Nenhuma notícia encontrada no momento.</div>'
+    )
+
+  cards = []
+  for noticia in noticias:
+    cat_orig = noticia["categoria"]
+    cat_slug = gerar_slug(cat_orig)
+    cor = CORES_CATEGORIAS.get(cat_orig, "#2563eb")
+    img_fallback = criar_imagem_padrao(cat_orig)
+
+    card = f"""
+        <article class="card-noticia" data-categoria="{cat_slug}" style="--cor-categoria: {cor};">
+            <div class="area-imagem">
+                <img src="{html.escape(noticia['imagem'], quote=True)}" alt="{html.escape(noticia['titulo'])}" class="imagem-noticia" loading="lazy" onerror="this.onerror=null; this.src='{img_fallback}';">
+            </div>
+            <div class="conteudo-noticia">
+                <span class="badge">{html.escape(cat_orig)}</span>
+                <h2>
+                    <a href="{html.escape(noticia['link'], quote=True)}" target="_blank" rel="noopener" class="titulo-noticia">
+                        {html.escape(noticia['titulo'])}
+                    </a>
+                </h2>
+                <div class="rodape-card">
+                    <span class="data">🕒 {html.escape(noticia['data'])}</span>
+                    <a href="{html.escape(noticia['link'], quote=True)}" target="_blank" rel="noopener" class="botao-noticia">
+                        Acessar ↗
+                    </a>
+                </div>
+            </div>
+        </article>"""
+    cards.append(card)
+
+  return "\n".join(cards)
+
+
+def criar_index(noticias):
+  cards_html = gerar_cards(noticias)
+  horario = datetime.now().strftime("%d/%m/%Y às %H:%M")
+  quantidade = str(len(noticias))
+
+  filtros_html = (
+      '<button class="btn-filtro active" data-filter="todos">Todas</button>\n'
+  )
+  for cat in PESQUISAS.keys():
+    slug = gerar_slug(cat)
+    filtros_html += (
+        f'<button class="btn-filtro" data-filter="{slug}">{cat}</button>\n'
+    )
+
+  html_template = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -116,7 +354,7 @@
         .card-noticia:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-            border-color: var(--primary);
+            border-color: var(--cor-categoria);
         }
 
         .area-imagem {
@@ -146,7 +384,7 @@
 
         .badge {
             align-self: flex-start;
-            background: var(--primary);
+            background: var(--cor-categoria);
             color: #ffffff;
             padding: 4px 10px;
             border-radius: 6px;
@@ -233,58 +471,60 @@
             <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             <h1>Radar Logístico</h1>
             <p class="subtitulo">Informações em tempo real sobre intralogística e Supply Chain</p>
-            <p class="atualizacao" id="infoAtualizacao">Última atualização: --/--/---- | Carregando...</p>
+            <p class="atualizacao">Última atualização: __HORARIO__ | __QUANTIDADE__ notícias carregadas</p>
         </header>
 
         <div class="filtros-container">
-            <button class="btn-filtro active" data-filter="todos">Todas</button>
-            <button class="btn-filtro" data-filter="intralogística">Intralogística</button>
-            <button class="btn-filtro" data-filter="armazenagem">Armazenagem</button>
-            <button class="btn-filtro" data-filter="automação">Automação Logística</button>
-            <button class="btn-filtro" data-filter="supply-chain">Supply Chain</button>
-            <button class="btn-filtro" data-filter="mundo-logística">Mundo Logística</button>
+            __FILTROS__
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            <div class="aviso-vazio">Carregando notícias...</div>
+            __CARDS__
         </main>
 
         <footer>
-            Radar Logístico • Notícias e tendências do mercado de armazenagem e movimentação.
+            Radar Logístico • Notícias atualizadas automaticamente via Google News.
         </footer>
     </div>
 
     <script>
-        const noticias = [
-            {
-                titulo: "Avanços em Sistemas de Armazenagem Automática e WMS no Brasil",
-                categoria: "intralogística",
-                data: "19/10/2026",
-                link: "#",
-                imagem: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop"
-            },
-            {
-                titulo: "Tendências para Operações de Mapeamento de Frota e Estruturas Porta-Paletes",
-                categoria: "armazenagem",
-                data: "18/10/2026",
-                link: "#",
-                imagem: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&auto=format&fit=crop"
-            },
-            {
-                titulo: "Automação em Armazéns: Robôs Móveis Autônomos (AMR) Ganham Espaço",
-                categoria: "automação",
-                data: "17/10/2026",
-                link: "#",
-                imagem: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=600&auto=format&fit=crop"
-            },
-            {
-                titulo: "Resiliência na Cadeia de Suprimentos: Desafios do Supply Chain para 2027",
-                categoria: "supply-chain",
-                data: "16/10/2026",
-                link: "#",
-                imagem: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&auto=format&fit=crop"
-            },
-            {
-                titulo: "Panorama da Movimentação de Cargas na América Latina",
-                categoria: "mundo-logística",
-                data: "
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.card-noticia');
+
+                cards.forEach(card => {
+                    if (filter === 'todos' || card.getAttribute('data-categoria') === filter) {
+                        card.classList.remove('escondido');
+                    } else {
+                        card.classList.add('escondido');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>"""
+
+  html_final = (
+      html_template.replace("__HORARIO__", horario)
+      .replace("__QUANTIDADE__", quantidade)
+      .replace("__FILTROS__", filtros_html)
+      .replace("__CARDS__", cards_html)
+  )
+
+  CAMINHO_INDEX.write_text(html_final, encoding="utf-8")
+  print(f"Página gerada com sucesso em: {CAMINHO_INDEX}")
+
+
+# ============================================================
+# EXECUÇÃO PRINCIPAL
+# ============================================================
+
+if __name__ == "__main__":
+  noticias = buscar_noticias()
+  noticias.sort(key=ordenar_data, reverse=True)
+  criar_index(noticias)
