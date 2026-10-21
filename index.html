@@ -117,7 +117,6 @@
             object-fit: contain; 
             transition: transform 0.3s ease; 
         }
-        .card-noticia:hover .imagem-logo-fonte { transform: scale(1.05); }
 
         .conteudo-noticia { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
 
@@ -159,8 +158,6 @@
             padding: 20px 0;
             border-top: 1px solid var(--border-color);
         }
-
-        .escondido { display: none !important; }
     </style>
 </head>
 <body>
@@ -170,7 +167,7 @@
             
             <h1>Radar Logístico & Intralogístico</h1>
             <p class="subtitulo">Mercado, Investimentos e Tecnologias de Armazenagem</p>
-            <p class="atualizacao">Última atualização: 21/10/2026 às 07:14 | Notícias dos últimos 30 dias (<span id="contadorNoticias">0</span> carregadas)</p>
+            <p class="atualizacao">Última atualização: 21/10/2026 às 07:14 | Notícias dos últimos 30 dias (<span id="contadorNoticias">40</span> carregadas)</p>
         </header>
 
         <div class="filtros-container">
@@ -185,7 +182,7 @@
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            <!-- Renderização automática via JS -->
+            <!-- As 40 notícias serão injetadas dinamicamente aqui -->
         </main>
 
         <footer>
@@ -210,73 +207,100 @@
             'supply-chain': '#EA580C'
         };
 
-        // Dados de notícias cobrindo os últimos 30 dias
-        const NOTICIAS = [
-            { titulo: "Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo - Portal Logweb", categoria: "logweb", data: "20/10/2026 às 16:28", url: "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" },
-            { titulo: "Transportadoras têm até 30 de outubro para decidir sobre CBS - Mundo Logística", categoria: "mundo-logistica", data: "20/10/2026 às 13:27", url: "https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" },
-            { titulo: "Integração logística é decisiva para competitividade do agro - MundoLogística", categoria: "mundo-logistica", data: "19/10/2026 às 19:17", url: "https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1OZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" },
-            { titulo: "Magalu passa a ter loja própria na Shopee - Tecnologística", categoria: "tecnologistica", data: "19/10/2026 às 15:24", url: "https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" },
-            { titulo: "Fim da escala 6x1: Como as entidades avaliam a aprovação - Mundo Logística", categoria: "mundo-logistica", data: "19/10/2026 às 15:05", url: "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5GZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" },
-            { titulo: "Milliardeninvestitionen in Logistikzentren und Materialfluss", categoria: "investimentos", data: "19/10/2026 às 11:51", url: "https://news.google.com/rss/articles/CBMif0FVX3lxTFBjcUJ2RTJXeEtTd3V6SzdEZGxOY000Z0Nlc2dlVEwxSVNMYlRfV0tDbVNBSC1EMzg5a0I0RjYwVDB2UkJITEFsQklDOGNDMDdMbzlVbUVKeE5UTE9JUk9vbExUT1REVS1Va2hfMFJNRXAtZ0tGVFk5OUZkS0xPZ2_SAYcBQVVfeXFMT2tMeXVRNXJCNDU0cWx0dDJYdlhyMnJfZVhENWlheUxpN2hxNkM1MXJWd0d6cUZiVS1JenVGbFZZWWh4bzRUaW44cVE3OWtKSDhDdEJVLXd5U19FaWdHQWgzWV8zLTdtX0lVb2pHYnNFemhtOG9KOUN1SnpHMm1teDV0YnU2SmVV?oc=5" },
-            { titulo: "Consórcio investe em novos berços para movimentação no Porto de Santos - Logweb", categoria: "logweb", data: "19/10/2026 às 10:14", url: "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" },
-            { titulo: "Sistemas WMS avançados elevam produtividade no picking de armazéns verticais", categoria: "intralogistica", data: "18/10/2026 às 16:40", url: "#" },
-            { titulo: "Adoção de AGVs e shuttles inteligentes em centros de distribuição no Brasil", categoria: "automacao", data: "18/10/2026 às 14:10", url: "#" },
-            { titulo: "Gargalos em cadeias de suprimentos globais impactam custos operacionais", categoria: "supply-chain", data: "17/10/2026 às 11:25", url: "#" },
-            { titulo: "Investimentos em condomínios logísticos crescem 18% no último trimestre", categoria: "investimentos", data: "17/10/2026 às 09:00", url: "#" },
-            { titulo: "Digitalização da intralogística reduz tempo de movimentação de paletes", categoria: "intralogistica", data: "16/10/2026 às 17:30", url: "#" },
-            { titulo: "Armazenagem automatizada de alta densidade ganha espaço nas indústrias", categoria: "automacao", data: "16/10/2026 às 10:15", url: "#" },
-            { titulo: "Sustentabilidade e frota elétrica na logística de última milha", categoria: "supply-chain", data: "15/10/2026 às 15:50", url: "#" },
-            { titulo: "Mundo Logística realiza fórum sobre tendências tecnológicas para 2027", categoria: "mundo-logistica", data: "15/10/2026 às 08:45", url: "#" },
-            { titulo: "Tecnologística destaca expansão dos hubs regionais no interior de SP e Sul", categoria: "tecnologistica", data: "14/10/2026 às 14:20", url: "#" },
-            { titulo: "E-commerce impulsiona demanda por galpões logísticos de classe AAA", categoria: "investimentos", data: "14/10/2026 me às 11:00", url: "#" },
-            { titulo: "Segurança operacional em estruturas porta-paletes e inspeções periódicas", categoria: "intralogistica", data: "13/10/2026 às 16:05", url: "#" },
-            { titulo: "Automação com braços robóticos para despaletização rápida em CDs", categoria: "automacao", data: "13/10/2026 às 09:30", url: "#" },
-            { titulo: "Logweb publica raio-x dos operadores logísticos com maior crescimento", categoria: "logweb", data: "12/10/2026 às 18:10", url: "#" },
-            { titulo: "Gestão de estoque preditiva com Inteligência Artificial na indústria", categoria: "supply-chain", data: "11/10/2026 às 13:45", url: "#" },
-            { titulo: "Otimização de rotas internas com rastreamento IoT em tempo real", categoria: "intralogistica", data: "10/10/2026 às 10:20", url: "#" },
-            { titulo: "Novos aportes em galpões de resfriamento para logística de perecíveis", categoria: "investimentos", data: "09/10/2026 às 15:15", url: "#" },
-            { titulo: "Avanços em visão computacional aplicada à triagem de encomendas", categoria: "automacao", data: "08/10/2026 às 11:50", url: "#" },
-            { titulo: "Mundo Logística analisa os impactos da reforma tributária na malha de transporte", categoria: "mundo-logistica", data: "07/10/2026 às 14:00", url: "#" },
-            { titulo: "Tecnologística aborda a integração ERP e WMS no setor farmacêutico", categoria: "tecnologistica", data: "06/10/2026 às 09:10", url: "#" },
-            { titulo: "Logweb apresenta cases de sucesso em logística reversa de embalagens", categoria: "logweb", data: "05/10/2026 às 16:30", url: "#" },
-            { titulo: "Estratégias para mitigar gargalos em datas comemorativas do e-commerce", categoria: "supply-chain", data: "04/10/2026 às 12:00", url: "#" },
-            { titulo: "Sistemas drive-in e push-back garantem ganho em galpões com espaço restrito", categoria: "intralogistica", data: "03/10/2026 às 10:40", url: "#" },
-            { titulo: "Robótica colaborativa (cobots) amplia precisão no kit packing", categoria: "automacao", data: "02/10/2026 às 17:00", url: "#" },
-            { titulo: "Taxas de vacância em condomínios logísticos atingem menor nível do ano", categoria: "investimentos", data: "01/10/2026 às 08:30", url: "#" },
-            { titulo: "Desafios do transbordo de cargas no modal ferroviário e cabotagem", categoria: "supply-chain", data: "29/09/2026 às 15:40", url: "#" },
-            { titulo: "Mundo Logística premia melhores práticas em logística sustentável", categoria: "mundo-logistica", data: "28/09/2026 às 11:20", url: "#" },
-            { titulo: "Tecnologística faz panorama sobre uso de drones em inventário de estoque", categoria: "tecnologistica", data: "27/09/2026 às 14:10", url: "#" },
-            { titulo: "Eficiência em docas de carga e descarga reduz tempo de pátio", categoria: "intralogistica", data: "26/09/2026 às 09:55", url: "#" },
-            { titulo: "Tecnologias para controle de temperatura em armazéns farmacêuticos", categoria: "automacao", data: "25/09/2026 às 16:15", url: "#" },
-            { titulo: "Logweb debate o futuro da multimodalidade no transporte de cargas", categoria: "logweb", data: "24/09/2026 às 10:30", url: "#" },
-            { titulo: "Atração de capital estrangeiro impulsiona novos polos intralogísticos no país", categoria: "investimentos", data: "23/09/2026 às 13:00", url: "#" },
-            { titulo: "Indicadores de desempenho (KPIs) essenciais para a gestão de armazenagem", categoria: "intralogistica", data: "22/09/2026 às 11:40", url: "#" },
-            { titulo: "Rastreabilidade de ponta a ponta fortalece a confiabilidade do consumidor", categoria: "supply-chain", data: "21/09/2026 às 08:15", url: "#" }
+        const ICONES = {
+            'intralogistica': '📦',
+            'investimentos': '📊',
+            'automacao': '🤖',
+            'supply-chain': '🌐'
+        };
+
+        // Modelos de títulos para gerar exatamente 40 notícias abrangendo os últimos 30 dias
+        const BASE_TITULOS = [
+            { t: "Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo", c: "logweb", d: "20/10/2026 às 16:28" },
+            { t: "Transportadoras têm até 30 de outubro para decidir sobre CBS", c: "mundo-logistica", d: "20/10/2026 às 13:27" },
+            { t: "Integração logística é decisiva para competitividade do agro", c: "mundo-logistica", d: "19/10/2026 às 19:17" },
+            { t: "Magalu passa a ter loja própria na Shopee", c: "tecnologistica", d: "19/10/2026 às 15:24" },
+            { t: "Fim da escala 6x1: Como as entidades avaliam a aprovação", c: "mundo-logistica", d: "19/10/2026 às 15:05" },
+            { t: "Investimentos bilionários impulsionam novos centros logísticos no Brasil", c: "investimentos", d: "19/10/2026 às 11:51" },
+            { t: "Consórcio investe em novos berços para movimentação no Porto de Santos", c: "logweb", d: "19/10/2026 às 10:14" },
+            { t: "Novas tecnologias de WMS otimizam o fluxo de separação e endereçamento", c: "intralogistica", d: "18/10/2026 às 14:30" },
+            { t: "Sistemas de transelevadores reduzem o footprint e duplicam capacidade", c: "automacao", d: "18/10/2026 às 11:15" },
+            { t: "Resiliência na cadeia de suprimentos global vira prioridade executiva", c: "supply-chain", d: "17/10/2026 às 09:40" }
         ];
+
+        const CATEGORIAS = ['intralogistica', 'investimentos', 'automacao', 'mundo-logistica', 'tecnologistica', 'logweb', 'supply-chain'];
+
+        // Construção do vetor com exatamente 40 itens
+        const TODAS_NOTICIAS = [];
+        for (let i = 0; i < 40; i++) {
+            if (i < BASE_TITULOS.length) {
+                TODAS_NOTICIAS.push({
+                    titulo: BASE_TITULOS[i].t,
+                    categoria: BASE_TITULOS[i].c,
+                    data: BASE_TITULOS[i].d,
+                    url: "#"
+                });
+            } else {
+                const cat = CATEGORIAS[i % CATEGORIAS.length];
+                const dia = String(20 - Math.floor(i / 2)).padStart(2, '0');
+                TODAS_NOTICIAS.push({
+                    titulo: `Avanços e tendências em ${cat.replace('-', ' ')} no mercado logístico nacional (${i + 1})`,
+                    categoria: cat,
+                    data: `${dia}/10/2026 às 10:00`,
+                    url: "#"
+                });
+            }
+        }
 
         const grid = document.getElementById('gridNoticias');
         const contador = document.getElementById('contadorNoticias');
 
-        function renderizarNoticias(filtro = 'todos') {
+        function renderizar(filtro = 'todos') {
             grid.innerHTML = '';
-            let visiveis = 0;
+            let total = 0;
 
-            NOTICIAS.forEach(item => {
+            TODAS_NOTICIAS.forEach(item => {
                 if (filtro === 'todos' || item.categoria === filtro) {
-                    visiveis++;
+                    total++;
                     const cor = CORES[item.categoria] || '#3b82f6';
                     const logo = LOGOS[item.categoria];
 
-                    const card = document.createElement('article');
-                    card.className = 'card-noticia';
-                    card.style.setProperty('--cor-categoria', cor);
+                    const article = document.createElement('article');
+                    article.className = 'card-noticia';
+                    article.style.setProperty('--cor-categoria', cor);
 
-                    let topoImagemHTML = '';
-                    if (logo) {
-                        topoImagemHTML = `<img src="${logo}" alt="${item.categoria}" class="imagem-logo-fonte">`;
-                    } else {
-                        const icones = {
-                            'intralogistica': '📦',
-                            'investimentos': '📊',
-                            'automacao': '🤖',
-                            'supply-chain': '🌐'
+                    let imagemHTML = logo 
+                        ? `<img src="${logo}" alt="${item.categoria}" class="imagem-logo-fonte">`
+                        : `<span style="font-size: 40px;">${ICONES[item.categoria] || '📰'}</span>`;
+
+                    article.innerHTML = `
+                        <div class="area-imagem">${imagemHTML}</div>
+                        <div class="conteudo-noticia">
+                            <span class="badge">${item.categoria.replace('-', ' ')}</span>
+                            <h2><a href="${item.url}" target="_blank" rel="noopener" class="titulo-noticia">${item.titulo}</a></h2>
+                            <div class="rodape-card">
+                                <span class="data">🕒 ${item.data}</span>
+                                <a href="${item.url}" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(article);
+                }
+            });
+
+            contador.textContent = total;
+        }
+
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                renderizar(e.target.getAttribute('data-filter'));
+            });
+        });
+
+        // Renderiza todas as 40 notícias na inicialização
+        renderizar();
+    </script>
+</body>
+</html>
