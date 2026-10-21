@@ -1,33 +1,3 @@
-Peço desculpas se o ajuste anterior ainda não atendeu às suas expectativas. A percepção de "proporcionalidade" pode variar bastante dependendo do dispositivo e do layout geral.
-
-Vamos tentar uma abordagem mais agressiva na redução do tamanho do logo e também ajustar a forma como o `max-width` interage com a largura fixa.
-
-**Sugestão de ajuste:**
-
-1.  **Reduzir ainda mais a `width` fixa:** Vamos diminuir para `150px`.
-2.  **Ajustar o `max-width`:** Manter `max-width: 70%` é bom para responsividade, mas se o logo ainda parecer grande, podemos tentar torná-lo mais restritivo ou até mesmo remover a `width` fixa e confiar apenas no `max-width` para que ele se ajuste melhor ao contêiner.
-
-Vamos tentar a seguinte modificação no CSS da classe `.logo-bsa`:
-
-```css
-        .logo-bsa {
-            display: block;
-            /* --- SEGUNDO AJUSTE NO TAMANHO DO LOGO --- */
-            width: 150px; /* Reduzido ainda mais de 180px */
-            max-width: 70%; /* Mantido para responsividade, mas com width menor */
-            /* --- FIM DO SEGUNDO AJUSTE --- */
-            height: auto;
-            margin: 0 auto 24px;
-        }
-```
-
-Se mesmo com `width: 150px;` e `max-width: 70%;` o logo ainda parecer desproporcional, uma alternativa seria remover a `width` fixa e deixar o `max-width` controlar tudo, ou usar `width: 100%; max-width: 150px;` para que ele ocupe 100% do espaço disponível *até* atingir o limite de 150px.
-
-Vamos tentar a primeira opção (`width: 150px; max-width: 70%;`) e, se necessário, podemos refinar mais.
-
-Aqui está o código completo com essa nova alteração:
-
-```python
 import base64
 from datetime import datetime
 from email.utils import parsedate_to_datetime
