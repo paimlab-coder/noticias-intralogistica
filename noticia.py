@@ -9,6 +9,7 @@ import unicodedata
 from urllib.parse import quote_plus
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
+import webbrowser # Importado para a funcionalidade de abrir no navegador
 
 # ============================================================
 # CONFIGURAÇÕES E CATEGORIAS DE BUSCA
@@ -47,6 +48,14 @@ ICONES_CATEGORIAS = {
     "Logweb": "📦",
     "Supply Chain": "⇄",
 }
+
+# --- NOVO: Logos Oficiais ---
+LOGOS_OFICIAIS = {
+    "Mundo Logística": "https://mundologistica.com.br/images/revistamundologistica_.svg",
+    "Logweb": "https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png",
+    "Tecnologística": "https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp",
+}
+# --- FIM NOVO ---
 
 # ============================================================
 # FUNÇÕES AUXILIARES
@@ -161,7 +170,19 @@ def buscar_noticias():
           titulo = obter_texto(item.find("title"), "Notícia sem título")
           link = obter_texto(item.find("link"), "#")
           data_original = obter_texto(item.find("pubDate"), "")
-          imagem = procurar_imagem(item) or criar_imagem_padrao(categoria)
+
+          # --- INÍCIO DA MODIFICAÇÃO PARA USAR LOGOS OFICIAIS ---
+          imagem_buscada = procurar_imagem(item)
+          imagem_final = imagem_buscada # Começa com a imagem encontrada na notícia
+
+          # Se a imagem não foi encontrada na notícia, verifica se é uma categoria com logo oficial
+          if not imagem_final and categoria in LOGOS_OFICIAIS:
+              imagem_final = LOGOS_OFICIAIS[categoria]
+          
+          # Se ainda assim não houver imagem, usa o fallback padrão (SVG gerado)
+          if not imagem_final:
+              imagem_final = criar_imagem_padrao(categoria)
+          # --- FIM DA MODIFICAÇÃO ---
 
           if link in links_encontrados:
             continue
@@ -171,7 +192,7 @@ def buscar_noticias():
               "categoria": categoria,
               "titulo": titulo,
               "link": link,
-              "imagem": imagem,
+              "imagem": imagem_final, # Usa a imagem_final definida acima
               "data": formatar_data(data_original),
           })
     except Exception as erro:
@@ -196,7 +217,8 @@ def gerar_cards(noticias):
     cat_orig = noticia["categoria"]
     cat_slug = gerar_slug(cat_orig)
     cor = CORES_CATEGORIAS.get(cat_orig, "#2563eb")
-    img_fallback = criar_imagem_padrao(cat_orig)
+    # A imagem de fallback aqui é importante caso o logo oficial falhe ao carregar
+    img_fallback = criar_imagem_padrao(cat_orig) 
 
     card = f"""
         <article class="card-noticia" data-categoria="{cat_slug}" style="--cor-categoria: {cor};">
@@ -272,8 +294,10 @@ def criar_index(noticias):
 
         .logo-bsa {
             display: block;
-            width: 220px;
-            max-width: 80%;
+            /* --- AJUSTE NO TAMANHO DO LOGO --- */
+            width: 150px; /* Reduzido ainda mais de 180px */
+            max-width: 70%; /* Mantido para responsividade, mas com width menor */
+            /* --- FIM DO AJUSTE --- */
             height: auto;
             margin: 0 auto 24px;
         }
@@ -440,6 +464,19 @@ def criar_index(noticias):
 
   CAMINHO_INDEX.write_text(html_final, encoding="utf-8")
   print(f"Página gerada com sucesso em: {CAMINHO_INDEX}")
+
+  # --- NOVO CÓDIGO PARA ABRIR NO NAVEGADOR APÓS GERAÇÃO ---
+  try:
+      # Obtém o caminho absoluto do arquivo index.html
+      caminho_absoluto_index = CAMINHO_INDEX.resolve()
+      # Converte para URL (necessário para alguns sistemas operacionais/navegadores)
+      url_local = caminho_absoluto_index.as_uri()
+      print(f"\nAbrindo página de prévia no navegador: {url_local}")
+      webbrowser.open(url_local)
+  except Exception as e:
+      print(f"\nNão foi possível abrir o navegador automaticamente. Por favor, abra o arquivo '{CAMINHO_INDEX}' manualmente.")
+      print(f"Erro: {e}")
+  # --- FIM DO NOVO CÓDIGO ---
 
 
 # ============================================================
