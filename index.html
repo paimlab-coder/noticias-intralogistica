@@ -102,7 +102,7 @@
 
         .area-imagem { 
             width: 100%; 
-            height: 180px; 
+            height: 160px; 
             overflow: hidden; 
             background: radial-gradient(circle, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%); 
             display: flex; 
@@ -112,7 +112,7 @@
         }
 
         .imagem-logo-fonte { 
-            max-height: 75px; 
+            max-height: 65px; 
             width: auto; 
             object-fit: contain; 
         }
@@ -132,7 +132,7 @@
             margin-bottom: 12px;
         }
 
-        .card-noticia h2 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 15px; font-weight: 600; }
+        .card-noticia h2 { font-size: 1.05rem; line-height: 1.5; margin-bottom: 15px; font-weight: 600; }
         .titulo-noticia { color: var(--text-main); text-decoration: none; transition: color 0.2s ease; }
         .titulo-noticia:hover { color: var(--primary); }
 
@@ -145,7 +145,7 @@
             border-top: 1px solid var(--border-color);
         }
 
-        .data { color: var(--text-muted); font-size: 0.8rem; }
+        .fonte-nome { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; }
         .botao-noticia { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.85rem; }
         .botao-noticia:hover { text-decoration: underline; }
 
@@ -167,382 +167,175 @@
             <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             
             <h1>Radar Logístico & Intralogístico</h1>
-            <p class="subtitulo">Mercado, Investimentos e Tecnologias de Armazenagem</p>
-            <p class="atualizacao">Última atualização: 21/10/2026 às 07:14 | Notícias dos últimos 30 dias (<span id="contadorNoticias">40</span> carregadas)</p>
+            <p class="subtitulo">Monitoramento do Mercado, Investimentos e Tecnologias de Armazenagem</p>
+            <p class="atualizacao">Fontes de Dados do Setor (<span id="contadorNoticias">12</span> canais monitorados)</p>
         </header>
 
         <div class="filtros-container">
-            <button class="btn-filtro active" data-filter="todos">Todas</button>
-            <button class="btn-filtro" data-filter="intralogistica">Intralogística</button>
-            <button class="btn-filtro" data-filter="investimentos">Investimentos</button>
-            <button class="btn-filtro" data-filter="automacao">Automação</button>
-            <button class="btn-filtro" data-filter="mundo-logistica">Mundo Logística</button>
-            <button class="btn-filtro" data-filter="tecnologistica">Tecnologística</button>
-            <button class="btn-filtro" data-filter="logweb">Logweb</button>
-            <button class="btn-filtro" data-filter="supply-chain">Supply Chain</button>
+            <button class="btn-filtro active" data-filter="todos">Todas as Fontes</button>
+            <button class="btn-filtro" data-filter="intralogistica">Intralogística & Automação</button>
+            <button class="btn-filtro" data-filter="investimentos">Mercado Imobiliário & Reports</button>
+            <button class="btn-filtro" data-filter="imprensa">Imprensa & Macroeconomia</button>
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            <!-- Renderização nativa garantida dos 40 cards -->
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte"></div>
+            
+            <!-- Revista Tecnologística -->
+            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #1E3A8A;">
+                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte" alt="Tecnologística"></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 20/10/2026 às 16:28</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Intralogística & Automação</span>
+                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Tecnologística: Tecnologias de Armazenagem, WMS e Sistemas Automatizados</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Revista Tecnologística</span>
+                        <a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
+            <!-- Logweb -->
+            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #005CA9;">
+                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte" alt="Logweb"></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Transportadoras têm até 30 de outubro para decidir sobre CBS</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 20/10/2026 às 13:27</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Intralogística & Automação</span>
+                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Logweb News: Operações de Armazém, Movimentação de Cargas e Suprimentos</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Logweb News</span>
+                        <a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Integração logística é decisiva para competitividade do agro</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 19/10/2026 às 19:17</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Magalu passa a ter loja própria na Shopee</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 19/10/2026 às 15:24</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Fim da escala 6x1: Como as entidades avaliam a aprovação</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 19/10/2026 às 15:05</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
+            <!-- Colliers International -->
             <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
+                <div class="area-imagem"><span style="font-size: 40px;">🏬</span></div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Mercado Imobiliário & Reports</span>
+                    <h2><a href="https://www.colliers.com/pt-br/research" target="_blank" class="titulo-noticia">Colliers: Logistics Market Report & Pesquisas de Galpões Industriais no Brasil</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Colliers Brasil</span>
+                        <a href="https://www.colliers.com/pt-br/research" target="_blank" class="botao-noticia">Acessar Reports ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Valor Econômico -->
+            <article class="card-noticia" data-categoria="imprensa" style="--cor-categoria: #990000;">
+                <div class="area-imagem"><span style="font-size: 40px;">📰</span></div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Imprensa & Macroeconomia</span>
+                    <h2><a href="https://valor.globo.com/empresas/infraestrutura/" target="_blank" class="titulo-noticia">Valor Econômico: Notícias de Infraestrutura, Logística e Transporte</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Valor Econômico</span>
+                        <a href="https://valor.globo.com/empresas/infraestrutura/" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Revista Exame -->
+            <article class="card-noticia" data-categoria="imprensa" style="--cor-categoria: #2563EB;">
+                <div class="area-imagem"><span style="font-size: 40px;">📈</span></div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Imprensa & Macroeconomia</span>
+                    <h2><a href="https://exame.com/noticias-sobre/logistica/" target="_blank" class="titulo-noticia">Exame: Mercado Logístico, Cadeia de Suprimentos e Investimentos</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Revista Exame</span>
+                        <a href="https://exame.com/noticias-sobre/logistica/" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- O Globo -->
+            <article class="card-noticia" data-categoria="imprensa" style="--cor-categoria: #1E293B;">
+                <div class="area-imagem"><span style="font-size: 40px;">🗞️</span></div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Imprensa & Macroeconomia</span>
+                    <h2><a href="https://oglobo.globo.com/busca/?q=logistica" target="_blank" class="titulo-noticia">O Globo: Notícias e Análises de Infraestrutura e Logística Nacional</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: O Globo Newspaper</span>
+                        <a href="https://oglobo.globo.com/busca/?q=logistica" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Portal Fator Brasil -->
+            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #D97706;">
+                <div class="area-imagem"><span style="font-size: 40px;">📑</span></div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Intralogística & Automação</span>
+                    <h2><a href="https://www.revistafatorbrasil.com.br/" target="_blank" class="titulo-noticia">Portal Fator Brasil: Artigos e Notícias de Logística e Indústria</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Portal Fator Brasil</span>
+                        <a href="https://www.revistafatorbrasil.com.br/" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tendências Consultoria Integrada -->
+            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #4B5563;">
                 <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Investimentos bilionários impulsionam novos centros logísticos no Brasil</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 19/10/2026 às 11:51</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Mercado Imobiliário & Reports</span>
+                    <h2><a href="https://www.tendencias.com.br/" target="_blank" class="titulo-noticia">Tendências Consultoria: Industry Reports & Análises Setoriais do Brasil</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Tendências Consultoria</span>
+                        <a href="https://www.tendencias.com.br/" target="_blank" class="botao-noticia">Acessar Reports ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Consórcio investe em novos berços para movimentação no Porto de Santos</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 19/10/2026 às 10:14</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📦</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Intralogística</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Novas tecnologias de WMS otimizam o fluxo de separação e endereçamento</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 18/10/2026 às 14:30</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="automacao" style="--cor-categoria: #9333EA;">
-                <div class="area-imagem"><span style="font-size: 40px;">🤖</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Automação</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Sistemas de transelevadores e shuttle reduzem o footprint e duplicam capacidade</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 18/10/2026 às 11:15</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #EA580C;">
+            <!-- Mordor Intelligence Brazil -->
+            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #7C3AED;">
                 <div class="area-imagem"><span style="font-size: 40px;">🌐</span></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Supply Chain</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Resiliência na cadeia de suprimentos global torna-se prioridade executiva</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 17/10/2026 às 09:40</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Mercado Imobiliário & Reports</span>
+                    <h2><a href="https://www.mordorintelligence.com/industry-reports/brazil-freight-and-logistics-market" target="_blank" class="titulo-noticia">Mordor Intelligence: Brazil Freight & Logistics Market Analysis</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Mordor Global Reports</span>
+                        <a href="https://www.mordorintelligence.com/industry-reports/brazil-freight-and-logistics-market" target="_blank" class="botao-noticia">Acessar Report ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📦</span></div>
+            <!-- Google News (Intralogística) -->
+            <article class="card-noticia" data-categoria="imprensa" style="--cor-categoria: #EA4335;">
+                <div class="area-imagem"><span style="font-size: 40px;">🔍</span></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Intralogística</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Projetos de engenharia de armazéns priorizam ergonomia e ganho de cubicagem</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 17/10/2026 às 08:20</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Imprensa & Macroeconomia</span>
+                    <h2><a href="https://news.google.com/search?q=intralogistica%20brasil&hl=pt-BR&gl=BR&ceid=BR%3Apt-419" target="_blank" class="titulo-noticia">Google News Feed: Feed Atualizado em Tempo Real para "Intralogística"</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Google News</span>
+                        <a href="https://news.google.com/search?q=intralogistica%20brasil&hl=pt-BR&gl=BR&ceid=BR%3Apt-419" target="_blank" class="botao-noticia">Acessar Feed ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
-                <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
+            <!-- Valona News Monitoring -->
+            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #2563EB;">
+                <div class="area-imagem"><span style="font-size: 40px;">📡</span></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Fundos imobiliários apostam em condomínios logísticos AAA urbanos</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 16/10/2026 às 16:50</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Mercado Imobiliário & Reports</span>
+                    <h2><a href="https://www.valona.com/" target="_blank" class="titulo-noticia">Valona Intelligence: News Monitoring & Market Intelligence</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Valona Monitoring</span>
+                        <a href="https://www.valona.com/" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="automacao" style="--cor-categoria: #9333EA;">
-                <div class="area-imagem"><span style="font-size: 40px;">🤖</span></div>
+            <!-- Mundo Logística -->
+            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #C2410C;">
+                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Automação</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Integração de inteligência artificial em braços robóticos acelera paletização</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 16/10/2026 às 13:10</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
+                    <span class="badge">Intralogística & Automação</span>
+                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Mundo Logística: Portal e Revista de Logística & Supply Chain</a></h2>
+                    <div class="rodape-card">
+                        <span class="fonte-nome">Fonte: Mundo Logística</span>
+                        <a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar Canal ↗</a>
+                    </div>
                 </div>
             </article>
 
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Perspectivas do setor de transporte rodoviário de cargas no Brasil</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 15/10/2026 às 11:00</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Soluções de IoT e rastreabilidade em tempo real transformam a gestão de frotas</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 15/10/2026 às 09:30</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Estratégias de omnicanalidade exigem redes logísticas descentralizadas</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 14/10/2026 às 17:15</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #EA580C;">
-                <div class="area-imagem"><span style="font-size: 40px;">🌐</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Supply Chain</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Sustentabilidade e logística reversa ganham destaque na agenda ESG</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 14/10/2026 às 12:00</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📦</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Intralogística</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">A importância da altura útil e do dimensionamento de pisos para porta-paletes</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 13/10/2026 às 15:45</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="automacao" style="--cor-categoria: #9333EA;">
-                <div class="area-imagem"><span style="font-size: 40px;">🤖</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Automação</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Robótica móvel autônoma (AMRs) otimiza o tráfego em centros de distribuição</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 13/10/2026 às 10:20</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
-                <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Demanda por galpões logísticos sustentáveis com certificação LEED cresce no Sul</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 12/10/2026 às 16:00</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">O impacto da cabotagem na redução de custos logísticos para a indústria</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 11/10/2026 às 14:30</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Tecnologia RFID melhora a acuracidade de inventário em tempo real</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 10/10/2026 às 11:10</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Gestão inteligente de pátios e agendamento de docas reduz tempo de espera</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 09/10/2026 às 15:40</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #EA580C;">
-                <div class="area-imagem"><span style="font-size: 40px;">🌐</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Supply Chain</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Mitigação de riscos e visibilidade de ponta a ponta no Supply Chain</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 08/10/2026 às 09:25</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📦</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Intralogística</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Sistemas pick-to-light e put-to-light aceleram separação de pedidos</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 07/10/2026 às 16:15</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
-                <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Investimentos em infraestrutura portuária e ferroviária atraem indústrias</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 06/10/2026 às 13:50</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="automacao" style="--cor-categoria: #9333EA;">
-                <div class="area-imagem"><span style="font-size: 40px;">🤖</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Automação</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Aplicações de gêmeos digitais (Digital Twins) na simulação de armazéns</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 05/10/2026 às 10:00</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Panorama do transporte aéreo de cargas e desafios de capacidade</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 04/10/2026 às 15:20</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Plataformas de gestão de fretes integradas com inteligência de dados</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 03/10/2026 às 11:45</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Crescimento do e-commerce B2B exige novas soluções de intralogística</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 02/10/2026 às 14:10</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #EA580C;">
-                <div class="area-imagem"><span style="font-size: 40px;">🌐</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Supply Chain</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Gestão de risco e segurança patrimonial em rotas críticas de transporte</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 01/10/2026 às 09:30</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📦</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Intralogística</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Análise estrutural e preventiva em sistemas de estanterias metálicas</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 30/09/2026 às 16:40</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
-                <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Expansão de fundos de investimento imobiliário focados em ativos logísticos</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 29/09/2026 às 11:00</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="automacao" style="--cor-categoria: #9333EA;">
-                <div class="area-imagem"><span style="font-size: 40px;">🤖</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Automação</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Sistemas de classificação de alta velocidade (sorters) em e-commerce</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 28/09/2026 às 15:10</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Desafios regulatórios e tributários para operadores logísticos no Brasil</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 27/09/2026 às 10:25</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="titulo-noticia">Inovações em software de roteirização e consolidação de cargas</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 26/09/2026 às 13:15</span><a href="https://www.tecnologistica.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Logística reversa de eletrônicos e diretrizes ambientais vigentes</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 25/09/2026 às 16:00</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="supply-chain" style="--cor-categoria: #EA580C;">
-                <div class="area-imagem"><span style="font-size: 40px;">🌐</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Supply Chain</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Colaboração entre fornecedores e varejistas para otimização de estoques</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 24/09/2026 às 12:30</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="intralogistica" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📦</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Intralogística</span>
-                    <h2><a href="https://logweb.com.br/noticias/" target="_blank" class="titulo-noticia">Ergonomia e segurança do trabalho na operação de empilhadeiras</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 23/09/2026 às 09:15</span><a href="https://logweb.com.br/noticias/" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
-
-            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
-                <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://mundologistica.com.br/noticias" target="_blank" class="titulo-noticia">Perspectivas de mercado e novas tecnologias de armazenagem</a></h2>
-                    <div class="rodape-card"><span class="data">🕒 21/09/2026 às 08:00</span><a href="https://mundologistica.com.br/noticias" target="_blank" class="botao-noticia">Acessar ↗</a></div>
-                </div>
-            </article>
         </main>
 
         <footer>
