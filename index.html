@@ -29,14 +29,14 @@
 
         .container { max-width: 1200px; margin: 0 auto; }
 
-        header { text-align: center; padding: 20px 0 40px; }
+        header { text-align: center; padding: 20px 0 30px; }
 
         .logo-bsa {
             display: block;
             width: 220px;
             max-width: 80%;
             height: auto;
-            margin: 0 auto 24px;
+            margin: 0 auto 20px;
         }
 
         .profile-container {
@@ -44,38 +44,32 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .profile-photo {
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            border: 3px solid #3b82f6;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
 
-        .profile-info h3 {
-            font-size: 1.1rem;
-            color: var(--text-main);
-        }
-
-        .profile-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
+        .profile-info { text-align: left; }
+        .profile-info h3 { font-size: 1.15rem; color: #fff; font-weight: 600; }
+        .profile-info p { font-size: 0.85rem; color: #94a3b8; margin-top: 2px; }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: 700;
             background: linear-gradient(to right, #3b82f6, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .subtitulo { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 8px; }
+        .subtitulo { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 6px; }
         .atualizacao { color: var(--text-muted); font-size: 0.85rem; opacity: 0.8; }
 
         .filtros-container {
@@ -127,20 +121,23 @@
             border-color: var(--cor-categoria);
         }
 
-        .area-imagem { width: 100%; height: 180px; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
-        .imagem-noticia { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .card-noticia:hover .imagem-noticia { transform: scale(1.05); }
-
-        /* Estilo aplicado para os destaques baseados nos logotipos institucionais */
-        .area-imagem.logo-bg {
-            background: radial-gradient(circle, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%);
-            padding: 30px;
+        .area-imagem { 
+            width: 100%; 
+            height: 180px; 
+            overflow: hidden; 
+            background: radial-gradient(circle, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 25px;
         }
-        .area-imagem.logo-bg img {
-            max-height: 80px;
-            width: auto;
-            object-fit: contain;
+        .imagem-logo-fonte { 
+            max-height: 75px; 
+            width: auto; 
+            object-fit: contain; 
+            transition: transform 0.3s ease; 
         }
+        .card-noticia:hover .imagem-logo-fonte { transform: scale(1.06); }
 
         .conteudo-noticia { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
 
@@ -182,6 +179,8 @@
             padding: 20px 0;
             border-top: 1px solid var(--border-color);
         }
+
+        .escondido { display: none !important; }
     </style>
 </head>
 <body>
@@ -189,9 +188,9 @@
         <header>
             <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             
-            <!-- Foto de perfil e identificação do analista -->
+            <!-- Perfil com a foto real embutida (Base64) -->
             <div class="profile-container">
-                <img src="diogo.jpg" alt="Diogo Paim Gonçalves" class="profile-photo">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" alt="Diogo Paim Gonçalves" class="profile-photo">
                 <div class="profile-info">
                     <h3>Diogo Paim Gonçalves</h3>
                     <p>Analista de Desenvolvimento de Negócios</p>
@@ -200,7 +199,7 @@
 
             <h1>Radar Logístico & Intralogístico</h1>
             <p class="subtitulo">Mercado, Investimentos e Tecnologias de Armazenagem</p>
-            <p class="atualizacao">Última atualização: 21/10/2026 às 07:14</p>
+            <p class="atualizacao">Última atualização: 21/10/2026 às 07:14 | Notícias atualizadas</p>
         </header>
 
         <div class="filtros-container">
@@ -209,64 +208,120 @@
             <button class="btn-filtro" data-filter="logweb">Logweb</button>
             <button class="btn-filtro" data-filter="tecnologistica">Tecnologística</button>
             <button class="btn-filtro" data-filter="investimentos">Investimentos</button>
-            <button class="btn-filtro" data-filter="automacao">Automação</button>
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
             
-            <!-- Exemplo de card utilizando o Logo do Mundo Logística -->
+            <!-- Notícia 1 - Logweb (Com Logo Oficial) -->
+            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
+                <div class="area-imagem">
+                    <img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" alt="Logweb" class="imagem-logo-fonte">
+                </div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Logweb</span>
+                    <h2>
+                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                            Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo - Portal Logweb
+                        </a>
+                    </h2>
+                    <div class="rodape-card">
+                        <span class="data">🕒 20/10/2026 às 16:28</span>
+                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Notícia 2 - Mundo Logística (Com Logo Oficial) -->
             <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem logo-bg">
-                    <img src="mundologistica.png" alt="Mundo Logística">
+                <div class="area-imagem">
+                    <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="Mundo Logística" class="imagem-logo-fonte">
                 </div>
                 <div class="conteudo-noticia">
                     <span class="badge">Mundo Logística</span>
                     <h2>
-                        <a href="#" target="_blank" rel="noopener" class="titulo-noticia">
+                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
                             Transportadoras têm até 30 de outubro para decidir sobre CBS - Mundo Logística
                         </a>
                     </h2>
                     <div class="rodape-card">
                         <span class="data">🕒 20/10/2026 às 13:27</span>
-                        <a href="#" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Exemplo de card utilizando o Logo da Logweb -->
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem logo-bg">
-                    <img src="logweb.png" alt="Logweb">
+            <!-- Notícia 3 - Mundo Logística -->
+            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
+                <div class="area-imagem">
+                    <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="Mundo Logística" class="imagem-logo-fonte">
                 </div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
+                    <span class="badge">Mundo Logística</span>
                     <h2>
-                        <a href="#" target="_blank" rel="noopener" class="titulo-noticia">
-                            Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo
+                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1PZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                            Integração logística é decisiva para competitividade do agro - MundoLogística
                         </a>
                     </h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 20/10/2026 às 16:28</span>
-                        <a href="#" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                        <span class="data">🕒 19/10/2026 às 19:17</span>
+                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1PZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Exemplo de card utilizando o Logo da Tecnologística -->
+            <!-- Notícia 4 - Tecnologística (Com Logo Oficial) -->
             <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem logo-bg">
-                    <img src="tecnologistica.png" alt="Tecnologística">
+                <div class="area-imagem">
+                    <img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" alt="Tecnologística" class="imagem-logo-fonte">
                 </div>
                 <div class="conteudo-noticia">
                     <span class="badge">Tecnologística</span>
                     <h2>
-                        <a href="#" target="_blank" rel="noopener" class="titulo-noticia">
+                        <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
                             Magalu passa a ter loja própria na Shopee - Tecnologística
                         </a>
                     </h2>
                     <div class="rodape-card">
                         <span class="data">🕒 19/10/2026 às 15:24</span>
-                        <a href="#" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                        <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Notícia 5 - Mundo Logística -->
+            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
+                <div class="area-imagem">
+                    <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="Mundo Logística" class="imagem-logo-fonte">
+                </div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Mundo Logística</span>
+                    <h2>
+                        <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5GZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                            Fim da escala 6x1: Como as entidades avaliam a aprovação - Mundo Logística
+                        </a>
+                    </h2>
+                    <div class="rodape-card">
+                        <span class="data">🕒 19/10/2026 às 15:05</span>
+                        <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5GZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Notícia 6 - Investimentos -->
+            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
+                <div class="area-imagem">
+                    <span style="font-size: 40px;">📊</span>
+                </div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Investimentos</span>
+                    <h2>
+                        <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBjcUJ2RTJXeEtTd3V6SzdEZGxOY000Z0Nlc2dlVEwxSVNMYlRfV0tDbVNBSC1EMzg5a0I0RjYwVDB2UkJITEFsQklDOGNDMDdMbzlVbUVKeE5UTE9JUk9vbExUT1REVS1Va2hfMFJNRXAtZ0tGVFk5OUZkS0xPZ2_SAYcBQVVfeXFMT2tMeXVRNXJCNDU0cWx0dDJYdlhyMnJfZVhENWlheUxpN2hxNkM1MXJWd0d6cUZiVS1JenVGbFZZWWh4bzRUaW44cVE3OWtKSDhDdEJVLXd5U19FaWdHQWgzWV8zLTdtX0lVb2pHYnNFemhtOG9KOUN1SnpHMm1teDV0YnU2SmVV?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                            Wer den Materialfluss auf wenigen Quadratmetern beherrscht, kontrolliert künftig Milliardeninvestitionen in Logistikzentren
+                        </a>
+                    </h2>
+                    <div class="rodape-card">
+                        <span class="data">🕒 19/10/2026 às 11:51</span>
+                        <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBjcUJ2RTJXeEtTd3V6SzdEZGxOY000Z0Nlc2dlVEwxSVNMYlRfV0tDbVNBSC1EMzg5a0I0RjYwVDB2UkJITEFsQklDOGNDMDdMbzlVbUVKeE5UTE9JUk9vbExUT1REVS1Va2hfMFJNRXAtZ0tGVFk5OUZkS0xPZ2_SAYcBQVVfeXFMT2tMeXVRNXJCNDU0cWx0dDJYdlhyMnJfZVhENWlheUxpN2hxNkM1MXJWd0d6cUZiVS1JenVGbFZZWWh4bzRUaW44cVE3OWtKSDhDdEJVLXd5U19FaWdHQWgzWV8zLTdtX0lVb2pHYnNFemhtOG9KOUN1SnpHMm1teDV0YnU2SmVV?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar ↗</a>
                     </div>
                 </div>
             </article>
@@ -277,5 +332,27 @@
             <p>Bertolini Sistemas de Armazenagem &copy; 2026</p>
         </footer>
     </div>
+
+    <script>
+        // Script de filtragem por categoria
+        const botoes = document.querySelectorAll('.btn-filtro');
+        const cards = document.querySelectorAll('.card-noticia');
+
+        botoes.forEach(botao => {
+            botao.addEventListener('click', () => {
+                botoes.forEach(b => b.classList.remove('active'));
+                botao.classList.add('active');
+                const filtro = botao.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    if (filtro === 'todos' || card.getAttribute('data-categoria') === filtro) {
+                        card.classList.remove('escondido');
+                    } else {
+                        card.classList.add('escondido');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
