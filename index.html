@@ -28,7 +28,6 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; }
-
         header { text-align: center; padding: 20px 0 30px; }
 
         .logo-bsa {
@@ -102,7 +101,7 @@
 
         .area-imagem { 
             width: 100%; 
-            height: 180px; 
+            height: 160px; 
             overflow: hidden; 
             background: radial-gradient(circle, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%); 
             display: flex; 
@@ -112,7 +111,7 @@
         }
 
         .imagem-logo-fonte { 
-            max-height: 75px; 
+            max-height: 65px; 
             width: auto; 
             object-fit: contain; 
         }
@@ -132,7 +131,7 @@
             margin-bottom: 12px;
         }
 
-        .card-noticia h2 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 15px; font-weight: 600; }
+        .card-noticia h2 { font-size: 1.05rem; line-height: 1.5; margin-bottom: 15px; font-weight: 600; }
         .titulo-noticia { color: var(--text-main); text-decoration: none; transition: color 0.2s ease; }
         .titulo-noticia:hover { color: var(--primary); }
 
@@ -167,149 +166,107 @@
             <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             
             <h1>Radar Logístico & Intralogístico</h1>
-            <p class="subtitulo">Mercado, Investimentos e Tecnologias de Armazenagem</p>
-            <p class="atualizacao">Última atualização: 21/10/2026 às 07:14 | Notícias dos últimos 30 dias (<span id="contadorNoticias">10</span> carregadas)</p>
+            <p class="subtitulo">Últimas Publicações e Notícias dos Últimos 30 Dias (Ordem Decrescente)</p>
+            <p class="atualizacao">Atualizado em 21/10/2026 | Fonte de Dados Monitorada</p>
         </header>
 
         <div class="filtros-container">
             <button class="btn-filtro active" data-filter="todos">Todas</button>
-            <button class="btn-filtro" data-filter="intralogistica">Intralogística</button>
-            <button class="btn-filtro" data-filter="investimentos">Investimentos</button>
-            <button class="btn-filtro" data-filter="automacao">Automação</button>
             <button class="btn-filtro" data-filter="mundo-logistica">Mundo Logística</button>
-            <button class="btn-filtro" data-filter="tecnologistica">Tecnologística</button>
             <button class="btn-filtro" data-filter="logweb">Logweb</button>
-            <button class="btn-filtro" data-filter="supply-chain">Supply Chain</button>
+            <button class="btn-filtro" data-filter="tecnologistica">Tecnologística</button>
+            <button class="btn-filtro" data-filter="imprensa">Grandes Veículos (Exame/Valor)</button>
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
             
-            <!-- Card 1: Transportadoras têm até 30 de outubro para decidir sobre CBS -->
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Transportadoras têm até 30 de outubro para decidir sobre CBS</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 20/10/2026 às 13:27</span>
-                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 2: Supply chain impulsiona o valor e a experiência das marcas -->
+            <!-- Notícia 1 (20/10/2026) -->
             <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
                 <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte" alt="Logweb"></div>
                 <div class="conteudo-noticia">
                     <span class="badge">Logweb</span>
                     <h2><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo</a></h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 20/10/2026 às 16:28</span>
-                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
+                        <span class="data">🕒 20/10/2026 - 16:28</span>
+                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Card 3: Integração logística é decisiva para competitividade do agro -->
+            <!-- Notícia 2 (20/10/2026) -->
+            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
+                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
+                <div class="conteudo-noticia">
+                    <span class="badge">Mundo Logística</span>
+                    <h2><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Transportadoras têm até 30 de outubro para decidir sobre CBS</a></h2>
+                    <div class="rodape-card">
+                        <span class="data">🕒 20/10/2026 - 13:27</span>
+                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Notícia 3 (19/10/2026) -->
             <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
                 <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
                 <div class="conteudo-noticia">
                     <span class="badge">Mundo Logística</span>
                     <h2><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1OZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Integração logística é decisiva para competitividade do agro</a></h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 às 19:17</span>
-                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1OZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
+                        <span class="data">🕒 19/10/2026 - 19:17</span>
+                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1OZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Card 4: Magalu passa a ter loja própria na Shopee -->
+            <!-- Notícia 4 (19/10/2026) -->
             <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
                 <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte" alt="Tecnologística"></div>
                 <div class="conteudo-noticia">
                     <span class="badge">Tecnologística</span>
                     <h2><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Magalu passa a ter loja própria na Shopee</a></h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 às 15:24</span>
-                        <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
+                        <span class="data">🕒 19/10/2026 - 15:24</span>
+                        <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Card 5: Fim da escala 6x1 -->
+            <!-- Notícia 5 (19/10/2026) -->
             <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
                 <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
                 <div class="conteudo-noticia">
                     <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5FZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Fim da escala 6x1: Como as entidades avaliam a aprovação</a></h2>
+                    <h2><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5FZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Fim da escala 6x1: Como as entidades do setor avaliam a aprovação</a></h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 às 15:05</span>
-                        <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5FZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
+                        <span class="data">🕒 19/10/2026 - 15:05</span>
+                        <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5FZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Card 6: Wer den Materialfluss... (Investimentos) -->
-            <article class="card-noticia" data-categoria="investimentos" style="--cor-categoria: #059669;">
-                <div class="area-imagem"><span style="font-size: 40px;">📊</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Investimentos</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBjcUJ2RTJXeEtTd3V6SzdEZGxOY000Z0Nlc2dlVEwxSVNMYlRfV0tDbVNBSC1EMzg5a0I0RjYwVDB2UkJITEFsQklDOGNDMDdMbzlVbUVKeE5UTE9JUk9vbExUT1REVS1Va2hfMFJNRXAtZ0tGVFk5OUZkS0xPZ2_SAYcBQVVfeXFMT2tMeXVRNXJCNDU0cWx0dDJYdlhyMnJfZVhENWlheUxpN2hxNkM1MXJWd0d6cUZiVS1JenVGbFZZWWh4bzRUaW44cVE3OWtKSDhDdEJVLXd5U19FaWdHQWgzWV8zLTdtX0lVb2pHYnNFemhtOG9KOUN1SnpHMm1teDV0YnU2SmVV?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Wer den Materialfluss auf wenigen Quadratmetern beherrscht, kontrolliert künftig Milliardeninvestitionen in Logistikzentren</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 às 11:51</span>
-                        <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBjcUJ2RTJXeEtTd3V6SzdEZGxOY000Z0Nlc2dlVEwxSVNMYlRfV0tDbVNBSC1EMzg5a0I0RjYwVDB2UkJITEFsQklDOGNDMDdMbzlVbUVKeE5UTE9JUk9vbExUT1REVS1Va2hfMFJNRXAtZ0tGVFk5OUZkS0xPZ2_SAYcBQVVfeXFMT2tMeXVRNXJCNDU0cWx0dDJYdlhyMnJfZVhENWlheUxpN2hxNkM1MXJWd0d6cUZiVS1JenVGbFZZWWh4bzRUaW44cVE3OWtKSDhDdEJVLXd5U19FaWdHQWgzWV8zLTdtX0lVb2pHYnNFemhtOG9KOUN1SnpHMm1teDV0YnU2SmVV?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 7: Consórcio investe em novos berços no Porto de Santos -->
+            <!-- Notícia 6 (19/10/2026) -->
             <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
                 <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte" alt="Logweb"></div>
                 <div class="conteudo-noticia">
                     <span class="badge">Logweb</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Consórcio investe em novos berços para ampliar eficiência na movimentação de granéis líquidos no Porto de Santos</a></h2>
+                    <h2><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Consórcio investe em novos berços para ampliar eficiência na movimentação no Porto de Santos</a></h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 às 10:14</span>
-                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
+                        <span class="data">🕒 19/10/2026 - 10:14</span>
+                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
                     </div>
                 </div>
             </article>
 
-            <!-- Card 8: DP World capacitação de mulheres -->
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
+            <!-- Notícia 7 (18/10/2026) -->
+            <article class="card-noticia" data-categoria="imprensa" style="--cor-categoria: #2563EB;">
+                <div class="area-imagem"><span style="font-size: 40px;">📈</span></div>
                 <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNWkFnaG4xUkJnRW51UG5mX003V1NmdlhEcnk2ZzAtZ3RiaWpEazdpNWV0d2t3VUNHZWZ6R1daYkxJRFJhNGR3OWJodnJscnd1QnpzYndhN1B5clRNSzJ1NGpNS0lyRk5OdlNrdHR0TExkNWY2ZnhVNWstNWx5MmY3bk1MMEI3SXZ0cGF2b3dtcjlWUGJnaTcxenYwc3kycjdGUGZ6aC1aSk9iMnprMDRk" target="_blank" rel="noopener" class="titulo-noticia">DP World abre inscrições para capacitação de mulheres no setor portuário</a></h2>
+                    <span class="badge">Grandes Veículos</span>
+                    <h2><a href="https://exame.com/noticias-sobre/logistica/" target="_blank" rel="noopener" class="titulo-noticia">Exame: Notícias e Análises sobre o Setor de Logística e Supply Chain</a></h2>
                     <div class="rodape-card">
-                        <span class="data">🕒 18/10/2026 às 14:30</span>
-                        <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNWkFnaG4xUkJnRW51UG5mX003V1NmdlhEcnk2ZzAtZ3RiaWpEazdpNWV0d2t3VUNHZWZ6R1daYkxJRFJhNGR3OWJodnJscnd1QnpzYndhN1B5clRNSzJ1NGpNS0lyRk5OdlNrdHR0TExkNWY2ZnhVNWstNWx5MmY3bk1MMEI3SXZ0cGF2b3dtcjlWUGJnaTcxenYwc3kycjdGUGZ6aC1aSk9iMnprMDRk" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 9: Águia Branca Encomendas -->
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte" alt="Tecnologística"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOVGtsS3p5eXlhSGZ3NW9kQ2d6dlE3cmJqSEtWUFdrOVRvTHJrcFF5LTh5N3d3NllmUWxYWWYwNTR5b0E0d0E2Ukswak1oX0t1VlQ2Ukt4bE1tUUtjLThidm9RZWtHRkZwbHRaNm1rMm4tUkNncUx0MUV3NmRBN0s5MnVsRFRiTmJnWVFFSm9xZkx4cWk1MTRfVkY0UkF4Ump2QnhYcFFmSGZnb3FR" target="_blank" rel="noopener" class="titulo-noticia">Águia Branca Encomendas amplia cobertura para 19 cidades do Norte e Noroeste Fluminense</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 18/10/2026 às 11:15</span>
-                        <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOVGtsS3p5eXlhSGZ3NW9kQ2d6dlE3cmJqSEtWUFdrOVRvTHJrcFF5LTh5N3d3NllmUWxYWWYwNTR5b0E0d0E2Ukswak1oX0t1VlQ2Ukt4bE1tUUtjLThidm9RZWtHRkZwbHRaNm1rMm4tUkNncUx0MUV3NmRBN0s5MnVsRFRiTmJnWVFFSm9xZkx4cWk1MTRfVkY0UkF4Ump2QnhYcFFmSGZnb3FR" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 10: JBS Terminais anuncia aporte -->
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte" alt="Logweb"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNM1J1TXZrS3U5blF4ZzZvaFZZQTRMNDVMMkY1Y0JpQW1lOHB3akNxbzhndnlwLTV3UExwX0h5c2V5X1I2NmF3SGlwTHptdmtYdkplMnpXbUtidS1KRF84akNtOERzYy02dUt6RFR1UnRtbHFFSExqakZ1cEtJVk40dEtldDZhXzcyazRrdmd4Y1p5OTQ1Y0d6aVJkZGFBNUcw" target="_blank" rel="noopener" class="titulo-noticia">JBS Terminais anuncia aporte de R$ 15,2 milhões no Porto de Itajaí</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 17/10/2026 às 09:40</span>
-                        <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNM1J1TXZrS3U5blF4ZzZvaFZZQTRMNDVMMkY1Y0JpQW1lOHB3akNxbzhndnlwLTV3UExwX0h5c2V5X1I2NmF3SGlwTHptdmtYdkplMnpXbUtidS1KRF84akNtOERzYy02dUt6RFR1UnRtbHFFSExqakZ1cEtJVk40dEtldDZhXzcyazRrdmd4Y1p5OTQ1Y0d6aVJkZGFBNUcw" target="_blank" rel="noopener" class="botao-noticia">Acessar Notícia ↗</a>
+                        <span class="data">🕒 18/10/2026 - 14:30</span>
+                        <a href="https://exame.com/noticias-sobre/logistica/" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
                     </div>
                 </div>
             </article>
@@ -324,7 +281,6 @@
     <script>
         const botoesFiltro = document.querySelectorAll('.btn-filtro');
         const cardsNoticias = document.querySelectorAll('.card-noticia');
-        const contador = document.getElementById('contadorNoticias');
 
         botoesFiltro.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -332,19 +288,15 @@
                 btn.classList.add('active');
 
                 const filtro = btn.getAttribute('data-filter');
-                let visiveis = 0;
 
                 cardsNoticias.forEach(card => {
                     const categoria = card.getAttribute('data-categoria');
                     if (filtro === 'todos' || categoria === filtro) {
                         card.classList.remove('escondido');
-                        visiveis++;
                     } else {
                         card.classList.add('escondido');
                     }
                 });
-
-                contador.textContent = visiveis;
             });
         });
     </script>
