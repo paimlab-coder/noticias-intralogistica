@@ -1,23 +1,23 @@
 import base64
 from datetime import datetime
-from email.utils import parsedate_to_datetime
+from email.utils import parsedatetodatetime
 import html
 from pathlib import Path
 import re
 import ssl
 import unicodedata
-from urllib.parse import quote_plus
+from urllib.parse import quoteplus
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
-import webbrowser # Importado para a funcionalidade de abrir no navegador
+import webbrowser  Importado para a funcionalidade de abrir no navegador
 
-# ============================================================
-# CONFIGURAÇÕES E CATEGORIAS DE BUSCA
-# ============================================================
+ ============================================================
+ CONFIGURAÇÕES E CATEGORIAS DE BUSCA
+ ============================================================
 
-PASTA_PROJETO = Path(__file__).resolve().parent
-CAMINHO_INDEX = PASTA_PROJETO / "index.html"
-LIMITE_POR_CATEGORIA = 6
+PASTAPROJETO = Path(file).resolve().parent
+CAMINHOINDEX = PASTAPROJETO / "index.html"
+LIMITEPORCATEGORIA = 6
 
 PESQUISAS = {
     "Intralogística": "intralogística OR intralogistica armazenagem",
@@ -29,17 +29,17 @@ PESQUISAS = {
     "Supply Chain": "supply chain Brasil",
 }
 
-CORES_CATEGORIAS = {
-    "Intralogística": "#2563eb",
-    "Investimentos": "#059669",
-    "Automação": "#7c3aed",
-    "Mundo Logística": "#C2410C",
-    "Tecnologística": "#1E3A8A",
-    "Logweb": "#005CA9",
-    "Supply Chain": "#d97706",
+CORESCATEGORIAS = {
+    "Intralogística": "2563eb",
+    "Investimentos": "059669",
+    "Automação": "7c3aed",
+    "Mundo Logística": "C2410C",
+    "Tecnologística": "1E3A8A",
+    "Logweb": "005CA9",
+    "Supply Chain": "d97706",
 }
 
-ICONES_CATEGORIAS = {
+ICONESCATEGORIAS = {
     "Intralogística": "▦",
     "Investimentos": "📈",
     "Automação": "⚙",
@@ -49,104 +49,104 @@ ICONES_CATEGORIAS = {
     "Supply Chain": "⇄",
 }
 
-# --- NOVO: Logos Oficiais ---
-LOGOS_OFICIAIS = {
-    "Mundo Logística": "https://mundologistica.com.br/images/revistamundologistica_.svg",
+ --- NOVO: Logos Oficiais ---
+LOGOSOFICIAIS = {
+    "Mundo Logística": "https://mundologistica.com.br/images/revistamundologistica.svg",
     "Logweb": "https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png",
-    "Tecnologística": "https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp",
+    "Tecnologística": "https://www.tecnologistica.com.br/imagens/geral/logodt.webp",
 }
-# --- FIM NOVO ---
+ --- FIM NOVO ---
 
-# ============================================================
-# FUNÇÕES AUXILIARES
-# ============================================================
+ ============================================================
+ FUNÇÕES AUXILIARES
+ ============================================================
 
 
-def gerar_slug(texto):
+def gerarslug(texto):
   nfkd = unicodedata.normalize("NFKD", texto)
-  sem_acentos = "".join([c for c in nfkd if not unicodedata.combining(c)])
-  return re.sub(r"[^a-zA-Z0-9]+", "-", sem_acentos).strip("-").lower()
+  semacentos = "".join([c for c in nfkd if not unicodedata.combining(c)])
+  return re.sub(r"[^a-zA-Z0-9]+", "-", semacentos).strip("-").lower()
 
 
-def criar_imagem_padrao(categoria):
-  cor = CORES_CATEGORIAS.get(categoria, "#2563eb")
-  icone = ICONES_CATEGORIAS.get(categoria, "▦")
+def criarimagempadrao(categoria):
+  cor = CORESCATEGORIAS.get(categoria, "2563eb")
+  icone = ICONESCATEGORIAS.get(categoria, "▦")
 
   svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="600" height="320" viewBox="0 0 600 320">
     <defs>
         <linearGradient id="fundo" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="{cor}" />
-            <stop offset="100%" stop-color="#0f172a" />
+            <stop offset="100%" stop-color="0f172a" />
         </linearGradient>
     </defs>
-    <rect width="600" height="320" rx="16" fill="url(#fundo)"/>
+    <rect width="600" height="320" rx="16" fill="url(fundo)"/>
     <circle cx="300" cy="120" r="60" fill="rgba(255,255,255,0.12)"/>
     <text x="300" y="145" text-anchor="middle" font-size="64" fill="white">{icone}</text>
     <text x="300" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="white">{html.escape(categoria)}</text>
     <text x="300" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="rgba(255,255,255,0.7)" letter-spacing="2">RADAR LOGÍSTICO</text>
 </svg>"""
 
-  svg_base64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
-  return f"data:image/svg+xml;base64,{svg_base64}"
+  svgbase64 = base64.b64encode(svg.encode("utf-8")).decode("utf-8")
+  return f"data:image/svg+xml;base64,{svgbase64}"
 
 
-def formatar_data(data_original):
-  if not data_original:
+def formatardata(dataoriginal):
+  if not dataoriginal:
     return "Data não informada"
   try:
-    data_convertida = parsedate_to_datetime(data_original)
-    return data_convertida.strftime("%d/%m/%Y às %H:%M")
+    dataconvertida = parsedatetodatetime(dataoriginal)
+    return dataconvertida.strftime("%d/%m/%Y às %H:%M")
   except (TypeError, ValueError):
-    return data_original
+    return dataoriginal
 
 
-def obter_texto(elemento, valor_padrao=""):
+def obtertexto(elemento, valorpadrao=""):
   if elemento is not None and elemento.text:
     return elemento.text.strip()
-  return valor_padrao
+  return valorpadrao
 
 
-def procurar_imagem(item):
+def procurarimagem(item):
   namespaces = {"media": "http://search.yahoo.com/mrss/"}
-  media_content = item.find("media:content", namespaces)
-  if media_content is not None and media_content.get("url"):
-    return media_content.get("url")
+  mediacontent = item.find("media:content", namespaces)
+  if mediacontent is not None and mediacontent.get("url"):
+    return mediacontent.get("url")
 
-  media_thumbnail = item.find("media:thumbnail", namespaces)
-  if media_thumbnail is not None and media_thumbnail.get("url"):
-    return media_thumbnail.get("url")
+  mediathumbnail = item.find("media:thumbnail", namespaces)
+  if mediathumbnail is not None and mediathumbnail.get("url"):
+    return mediathumbnail.get("url")
 
   enclosure = item.find("enclosure")
   if enclosure is not None:
     tipo = enclosure.get("type", "")
-    url_imagem = enclosure.get("url", "")
-    if tipo.startswith("image/") and url_imagem:
-      return url_imagem
+    urlimagem = enclosure.get("url", "")
+    if tipo.startswith("image/") and urlimagem:
+      return urlimagem
   return None
 
 
-def ordenar_data(item):
+def ordenardata(item):
   try:
     return datetime.strptime(item["data"], "%d/%m/%Y às %H:%M")
   except Exception:
     return datetime.min
 
 
-# ============================================================
-# BUSCA DAS NOTÍCIAS VIA RSS
-# ============================================================
+ ============================================================
+ BUSCA DAS NOTÍCIAS VIA RSS
+ ============================================================
 
 
-def buscar_noticias():
+def buscarnoticias():
   noticias = []
-  links_encontrados = set()
+  linksencontrados = set()
 
-  contexto_ssl = ssl.create_default_context()
-  contexto_ssl.check_hostname = False
-  contexto_ssl.verify_mode = ssl.CERT_NONE
+  contextossl = ssl.createdefaultcontext()
+  contextossl.checkhostname = False
+  contextossl.verifymode = ssl.CERTNONE
 
   for categoria, pesquisa in PESQUISAS.items():
-    termo = quote_plus(pesquisa)
+    termo = quoteplus(pesquisa)
     url = f"https://news.google.com/rss/search?q={termo}&hl=pt-BR&gl=BR&ceid=BR:pt-419"
 
     print(f"Buscando: {categoria}...")
@@ -161,39 +161,39 @@ def buscar_noticias():
     )
 
     try:
-      with urlopen(requisicao, timeout=30, context=contexto_ssl) as resposta:
-        conteudo_xml = resposta.read()
-        raiz = ET.fromstring(conteudo_xml)
+      with urlopen(requisicao, timeout=30, context=contextossl) as resposta:
+        conteudoxml = resposta.read()
+        raiz = ET.fromstring(conteudoxml)
         itens = raiz.findall(".//item")
 
-        for item in itens[:LIMITE_POR_CATEGORIA]:
-          titulo = obter_texto(item.find("title"), "Notícia sem título")
-          link = obter_texto(item.find("link"), "#")
-          data_original = obter_texto(item.find("pubDate"), "")
+        for item in itens[:LIMITEPORCATEGORIA]:
+          titulo = obtertexto(item.find("title"), "Notícia sem título")
+          link = obtertexto(item.find("link"), "")
+          dataoriginal = obtertexto(item.find("pubDate"), "")
 
-          # --- INÍCIO DA MODIFICAÇÃO PARA USAR LOGOS OFICIAIS ---
-          imagem_buscada = procurar_imagem(item)
-          imagem_final = imagem_buscada # Começa com a imagem encontrada na notícia
+           --- INÍCIO DA MODIFICAÇÃO PARA USAR LOGOS OFICIAIS ---
+          imagembuscada = procurarimagem(item)
+          imagemfinal = imagembuscada  Começa com a imagem encontrada na notícia
 
-          # Se a imagem não foi encontrada na notícia, verifica se é uma categoria com logo oficial
-          if not imagem_final and categoria in LOGOS_OFICIAIS:
-              imagem_final = LOGOS_OFICIAIS[categoria]
+           Se a imagem não foi encontrada na notícia, verifica se é uma categoria com logo oficial
+          if not imagemfinal and categoria in LOGOSOFICIAIS:
+              imagemfinal = LOGOSOFICIAIS[categoria]
           
-          # Se ainda assim não houver imagem, usa o fallback padrão (SVG gerado)
-          if not imagem_final:
-              imagem_final = criar_imagem_padrao(categoria)
-          # --- FIM DA MODIFICAÇÃO ---
+           Se ainda assim não houver imagem, usa o fallback padrão (SVG gerado)
+          if not imagemfinal:
+              imagemfinal = criarimagempadrao(categoria)
+           --- FIM DA MODIFICAÇÃO ---
 
-          if link in links_encontrados:
+          if link in linksencontrados:
             continue
 
-          links_encontrados.add(link)
+          linksencontrados.add(link)
           noticias.append({
               "categoria": categoria,
               "titulo": titulo,
               "link": link,
-              "imagem": imagem_final, # Usa a imagem_final definida acima
-              "data": formatar_data(data_original),
+              "imagem": imagemfinal,  Usa a imagemfinal definida acima
+              "data": formatardata(dataoriginal),
           })
     except Exception as erro:
       print(f"Erro ao consultar {categoria}: {erro}")
@@ -201,12 +201,12 @@ def buscar_noticias():
   return noticias
 
 
-# ============================================================
-# GERAÇÃO DO DASHBOARD HTML
-# ============================================================
+ ============================================================
+ GERAÇÃO DO DASHBOARD HTML
+ ============================================================
 
 
-def gerar_cards(noticias):
+def gerarcards(noticias):
   if not noticias:
     return (
         '<div class="aviso-vazio">Nenhuma notícia encontrada no momento.</div>'
@@ -214,27 +214,27 @@ def gerar_cards(noticias):
 
   cards = []
   for noticia in noticias:
-    cat_orig = noticia["categoria"]
-    cat_slug = gerar_slug(cat_orig)
-    cor = CORES_CATEGORIAS.get(cat_orig, "#2563eb")
-    # A imagem de fallback aqui é importante caso o logo oficial falhe ao carregar
-    img_fallback = criar_imagem_padrao(cat_orig) 
+    catorig = noticia["categoria"]
+    catslug = gerarslug(catorig)
+    cor = CORESCATEGORIAS.get(catorig, "2563eb")
+     A imagem de fallback aqui é importante caso o logo oficial falhe ao carregar
+    imgfallback = criarimagempadrao(catorig) 
 
     card = f"""
-        <article class="card-noticia" data-categoria="{cat_slug}" style="--cor-categoria: {cor};">
+        <article class="card-noticia" data-categoria="{catslug}" style="--cor-categoria: {cor};">
             <div class="area-imagem">
-                <img src="{html.escape(noticia['imagem'], quote=True)}" alt="{html.escape(noticia['titulo'])}" class="imagem-noticia" loading="lazy" onerror="this.onerror=null; this.src='{img_fallback}';">
+                <img src="{html.escape(noticia['imagem'], quote=True)}" alt="{html.escape(noticia['titulo'])}" class="imagem-noticia" loading="lazy" onerror="this.onerror=null; this.src='{imgfallback}';">
             </div>
             <div class="conteudo-noticia">
-                <span class="badge">{html.escape(cat_orig)}</span>
+                <span class="badge">{html.escape(catorig)}</span>
                 <h2>
-                    <a href="{html.escape(noticia['link'], quote=True)}" target="_blank" rel="noopener" class="titulo-noticia">
+                    <a href="{html.escape(noticia['link'], quote=True)}" target="blank" rel="noopener" class="titulo-noticia">
                         {html.escape(noticia['titulo'])}
                     </a>
                 </h2>
                 <div class="rodape-card">
                     <span class="data">🕒 {html.escape(noticia['data'])}</span>
-                    <a href="{html.escape(noticia['link'], quote=True)}" target="_blank" rel="noopener" class="botao-noticia">
+                    <a href="{html.escape(noticia['link'], quote=True)}" target="blank" rel="noopener" class="botao-noticia">
                         Acessar ↗
                     </a>
                 </div>
@@ -245,21 +245,21 @@ def gerar_cards(noticias):
   return "\n".join(cards)
 
 
-def criar_index(noticias):
-  cards_html = gerar_cards(noticias)
+def criarindex(noticias):
+  cardshtml = gerarcards(noticias)
   horario = datetime.now().strftime("%d/%m/%Y às %H:%M")
   quantidade = str(len(noticias))
 
-  filtros_html = (
+  filtroshtml = (
       '<button class="btn-filtro active" data-filter="todos">Todas</button>\n'
   )
   for cat in PESQUISAS.keys():
-    slug = gerar_slug(cat)
-    filtros_html += (
+    slug = gerarslug(cat)
+    filtroshtml += (
         f'<button class="btn-filtro" data-filter="{slug}">{cat}</button>\n'
     )
 
-  html_template = """<!DOCTYPE html>
+  htmltemplate = """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -270,15 +270,15 @@ def criar_index(noticias):
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --primary: #3b82f6;
+            --bg-body: 0f172a;
+            --bg-card: 1e293b;
+            --text-main: f8fafc;
+            --text-muted: 94a3b8;
+            --border-color: 334155;
+            --primary: 3b82f6;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+         { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -294,10 +294,10 @@ def criar_index(noticias):
 
         .logo-bsa {
             display: block;
-            /* --- SEGUNDO AJUSTE NO TAMANHO DO LOGO --- */
-            width: 150px; /* Reduzido ainda mais de 180px */
-            max-width: 70%; /* Mantido para responsividade, mas com width menor */
-            /* --- FIM DO SEGUNDO AJUSTE --- */
+            / --- SEGUNDO AJUSTE NO TAMANHO DO LOGO --- /
+            width: 150px; / Reduzido ainda mais de 180px /
+            max-width: 70%; / Mantido para responsividade, mas com width menor /
+            / --- FIM DO SEGUNDO AJUSTE --- /
             height: auto;
             margin: 0 auto 24px;
         }
@@ -305,7 +305,7 @@ def criar_index(noticias):
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            background: linear-gradient(to right, 3b82f6, 60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
@@ -336,7 +336,7 @@ def criar_index(noticias):
 
         .btn-filtro:hover, .btn-filtro.active {
             background: var(--primary);
-            color: #fff;
+            color: fff;
             border-color: var(--primary);
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
@@ -363,7 +363,7 @@ def criar_index(noticias):
             border-color: var(--cor-categoria);
         }
 
-        .area-imagem { width: 100%; height: 180px; overflow: hidden; background: #000; }
+        .area-imagem { width: 100%; height: 180px; overflow: hidden; background: 000; }
         .imagem-noticia { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .card-noticia:hover .imagem-noticia { transform: scale(1.05); }
 
@@ -372,7 +372,7 @@ def criar_index(noticias):
         .badge {
             align-self: flex-start;
             background: var(--cor-categoria);
-            color: #ffffff;
+            color: ffffff;
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 0.75rem;
@@ -417,15 +417,15 @@ def criar_index(noticias):
             <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             <h1>Radar Logístico & Intralogístico</h1>
             <p class="subtitulo">Mercado, Investimentos e Tecnologias de Armazenagem</p>
-            <p class="atualizacao">Última atualização: __HORARIO__ | __QUANTIDADE__ notícias carregadas</p>
+            <p class="atualizacao">Última atualização: HORARIO | QUANTIDADE notícias carregadas</p>
         </header>
 
         <div class="filtros-container">
-            __FILTROS__
+            FILTROS
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            __CARDS__
+            CARDS
         </main>
 
         <footer>
@@ -455,36 +455,35 @@ def criar_index(noticias):
 </body>
 </html>"""
 
-  html_final = (
-      html_template.replace("__HORARIO__", horario)
-      .replace("__QUANTIDADE__", quantidade)
-      .replace("__FILTROS__", filtros_html)
-      .replace("__CARDS__", cards_html)
+  htmlfinal = (
+      htmltemplate.replace("HORARIO", horario)
+      .replace("QUANTIDADE", quantidade)
+      .replace("FILTROS", filtroshtml)
+      .replace("CARDS", cardshtml)
   )
 
-  CAMINHO_INDEX.write_text(html_final, encoding="utf-8")
-  print(f"Página gerada com sucesso em: {CAMINHO_INDEX}")
+  CAMINHOINDEX.writetext(htmlfinal, encoding="utf-8")
+  print(f"Página gerada com sucesso em: {CAMINHOINDEX}")
 
-  # --- NOVO CÓDIGO PARA ABRIR NO NAVEGADOR APÓS GERAÇÃO ---
+   --- NOVO CÓDIGO PARA ABRIR NO NAVEGADOR APÓS GERAÇÃO ---
   try:
-      # Obtém o caminho absoluto do arquivo index.html
-      caminho_absoluto_index = CAMINHO_INDEX.resolve()
-      # Converte para URL (necessário para alguns sistemas operacionais/navegadores)
-      url_local = caminho_absoluto_index.as_uri()
-      print(f"\nAbrindo página de prévia no navegador: {url_local}")
-      webbrowser.open(url_local)
+       Obtém o caminho absoluto do arquivo index.html
+      caminhoabsolutoindex = CAMINHOINDEX.resolve()
+       Converte para URL (necessário para alguns sistemas operacionais/navegadores)
+      urllocal = caminhoabsolutoindex.asuri()
+      print(f"\nAbrindo página de prévia no navegador: {urllocal}")
+      webbrowser.open(urllocal)
   except Exception as e:
-      print(f"\nNão foi possível abrir o navegador automaticamente. Por favor, abra o arquivo '{CAMINHO_INDEX}' manualmente.")
+      print(f"\nNão foi possível abrir o navegador automaticamente. Por favor, abra o arquivo '{CAMINHOINDEX}' manualmente.")
       print(f"Erro: {e}")
-  # --- FIM DO NOVO CÓDIGO ---
+   --- FIM DO NOVO CÓDIGO ---
 
 
-# ============================================================
-# EXECUÇÃO PRINCIPAL
-# ============================================================
+ ============================================================
+ EXECUÇÃO PRINCIPAL
+ ============================================================
 
-if __name__ == "__main__":
-  noticias = buscar_noticias()
-  noticias.sort(key=ordenar_data, reverse=True)
-  criar_index(noticias)
-```
+if name == "main":
+  noticias = buscarnoticias()
+  noticias.sort(key=ordenardata, reverse=True)
+  criarindex(noticias)
