@@ -148,6 +148,14 @@
         .botao-noticia { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.85rem; }
         .botao-noticia:hover { text-decoration: underline; }
 
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            padding: 40px 0;
+        }
+
         footer {
             text-align: center;
             color: var(--text-muted);
@@ -166,8 +174,8 @@
             <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             
             <h1>Radar Logístico & Intralogístico</h1>
-            <p class="subtitulo">Últimas Publicações e Notícias dos Últimos 30 Dias (Ordem Decrescente)</p>
-            <p class="atualizacao">Atualizado em 21/10/2026 | Fonte de Dados Monitorada</p>
+            <p class="subtitulo">Feeds Oficiais dos Últimos 30 Dias (Ordem Decrescente)</p>
+            <p class="atualizacao">Sincronizado automaticamente | <span id="contadorNoticias">Carregando...</span></p>
         </header>
 
         <div class="filtros-container">
@@ -175,102 +183,10 @@
             <button class="btn-filtro" data-filter="mundo-logistica">Mundo Logística</button>
             <button class="btn-filtro" data-filter="logweb">Logweb</button>
             <button class="btn-filtro" data-filter="tecnologistica">Tecnologística</button>
-            <button class="btn-filtro" data-filter="imprensa">Grandes Veículos (Exame/Valor)</button>
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
-            
-            <!-- Notícia 1 (20/10/2026) -->
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte" alt="Logweb"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Supply chain impulsiona o valor e a experiência das marcas de beleza e luxo</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 20/10/2026 - 16:28</span>
-                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Notícia 2 (20/10/2026) -->
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Transportadoras têm até 30 de outubro para decidir sobre CBS</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 20/10/2026 - 13:27</span>
-                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQVFBaZXlsTEd1NWVla3ZOUGhrT1VXWEJpbG51NHA1ci02Qldvd2w4VWVyU1hKdXQtUkViR0dJSXVpNG0tT3RvU2JLWjhoYjRtWHNvMndHUFhfSEQtczJCX0VuNE9DZ01qbG44ZmlDN2FRSEVKdkRNNEhvS29WbmJkU3dMX2VMZjRvdjdPNVN1WG5heGk0Sm54V3dWRzFqTWVFRUxtY1h5dVEzMHlMbEZvMVI2aTlLUQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Notícia 3 (19/10/2026) -->
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1OZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Integração logística é decisiva para competitividade do agro</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 - 19:17</span>
-                        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNLUlFR2hJaklVcXBqWFFjdWJkdVZ2WUFodi1lX0NmUmVlb2RReEpLLUZXaUI2ZUIwelRkSldobmNlQ2pzdXhSOEdHMHA3Y2lVWXhzb2dSeTUxdndhcXc4TlVZRHZQS25MSnJtdEROak1OZmZBdkpxNE82T2ptTWdIS2JPejJOX2RHUnFKcWhadUNNR2F2eUo1THZlUkJqZEJtNnhWLUJLSEVuOVpzWjlENkZHRk5RQQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Notícia 4 (19/10/2026) -->
-            <article class="card-noticia" data-categoria="tecnologistica" style="--cor-categoria: #1E3A8A;">
-                <div class="area-imagem"><img src="https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp" class="imagem-logo-fonte" alt="Tecnologística"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Tecnologística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Magalu passa a ter loja própria na Shopee</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 - 15:24</span>
-                        <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNN2JNNkFva2dlT3lLZmVQTDJhVWtubzRwTGh2Qk40T1dGbjVHM1lmSXkza3I1WFpzbl9FYlM5Y2MzLXZLeENtajFNX1pOdy16WnB1eFBsSDhXOE9XS2RoN0ZUZlB0TlBiOXJVVWRTYnZaUlFfZWlrN3RUV01ZMFRuSlNYQ2dUWE9mZkJHeHp4Mm15WmhrVmVORE9ubnI1Vm9XcXZkeQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Notícia 5 (19/10/2026) -->
-            <article class="card-noticia" data-categoria="mundo-logistica" style="--cor-categoria: #C2410C;">
-                <div class="area-imagem"><img src="https://mundologistica.com.br/images/revistamundologistica_.svg" class="imagem-logo-fonte" alt="Mundo Logística"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Mundo Logística</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5FZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Fim da escala 6x1: Como as entidades do setor avaliam a aprovação</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 - 15:05</span>
-                        <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNWWRXcExiUkROVEFoZU10Qnl4WnhSbzN5SzUxV21uaVhONVpKQzFRVkx0ZGdvQlJNektzWG9TOEdyQU00RjJhTjhsUF9NSVRwM19BMFBOV0Y3by1vcjhHUW5Dak5FZDdCMERaUHVMTW9VR1pHaS1PbjdTOTlqVUE3ZjBIaDEza0FIak9oRA?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Notícia 6 (19/10/2026) -->
-            <article class="card-noticia" data-categoria="logweb" style="--cor-categoria: #005CA9;">
-                <div class="area-imagem"><img src="https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png" class="imagem-logo-fonte" alt="Logweb"></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Logweb</span>
-                    <h2><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="titulo-noticia">Consórcio investe em novos berços para ampliar eficiência na movimentação no Porto de Santos</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 19/10/2026 - 10:14</span>
-                        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPWWFOR0IyWmxINUdSWkE5WEl3cTZsMFhoajNoV2ZwSG9KRTYxb3gwZENvVnZROHdtTExhRGVRY1FLQU5zeVhlbVJiemJDXzZ2U2k5TVNUeXNvM2NzYWVvV1VDWGowdlVIT0loZjJDQXUzeDZueTl6SG5yYjdESFZnNmE4YkdGRHRibmdwMU1CTTY1YzBhYXZXdHM0SE53b28?oc=5" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Notícia 7 (18/10/2026) -->
-            <article class="card-noticia" data-categoria="imprensa" style="--cor-categoria: #2563EB;">
-                <div class="area-imagem"><span style="font-size: 40px;">📈</span></div>
-                <div class="conteudo-noticia">
-                    <span class="badge">Grandes Veículos</span>
-                    <h2><a href="https://exame.com/noticias-sobre/logistica/" target="_blank" rel="noopener" class="titulo-noticia">Exame: Notícias e Análises sobre o Setor de Logística e Supply Chain</a></h2>
-                    <div class="rodape-card">
-                        <span class="data">🕒 18/10/2026 - 14:30</span>
-                        <a href="https://exame.com/noticias-sobre/logistica/" target="_blank" rel="noopener" class="botao-noticia">Ler na Íntegra ↗</a>
-                    </div>
-                </div>
-            </article>
-
+            <div class="loading" id="loadingText">⏳ Carregando notícias em tempo real...</div>
         </main>
 
         <footer>
@@ -279,26 +195,117 @@
     </div>
 
     <script>
-        const botoesFiltro = document.querySelectorAll('.btn-filtro');
-        const cardsNoticias = document.querySelectorAll('.card-noticia');
+        const LOGOS = {
+            'logweb': 'https://logweb.com.br/wp-content/uploads/2023/07/lwn-03-Branco-Vazado.png',
+            'mundo-logistica': 'https://mundologistica.com.br/images/revistamundologistica_.svg',
+            'tecnologistica': 'https://www.tecnologistica.com.br/imagens/geral/logo_dt.webp'
+        };
 
-        botoesFiltro.forEach(btn => {
-            btn.addEventListener('click', () => {
-                botoesFiltro.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        const CORES = {
+            'logweb': '#005CA9',
+            'mundo-logistica': '#C2410C',
+            'tecnologistica': '#1E3A8A'
+        };
 
-                const filtro = btn.getAttribute('data-filter');
+        // Feeds RSS Oficiais dos Portais
+        const FEEDS = [
+            { id: 'mundo-logistica', nome: 'Mundo Logística', url: 'https://news.google.com/rss/search?q=site:mundologistica.com.br&hl=pt-BR&gl=BR&ceid=BR:pt-419' },
+            { id: 'logweb', nome: 'Logweb', url: 'https://news.google.com/rss/search?q=site:logweb.com.br&hl=pt-BR&gl=BR&ceid=BR:pt-419' },
+            { id: 'tecnologistica', nome: 'Tecnologística', url: 'https://news.google.com/rss/search?q=site:tecnologistica.com.br&hl=pt-BR&gl=BR&ceid=BR:pt-419' }
+        ];
 
-                cardsNoticias.forEach(card => {
-                    const categoria = card.getAttribute('data-categoria');
-                    if (filtro === 'todos' || categoria === filtro) {
-                        card.classList.remove('escondido');
-                    } else {
-                        card.classList.add('escondido');
+        let TODAS_NOTICIAS = [];
+
+        async function carregarNoticias() {
+            const grid = document.getElementById('gridNoticias');
+            const contador = document.getElementById('contadorNoticias');
+
+            try {
+                for (let feed of FEEDS) {
+                    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+
+                    if (data.status === 'ok' && data.items) {
+                        data.items.forEach(item => {
+                            TODAS_NOTICIAS.push({
+                                titulo: item.title,
+                                link: item.link,
+                                data: new Date(item.pubDate),
+                                fonteId: feed.id,
+                                fonteNome: feed.nome
+                            });
+                        });
                     }
-                });
+                }
+
+                // Ordena rigorosamente da notícia mais recente para a mais antiga (ordem decrescente)
+                TODAS_NOTICIAS.sort((a, b) => b.data - a.data);
+
+                renderizarNoticias('todos');
+            } catch (error) {
+                console.error("Erro ao carregar notícias:", error);
+                grid.innerHTML = '<div class="loading">Erro ao carregar feeds. Recarregue a página.</div>';
+            }
+        }
+
+        function renderizarNoticias(filtro) {
+            const grid = document.getElementById('gridNoticias');
+            const contador = document.getElementById('contadorNoticias');
+            grid.innerHTML = '';
+
+            let visiveis = 0;
+
+            TODAS_NOTICIAS.forEach(item => {
+                if (filtro === 'todos' || item.fonteId === filtro) {
+                    visiveis++;
+                    const cor = CORES[item.fonteId] || '#3b82f6';
+                    const logo = LOGOS[item.fonteId];
+
+                    const dataFormatada = item.data.toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    const article = document.createElement('article');
+                    article.className = 'card-noticia';
+                    article.style.setProperty('--cor-categoria', cor);
+                    article.setAttribute('data-categoria', item.fonteId);
+
+                    article.innerHTML = `
+                        <div class="area-imagem">
+                            <img src="${logo}" alt="${item.fonteNome}" class="imagem-logo-fonte">
+                        </div>
+                        <div class="conteudo-noticia">
+                            <span class="badge">${item.fonteNome}</span>
+                            <h2><a href="${item.link}" target="_blank" rel="noopener noreferrer" class="titulo-noticia">${item.titulo}</a></h2>
+                            <div class="rodape-card">
+                                <span class="data">🕒 ${dataFormatada}</span>
+                                <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="botao-noticia">Acessar Notícia ↗</a>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(article);
+                }
+            });
+
+            contador.textContent = `${visiveis} notícias carregadas`;
+        }
+
+        // Eventos dos Filtros
+        document.querySelectorAll('.btn-filtro').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                renderizarNoticias(e.target.getAttribute('data-filter'));
             });
         });
+
+        // Inicializa a busca automatizada ao abrir a página
+        carregarNoticias();
     </script>
 </body>
 </html>
