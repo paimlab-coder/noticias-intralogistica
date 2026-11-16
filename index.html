@@ -33,41 +33,37 @@
 
         .logo-bsa {
             display: block;
-            /* --- AJUSTE NO TAMANHO DO LOGO BERTOLINI --- */
-            width: 130px; /* Ajustado conforme solicitação */
-            max-width: 65%; /* Mantido */
-            /* --- FIM DO AJUSTE --- */
+            width: 160px;
+            max-width: 65%;
             height: auto;
-            margin: 0 auto 18px; /* Mantido */
+            margin: 0 auto 18px;
         }
 
-        /* --- ESTILOS PARA IMAGENS DE CABEÇALHO DOS CARDS --- */
         .area-imagem {
             width: 100%;
-            height: 100px; /* Reduzido conforme solicitação */
-            display: flex; /* Centraliza o conteúdo */
-            align-items: center; /* Centraliza verticalmente */
-            justify-content: center; /* Centraliza horizontalmente */
-            background: #000; /* Fundo escuro para a área da imagem */
-            overflow: hidden; /* Garante que a imagem não saia da área */
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            overflow: hidden;
         }
 
-        .imagem-noticia { /* Para imagens encontradas na notícia */
+        .imagem-noticia {
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Preenche a área, pode cortar partes da imagem */
+            object-fit: cover;
             transition: transform 0.3s ease; 
         }
-        .imagem-logo-fonte { /* Para logos oficiais ou placeholders */
-            width: auto; /* Largura automática para manter proporção */
-            height: auto; /* Altura automática para manter proporção */
-            max-width: 40%; /* Limita a largura máxima do logo */
-            max-height: 30px; /* Limita a altura máxima do logo */
-            object-fit: contain; /* Garante que o logo inteiro seja visível, sem distorcer */
+        .imagem-logo-fonte {
+            width: auto;
+            height: auto;
+            max-width: 40%;
+            max-height: 30px;
+            object-fit: contain;
             transition: transform 0.3s ease; 
         }
         .card-noticia:hover .imagem-noticia, .card-noticia:hover .imagem-logo-fonte { transform: scale(1.05); }
-        /* --- FIM DOS ESTILOS --- */
 
         h1 {
             font-size: 2.5rem;
@@ -145,14 +141,8 @@
             margin-bottom: 12px;
         }
 
-        /* --- ESTILOS PARA BADGES DE SEGMENTO --- */
-        .segmentos-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
         .segmento-badge {
+            align-self: flex-start;
             color: #ffffff;
             padding: 3px 8px;
             border-radius: 5px;
@@ -160,8 +150,8 @@
             font-weight: 600;
             letter-spacing: 0.3px;
             opacity: 0.9;
+            margin-bottom: 8px;
         }
-        /* --- FIM DOS ESTILOS --- */
 
         .card-noticia h2 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 15px; font-weight: 600; }
         .titulo-noticia { color: var(--text-main); text-decoration: none; transition: color 0.2s ease; }
@@ -197,13 +187,9 @@ body{background:linear-gradient(180deg,#f8fafc 0%,#eef3f8 100%)!important}
 header{color:#1d2939!important}
 h1{color:#06418a!important;-webkit-text-fill-color:#06418a!important;background:none!important}
 .subtitulo{color:#49647f!important}.atualizacao{color:#667085!important}
-.painel{background:#fff!important;border:1px solid #e1e7ef!important;color:#1d2939!important;box-shadow:0 4px 16px rgba(16,24,40,.05)!important}
-.busca,.select-score{background:#fff!important;color:#1d2939!important;border-color:#ccd5e0!important}.busca::placeholder{color:#7a8797!important}
-.titulo-filtro{color:#475467!important}
 .btn-filtro,.btn-segmento{background:#fff!important;color:#344054!important;border:1px solid #d0d8e2!important;box-shadow:none!important}
 .btn-filtro:hover,.btn-segmento:hover{background:#f4f8fc!important;color:#06418a!important;border-color:#9fb6cf!important}
 .btn-filtro.active,.btn-segmento.active{background:#06418a!important;color:#fff!important;border-color:#06418a!important;box-shadow:inset 0 -2px 0 #ff8c0a!important}
-.contador{background:#f2f6fa!important;color:#06418a!important;border:1px solid #dce4ec!important}
 .card-noticia{background:#fff!important;color:#1d2939!important;border:1px solid #dde4ec!important;box-shadow:0 3px 13px rgba(16,24,40,.05)!important}
 .card-noticia:hover{border-color:#b8c7d8!important;box-shadow:0 9px 24px rgba(16,24,40,.09)!important}
 .area-imagem{background:#fafbfd!important;border-bottom:1px solid #e7ecf2!important}
@@ -211,25 +197,21 @@ h1{color:#06418a!important;-webkit-text-fill-color:#06418a!important;background:
 .conteudo-noticia{background:#fff!important;color:#1d2939!important}
 .card-noticia h2,.card-noticia h2 a{color:#172033!important;-webkit-text-fill-color:#172033!important;text-shadow:none!important;opacity:1!important}
 .card-noticia h2 a:hover{color:#06418a!important;-webkit-text-fill-color:#06418a!important}
-.descricao{color:#475467!important;text-shadow:none!important;opacity:1!important}.sinais{color:#344054!important;opacity:1!important}
 .badge{background:#edf3f8!important;color:#344054!important;border:1px solid #d6e0ea!important;-webkit-text-fill-color:#344054!important}
-.nivel{background:#fff4e8!important;color:#8a4300!important;border:1px solid #ffd19d!important;-webkit-text-fill-color:#8a4300!important}
-.fonte{color:#344054!important}.data{color:#667085!important}.rodape-card{border-top:1px solid #d8e0e9!important}
-.botao-noticia{background:#06418a!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#06418a!important;box-shadow:none!important}.botao-noticia:hover{background:#09386f!important;border-color:#09386f!important}
-.score-muito-alta{background:#fff4e8!important;color:#8a4300!important;border-color:#ffd19d!important}.score-alta,.score-media{background:#edf4fb!important;color:#06418a!important;border-color:#ccdaea!important}.score-monitorar{background:#f2f4f7!important;color:#667085!important;border-color:#e4e7ec!important}
+.data{color:#667085!important}.rodape-card{border-top:1px solid #d8e0e9!important}
+.botao-noticia{background:#06418a!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border-color:#06418a!important;box-shadow:none!important;padding:4px 10px;border-radius:6px}.botao-noticia:hover{background:#09386f!important;border-color:#09386f!important;text-decoration:none}
 footer{color:#667085!important;border-top-color:#dce3eb!important}
 </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-claro.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
+            <img src="https://www.bertoliniarmazenagem.com.br/wp-content/uploads/2024/11/bertolini-logo-cor.svg" alt="Bertolini Sistemas de Armazenagem" class="logo-bsa">
             <h1>Radar Logístico & Intralogístico</h1>
             <p class="subtitulo">Mercado, Investimentos e Tecnologias de Armazenagem</p>
-            <p class="atualizacao">Última atualização: 16/11/2026 às 13:31 | 39 notícias carregadas</p>
+            <p class="atualizacao">Última atualização: 16/11/2026 às 13:43 | 39 notícias carregadas</p>
         </header>
 
-        <!-- Filtros de Categoria -->
         <div class="filtros-container">
             <button class="btn-filtro active" data-filter="todos">Todas</button>
 <button class="btn-filtro" data-filter="intralogistica">Intralogística</button>
@@ -242,7 +224,6 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
 
         </div>
 
-        <!-- Novos Filtros de Segmento -->
         <div class="filtros-container">
             <button class="btn-filtro active" data-filter-segmento="todos">Todos os Segmentos</button>
 <button class="btn-filtro" data-filter-segmento="farmaceutico-e-higiene">Farmacêutico e Higiene</button>
@@ -261,6 +242,48 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
             
         <article class="card-noticia" data-categoria="mundo-logistica"  style="--cor-categoria: #C2410C;">
             <div class="area-imagem">
+                <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="NTC&amp;Logística prevê aumento dos fretes com novos custos a partir de 2027 - Mundo Logística" class="imagem-logo-fonte" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDMjQxMEMiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+TDwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TXVuZG8gTG9nw61zdGljYTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=';">
+            </div>
+            <div class="conteudo-noticia">
+                <span class="badge">Mundo Logística</span>
+                
+                <h2>
+                    <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxOcWQtS2ZzSEVUYzF5UnBlSTRIS04yU29KSmI3U1pGYk9scDNwR2pfY2EwX2ZEVzFKbnpmOTZJWG1ycDdKRXExQjU5RUMyZVR4WXdvaDE5RGFLRWJ4UUZoNnlZNWUtRTZrM2x5RGNaLWZ6T3ZKeGFNUkJxa3NNVi1LWEVqXzEySERlemdFdzh5c1dXWS0ycUcwa2JPR0dLSHB5N2lKRmFXeGxLUGljb1dSeg?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                        NTC&amp;Logística prevê aumento dos fretes com novos custos a partir de 2027 - Mundo Logística
+                    </a>
+                </h2>
+                <div class="rodape-card">
+                    <span class="data">🕒 16/11/2026 às 16:38</span>
+                    <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxOcWQtS2ZzSEVUYzF5UnBlSTRIS04yU29KSmI3U1pGYk9scDNwR2pfY2EwX2ZEVzFKbnpmOTZJWG1ycDdKRXExQjU5RUMyZVR4WXdvaDE5RGFLRWJ4UUZoNnlZNWUtRTZrM2x5RGNaLWZ6T3ZKeGFNUkJxa3NNVi1LWEVqXzEySERlemdFdzh5c1dXWS0ycUcwa2JPR0dLSHB5N2lKRmFXeGxLUGljb1dSeg?oc=5" target="_blank" rel="noopener" class="botao-noticia">
+                        Acessar ↗
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-noticia" data-categoria="mundo-logistica"  style="--cor-categoria: #C2410C;">
+            <div class="area-imagem">
+                <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="Maximizando o valor da Cadeia do Frio - Mundo Logística" class="imagem-logo-fonte" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDMjQxMEMiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+TDwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TXVuZG8gTG9nw61zdGljYTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=';">
+            </div>
+            <div class="conteudo-noticia">
+                <span class="badge">Mundo Logística</span>
+                
+                <h2>
+                    <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE4xMVZ1Ym9WV2ZFT0Fib2dEZEZkdGNHc1BkMHAxUGhiTHgzQXZiV0FtbUpMaHY3YTN3QXR2ZjlJeVdoaF8wWER6WmlhNlQ5NTN4QU1aUmR3bEM3WVA2LWVGWjNkcE83TFlMWmR0bmpQcTh0Ql9QZ1VyNE1jWQ?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                        Maximizando o valor da Cadeia do Frio - Mundo Logística
+                    </a>
+                </h2>
+                <div class="rodape-card">
+                    <span class="data">🕒 16/11/2026 às 16:27</span>
+                    <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE4xMVZ1Ym9WV2ZFT0Fib2dEZEZkdGNHc1BkMHAxUGhiTHgzQXZiV0FtbUpMaHY3YTN3QXR2ZjlJeVdoaF8wWER6WmlhNlQ5NTN4QU1aUmR3bEM3WVA2LWVGWjNkcE83TFlMWmR0bmpQcTh0Ql9QZ1VyNE1jWQ?oc=5" target="_blank" rel="noopener" class="botao-noticia">
+                        Acessar ↗
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card-noticia" data-categoria="mundo-logistica"  style="--cor-categoria: #C2410C;">
+            <div class="area-imagem">
                 <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="LATAM Cargo amplia em 10% capacidade no Brasil para atender à Black Friday e ao Natal - Mundo Logística" class="imagem-logo-fonte" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDMjQxMEMiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+TDwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TXVuZG8gTG9nw61zdGljYTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=';">
             </div>
             <div class="conteudo-noticia">
@@ -274,27 +297,6 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
                 <div class="rodape-card">
                     <span class="data">🕒 16/11/2026 às 15:59</span>
                     <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQLUhsSk9ETmtYQkQtc2hLUGZtVUhMM2RDYUFOOGdhWno5LXRIYVlPSE5nTzNMQVE5dW5EMHFIMHNBcmduQ28wLXJrTDFRZGlBdWNTSXE4ajd6LTlLSms0XzlMNVlKRC1LZzN2QS1uQlBCVF9XSldQVTZZN045dWlEQWdfX1NBMnl5X0JVdkJFTnJISWNINVFiRTNtRmg?oc=5" target="_blank" rel="noopener" class="botao-noticia">
-                        Acessar ↗
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <article class="card-noticia" data-categoria="mundo-logistica"  style="--cor-categoria: #C2410C;">
-            <div class="area-imagem">
-                <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="Antecipação à Reforma Tributária é oportunidade para setor - Mundo Logística" class="imagem-logo-fonte" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDMjQxMEMiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+TDwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TXVuZG8gTG9nw61zdGljYTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=';">
-            </div>
-            <div class="conteudo-noticia">
-                <span class="badge">Mundo Logística</span>
-                
-                <h2>
-                    <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQUVY1enFwdDdxblppQlhzU0hRYU44WXNVZmVLeXVsSzhjRW96eVNURzg5X2dCckNVaVBjOGtJZTFGd2tOakpLNk83WGdxeHR5empmTDhsU1lpdVBEZ3RUVEFZa0dKejUxZFZkeS1IS0dXcjY1NmpPVHY3LWs5SEhWaUYzbEpCblYyQmExZEt4Q1I1Ql9ZNEJFa0tnemRjX3pMZTdpSG40QU1jMThiS3l1N3NmVEs4Z0FH?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Antecipação à Reforma Tributária é oportunidade para setor - Mundo Logística
-                    </a>
-                </h2>
-                <div class="rodape-card">
-                    <span class="data">🕒 16/11/2026 às 15:59</span>
-                    <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQUVY1enFwdDdxblppQlhzU0hRYU44WXNVZmVLeXVsSzhjRW96eVNURzg5X2dCckNVaVBjOGtJZTFGd2tOakpLNk83WGdxeHR5empmTDhsU1lpdVBEZ3RUVEFZa0dKejUxZFZkeS1IS0dXcjY1NmpPVHY3LWs5SEhWaUYzbEpCblYyQmExZEt4Q1I1Ql9ZNEJFa0tnemRjX3pMZTdpSG40QU1jMThiS3l1N3NmVEs4Z0FH?oc=5" target="_blank" rel="noopener" class="botao-noticia">
                         Acessar ↗
                     </a>
                 </div>
@@ -465,27 +467,6 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
                 <div class="rodape-card">
                     <span class="data">🕒 28/10/2026 às 07:00</span>
                     <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxQaUpXalVJRklYcEJjNHZrcnEtZ01tdmMwRDNDdHctbzctOVZ2azcyNnRvdzBVTi13b3UtaTJTZnR1dUE3NU5mdHc5YjdkNTZWRDFwUW9LajhJX1NtS2F0dENjekwza25TX0k1bmZzcTVqUnlpU3R3RUFqMURLcERqbWtlR2ZDMlNBR0tkMlAxeGFzMFJKbmUtM2dTNmJoOEtKMnZNVA?oc=5" target="_blank" rel="noopener" class="botao-noticia">
-                        Acessar ↗
-                    </a>
-                </div>
-            </div>
-        </article>
-
-        <article class="card-noticia" data-categoria="mundo-logistica"  style="--cor-categoria: #C2410C;">
-            <div class="area-imagem">
-                <img src="https://mundologistica.com.br/images/revistamundologistica_.svg" alt="Ativa Logística amplia operação no Sul com nova unidade em Florianópolis (SC) - Mundo Logística" class="imagem-logo-fonte" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iMzIwIiB2aWV3Qm94PSIwIDAgNjAwIDMyMCI+CiAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImZ1bmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNDMjQxMEMiIC8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBmMTcyYSIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgogICAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMjAiIHJ4PSIxNiIgZmlsbD0idXJsKCNmdW5kbykiLz4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjEyMCIgcj0iNjAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiLz4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjY0IiBmaWxsPSJ3aGl0ZSI+TDwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TXVuZG8gTG9nw61zdGljYTwvdGV4dD4KICAgIDx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIGxldHRlci1zcGFjaW5nPSIyIj5SQURBUiBMT0fDjVNUSUNPPC90ZXh0Pgo8L3N2Zz4=';">
-            </div>
-            <div class="conteudo-noticia">
-                <span class="badge">Mundo Logística</span>
-                
-                <h2>
-                    <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOU1l4NmJGSWVhZmt0VlB2d05zYWk4Ykt5RTJhVkVDUGEwSnNKYjJfbzdPZk92STlaTFVSNG1WYXhCZDBvWHlJQTdzaFpGUjV4UkZIYlRha2dCS2lfN1NkWHNfcEhMaldhRURKVTg0UC1yNVpRMXQzSXc4VFg1RzR3MWJGVmpGX2w4STN2Q3FjQUZKZw?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
-                        Ativa Logística amplia operação no Sul com nova unidade em Florianópolis (SC) - Mundo Logística
-                    </a>
-                </h2>
-                <div class="rodape-card">
-                    <span class="data">🕒 27/10/2026 às 07:00</span>
-                    <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOU1l4NmJGSWVhZmt0VlB2d05zYWk4Ykt5RTJhVkVDUGEwSnNKYjJfbzdPZk92STlaTFVSNG1WYXhCZDBvWHlJQTdzaFpGUjV4UkZIYlRha2dCS2lfN1NkWHNfcEhMaldhRURKVTg0UC1yNVpRMXQzSXc4VFg1RzR3MWJGVmpGX2w4STN2Q3FjQUZKZw?oc=5" target="_blank" rel="noopener" class="botao-noticia">
                         Acessar ↗
                     </a>
                 </div>
@@ -1094,11 +1075,9 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
     </div>
 
     <script>
-        // Variáveis globais para os filtros ativos
         let filtroCategoriaAtivo = 'todos';
         let filtroSegmentoAtivo = 'todos';
 
-        // Função para atualizar a exibição dos cards
         function aplicarFiltros() {
             const cards = document.querySelectorAll('.card-noticia');
 
@@ -1107,19 +1086,9 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
                 const cardSegmentosStr = card.getAttribute('data-segmentos');
                 const cardSegmentos = cardSegmentosStr ? cardSegmentosStr.split(';') : [];
 
-                // Verifica se o card corresponde ao filtro de categoria
                 const correspondeCategoria = filtroCategoriaAtivo === 'todos' || cardCategoria === filtroCategoriaAtivo;
+                const correspondeSegmento = filtroSegmentoAtivo === 'todos' || cardSegmentos.includes(filtroSegmentoAtivo);
 
-                // Verifica se o card corresponde ao filtro de segmento
-                let correspondeSegmento = false;
-                if (filtroSegmentoAtivo === 'todos') {
-                    correspondeSegmento = true;
-                } else {
-                    // Verifica se o filtro de segmento ativo está presente nos segmentos do card
-                    correspondeSegmento = cardSegmentos.includes(filtroSegmentoAtivo);
-                }
-
-                // Mostra ou esconde o card
                 if (correspondeCategoria && correspondeSegmento) {
                     card.classList.remove('escondido');
                 } else {
@@ -1128,51 +1097,26 @@ footer{color:#667085!important;border-top-color:#dce3eb!important}
             });
         }
 
-        // Event Listeners para os botões de filtro de Categoria
         document.querySelectorAll('.btn-filtro[data-filter]').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove a classe 'active' de todos os botões de categoria
                 document.querySelectorAll('.btn-filtro[data-filter]').forEach(b => b.classList.remove('active'));
-                // Adiciona a classe 'active' ao botão clicado
                 btn.classList.add('active');
-                // Atualiza o filtro de categoria ativo
                 filtroCategoriaAtivo = btn.getAttribute('data-filter');
-                // Aplica os filtros
                 aplicarFiltros();
             });
         });
 
-        // Event Listeners para os botões de filtro de Segmento
         document.querySelectorAll('.btn-filtro[data-filter-segmento]').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove a classe 'active' de todos os botões de segmento
                 document.querySelectorAll('.btn-filtro[data-filter-segmento]').forEach(b => b.classList.remove('active'));
-                // Adiciona a classe 'active' ao botão clicado
                 btn.classList.add('active');
-                // Atualiza o filtro de segmento ativo
                 filtroSegmentoAtivo = btn.getAttribute('data-filter-segmento');
-                // Aplica os filtros
                 aplicarFiltros();
             });
         });
 
-        // Inicializa os filtros ao carregar a página
         document.addEventListener('DOMContentLoaded', () => {
-            // Define o filtro de categoria inicial como 'todos' se nenhum estiver ativo
-            const activeCategoriaBtn = document.querySelector('.btn-filtro.active[data-filter]');
-            if (!activeCategoriaBtn) {
-                document.querySelector('.btn-filtro[data-filter="todos"]').classList.add('active');
-                filtroCategoriaAtivo = 'todos';
-            }
-
-            // Define o filtro de segmento inicial como 'todos' se nenhum estiver ativo
-            const activeSegmentoBtn = document.querySelector('.btn-filtro.active[data-filter-segmento]');
-            if (!activeSegmentoBtn) {
-                document.querySelector('.btn-filtro[data-filter-segmento="todos"]').classList.add('active');
-                filtroSegmentoAtivo = 'todos';
-            }
-            
-            aplicarFiltros(); // Aplica os filtros iniciais
+            aplicarFiltros();
         });
     </script>
 </body>
