@@ -285,6 +285,137 @@ footer {
     border-top: 1px solid #cbd5e1 !important;
 }
 
+
+/* === FILTRO DE PALAVRA-CHAVE === */
+.filtro-palavra-chave-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0 auto 24px;
+    max-width: 720px;
+}
+
+.campo-busca-container {
+    position: relative;
+    flex: 1 1 320px;
+    display: flex;
+    align-items: center;
+}
+
+.icone-busca {
+    position: absolute;
+    left: 14px;
+    color: #06418a;
+    font-size: 0.95rem;
+    pointer-events: none;
+}
+
+.input-palavra-chave {
+    width: 100%;
+    padding: 10px 38px 10px 38px;
+    border-radius: 22px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    box-shadow: 0 3px 10px rgba(6, 65, 138, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+.input-palavra-chave::placeholder {
+    color: #64748b;
+    font-weight: 400;
+}
+
+.input-palavra-chave:focus {
+    border-color: #06418a;
+    box-shadow: 0 0 0 3px rgba(6, 65, 138, 0.14), inset 0 -2px 0 #F8820A;
+}
+
+.btn-limpar-busca {
+    position: absolute;
+    right: 10px;
+    background: #e2e8f0;
+    color: #334155;
+    border: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-limpar-busca.visivel {
+    display: inline-flex;
+}
+
+.btn-limpar-busca:hover {
+    background: #F8820A;
+    color: #ffffff;
+}
+
+.contador-resultados {
+    font-size: 0.85rem;
+    color: #475569;
+    font-weight: 600;
+    background: #ffffff;
+    border: 1px solid #dbe4ef;
+    padding: 8px 14px;
+    border-radius: 18px;
+    white-space: nowrap;
+}
+
+.estado-vazio-filtro {
+    grid-column: 1 / -1;
+    text-align: center;
+    background: #ffffff;
+    border: 1px dashed #94a3b8;
+    border-radius: 14px;
+    padding: 36px 20px;
+    color: #475569;
+}
+
+.estado-vazio-filtro strong {
+    display: block;
+    color: #06418a;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.btn-reset-geral {
+    margin-top: 14px;
+    background: #06418a;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-reset-geral:hover {
+    background: #F8820A;
+}
+
+mark.destaque-palavra {
+    background: rgba(248, 130, 10, 0.22);
+    color: #042c61;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -322,6 +453,22 @@ footer {
 <button class="btn-filtro" data-filter-segmento="quimica-e-distribuicao">Química e Distribuição</button>
 <button class="btn-filtro" data-filter-segmento="alimentos-e-cooperativas">Alimentos e Cooperativas</button>
 
+        </div>
+
+                <!-- Filtro por Palavra-Chave -->
+        <div class="filtro-palavra-chave-wrap" role="search" aria-label="Filtrar notícias por palavra-chave">
+            <div class="campo-busca-container">
+                <span class="icone-busca" aria-hidden="true">🔍</span>
+                <input
+                    type="text"
+                    id="filtroPalavraChave"
+                    class="input-palavra-chave"
+                    placeholder="Filtrar por palavra-chave (ex.: automação, DHL, CD, frete, farmacêutico)..."
+                    autocomplete="off"
+                >
+                <button type="button" id="limparPalavraChave" class="btn-limpar-busca" title="Limpar palavra-chave" aria-label="Limpar palavra-chave">✕</button>
+            </div>
+            <span id="contadorNoticias" class="contador-resultados" aria-live="polite">19 notícias exibidas</span>
         </div>
 
         <main class="grade-noticias" id="gridNoticias">
@@ -972,13 +1119,13 @@ footer {
                 <span class="badge">Automação</span>
                 
                 <h2>
-                    <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPelZFM09MTC1VcU9Ma2tyTmt6bmxaRVZFNU1zZlB6Mnl6S3hlYXlsbkpBNGYzOTBfNDhTX3VEZTloRUxQZE81NWJLSlptdG5pMzdxMkh1YkxPcnlaZUluemlfZThuODRSdlZNVU4xejMzTHc2RHI2WjdaRTFPTEt3T2ZIMmkzVGttaFJqcFhwZGl6Mm1NVTIxX1AwODZiOXBoRkR5cjY5NllmcW9sTG9oSExGU0ctaUtNVndsUGt5a245ekXSAdcBQVVfeXFMUC1oN283Q2hsYW5sNTJSM3JDR196cGVjNGhqLWZzRGgtakNMaGc1MVFMZGtwRmNaenlBUzlVWWhKVE9WMW9XVjBWYlNWWjJfWEg3NmZqTWxTVHlLVERYLUw5MG40SlJGSGJuS01QVnd0NzNIQkw4M1BPek1QY2hZd3pONlBxaFJiem9LY1hBR0N4dmxYS1NJWThZa0JMYy1RdmVZRUVMT01ISFZxRUVKRFo5R0daNk9xOHpBSHZmd1ViakZEeUVuajdoc1NkaVVXVkljYU5Pakk?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
+                    <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPelZFM09MTC1VcU9Ma2tyTmt6bmxaRVZFNU1zZlB6Mnl6S3hlYXlsbkpBNGYzOTBfNDhTX3VEZTloRUxQZE81NWJLSlptdG5pMzdxMkh1YkxPcnlaZUluemlfZThuODRSdlZNVU4xejMzTHc2RHI2WjdaRTFPTEt3T2ZIMmkzVGttaFJqcFhwZGl6Mm1NVTIxX1AwODZiOXBoRkR5cjY5NllmcW9sTG9oSExGU0ctaUtNVndsUGt5a245ekXSAdcBQVVfeXFMTWV2d282OXh0QnZhTGRwM1hsTm9BZmZXZXVBWGI5RlBaM2NHZzVGdVFYcTdGZGlWX2RPUTJlZlNiZll2R2pPTlF4SVI5MHU4cC1jaVNIQVV1TWVMdmxSOUZMcnFFaE02bjJ5Sld1OXJNVzUzRjJxV3dTUEYxMjNNQTlMakNUZXpGV1ViRm0yWHZhbURKOVBtYTZZN1VQM0I4VEhpdU15NkVnRmZBcVVaeklzM3RxMndqdXhvcnFqRnl1eG1jQ191MTRWTlFJemNtcTMzNERORkRCcm8zQjk2cVptMFh5R3p5elFzYzFvNkxjMjZ5YUdHYlJhVXB2cUdv?oc=5" target="_blank" rel="noopener" class="titulo-noticia">
                         Automação em logística ganha relevância em momento de pressão de custos, diz Infor - Bloomberg Línea Brasil
                     </a>
                 </h2>
                 <div class="rodape-card">
                     <span class="data">🕒 30/12/2025 às 08:00</span>
-                    <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPelZFM09MTC1VcU9Ma2tyTmt6bmxaRVZFNU1zZlB6Mnl6S3hlYXlsbkpBNGYzOTBfNDhTX3VEZTloRUxQZE81NWJLSlptdG5pMzdxMkh1YkxPcnlaZUluemlfZThuODRSdlZNVU4xejMzTHc2RHI2WjdaRTFPTEt3T2ZIMmkzVGttaFJqcFhwZGl6Mm1NVTIxX1AwODZiOXBoRkR5cjY5NllmcW9sTG9oSExGU0ctaUtNVndsUGt5a245ekXSAdcBQVVfeXFMUC1oN283Q2hsYW5sNTJSM3JDR196cGVjNGhqLWZzRGgtakNMaGc1MVFMZGtwRmNaenlBUzlVWWhKVE9WMW9XVjBWYlNWWjJfWEg3NmZqTWxTVHlLVERYLUw5MG40SlJGSGJuS01QVnd0NzNIQkw4M1BPek1QY2hZd3pONlBxaFJiem9LY1hBR0N4dmxYS1NJWThZa0JMYy1RdmVZRUVMT01ISFZxRUVKRFo5R0daNk9xOHpBSHZmd1ViakZEeUVuajdoc1NkaVVXVkljYU5Pakk?oc=5" target="_blank" rel="noopener" class="botao-noticia">
+                    <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPelZFM09MTC1VcU9Ma2tyTmt6bmxaRVZFNU1zZlB6Mnl6S3hlYXlsbkpBNGYzOTBfNDhTX3VEZTloRUxQZE81NWJLSlptdG5pMzdxMkh1YkxPcnlaZUluemlfZThuODRSdlZNVU4xejMzTHc2RHI2WjdaRTFPTEt3T2ZIMmkzVGttaFJqcFhwZGl6Mm1NVTIxX1AwODZiOXBoRkR5cjY5NllmcW9sTG9oSExGU0ctaUtNVndsUGt5a245ekXSAdcBQVVfeXFMTWV2d282OXh0QnZhTGRwM1hsTm9BZmZXZXVBWGI5RlBaM2NHZzVGdVFYcTdGZGlWX2RPUTJlZlNiZll2R2pPTlF4SVI5MHU4cC1jaVNIQVV1TWVMdmxSOUZMcnFFaE02bjJ5Sld1OXJNVzUzRjJxV3dTUEYxMjNNQTlMakNUZXpGV1ViRm0yWHZhbURKOVBtYTZZN1VQM0I4VEhpdU15NkVnRmZBcVVaeklzM3RxMndqdXhvcnFqRnl1eG1jQ191MTRWTlFJemNtcTMzNERORkRCcm8zQjk2cVptMFh5R3p5elFzYzFvNkxjMjZ5YUdHYlJhVXB2cUdv?oc=5" target="_blank" rel="noopener" class="botao-noticia">
                         Acessar ↗
                     </a>
                 </div>
@@ -1161,86 +1308,222 @@ footer {
         </footer>
     </div>
 
-    <script>
+        <script>
         // Variáveis globais para os filtros ativos
         let filtroCategoriaAtivo = 'todos';
         let filtroSegmentoAtivo = 'todos';
+        let filtroPalavraChaveAtivo = '';
+
+        // Normaliza texto removendo acentos e convertendo para minúsculas
+        function normalizarTexto(texto) {
+            return (texto || '')
+                .toString()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+        }
+
+        // Escapa caracteres especiais para uso seguro em RegExp
+        function escaparRegex(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        // Destaca ou restaura o título da notícia conforme a palavra-chave
+        function atualizarDestaqueTitulo(linkEl, termoRaw) {
+            if (!linkEl) return;
+            if (!linkEl.dataset.tituloOriginal) {
+                linkEl.dataset.tituloOriginal = linkEl.textContent.trim();
+            }
+            const original = linkEl.dataset.tituloOriginal;
+            const termoLimpo = (termoRaw || '').trim();
+
+            if (!termoLimpo) {
+                linkEl.textContent = original;
+                return;
+            }
+
+            const termos = termoLimpo.split(/\s+/).filter(Boolean).map(escaparRegex);
+            if (termos.length === 0) {
+                linkEl.textContent = original;
+                return;
+            }
+
+            const regex = new RegExp(`(${termos.join('|')})`, 'gi');
+            const partes = original.split(regex);
+            const fragmento = document.createDocumentFragment();
+
+            partes.forEach(parte => {
+                if (!parte) return;
+                if (new RegExp(`^(${termos.join('|')})$`, 'i').test(parte)) {
+                    const mark = document.createElement('mark');
+                    mark.className = 'destaque-palavra';
+                    mark.textContent = parte;
+                    fragmento.appendChild(mark);
+                } else {
+                    fragmento.appendChild(document.createTextNode(parte));
+                }
+            });
+
+            linkEl.textContent = '';
+            linkEl.appendChild(fragmento);
+        }
 
         // Função para atualizar a exibição dos cards
         function aplicarFiltros() {
             const cards = document.querySelectorAll('.card-noticia');
+            const grid = document.getElementById('gridNoticias');
+            const contadorEl = document.getElementById('contadorNoticias');
+            const limparBtn = document.getElementById('limparPalavraChave');
+
+            const termosBusca = normalizarTexto(filtroPalavraChaveAtivo)
+                .split(/\s+/)
+                .filter(Boolean);
+
+            if (limparBtn) {
+                limparBtn.classList.toggle('visivel', filtroPalavraChaveAtivo.trim().length > 0);
+            }
+
+            let visiveis = 0;
 
             cards.forEach(card => {
                 const cardCategoria = card.getAttribute('data-categoria');
                 const cardSegmentosStr = card.getAttribute('data-segmentos');
                 const cardSegmentos = cardSegmentosStr ? cardSegmentosStr.split(';') : [];
 
-                // Verifica se o card corresponde ao filtro de categoria
+                const tituloLink = card.querySelector('.titulo-noticia');
+                const tituloTexto = tituloLink ? (tituloLink.dataset.tituloOriginal || tituloLink.textContent) : '';
+                const badgeTexto = card.querySelector('.badge')?.textContent || '';
+                const segmentosTexto = Array.from(card.querySelectorAll('.segmento-badge'))
+                    .map(el => el.textContent)
+                    .join(' ');
+                const dataTexto = card.querySelector('.data')?.textContent || '';
+
+                const textoPesquisavel = normalizarTexto(
+                    `${tituloTexto} ${badgeTexto} ${segmentosTexto} ${dataTexto} ${cardCategoria || ''} ${cardSegmentosStr || ''}`
+                );
+
                 const correspondeCategoria = filtroCategoriaAtivo === 'todos' || cardCategoria === filtroCategoriaAtivo;
 
-                // Verifica se o card corresponde ao filtro de segmento
                 let correspondeSegmento = false;
                 if (filtroSegmentoAtivo === 'todos') {
                     correspondeSegmento = true;
                 } else {
-                    // Verifica se o filtro de segmento ativo está presente nos segmentos do card
                     correspondeSegmento = cardSegmentos.includes(filtroSegmentoAtivo);
                 }
 
-                // Mostra ou esconde o card
-                if (correspondeCategoria && correspondeSegmento) {
+                const correspondePalavraChave = termosBusca.length === 0 ||
+                    termosBusca.every(termo => textoPesquisavel.includes(termo));
+
+                if (correspondeCategoria && correspondeSegmento && correspondePalavraChave) {
                     card.classList.remove('escondido');
+                    atualizarDestaqueTitulo(tituloLink, filtroPalavraChaveAtivo);
+                    visiveis++;
                 } else {
                     card.classList.add('escondido');
+                    atualizarDestaqueTitulo(tituloLink, '');
                 }
+            });
+
+            if (contadorEl) {
+                const total = cards.length;
+                contadorEl.textContent = visiveis === total
+                    ? `${total} notícias exibidas`
+                    : `${visiveis} de ${total} notícias exibidas`;
+            }
+
+            let vazioEl = document.getElementById('estadoVazioFiltro');
+            if (visiveis === 0 && grid) {
+                if (!vazioEl) {
+                    vazioEl = document.createElement('div');
+                    vazioEl.id = 'estadoVazioFiltro';
+                    vazioEl.className = 'estado-vazio-filtro';
+                    vazioEl.innerHTML = `
+                        <strong>Nenhuma notícia encontrada com os filtros atuais</strong>
+                        <span>Tente outra palavra-chave ou limpe os filtros de categoria e segmento.</span>
+                        <br>
+                        <button type="button" id="btnResetGeral" class="btn-reset-geral">Limpar todos os filtros</button>
+                    `;
+                    grid.appendChild(vazioEl);
+
+                    document.getElementById('btnResetGeral').addEventListener('click', () => {
+                        filtroCategoriaAtivo = 'todos';
+                        filtroSegmentoAtivo = 'todos';
+                        filtroPalavraChaveAtivo = '';
+
+                        const inputBusca = document.getElementById('filtroPalavraChave');
+                        if (inputBusca) inputBusca.value = '';
+
+                        document.querySelectorAll('.btn-filtro[data-filter]').forEach(b => {
+                            b.classList.toggle('active', b.getAttribute('data-filter') === 'todos');
+                        });
+                        document.querySelectorAll('.btn-filtro[data-filter-segmento]').forEach(b => {
+                            b.classList.toggle('active', b.getAttribute('data-filter-segmento') === 'todos');
+                        });
+
+                        aplicarFiltros();
+                    });
+                } else {
+                    vazioEl.classList.remove('escondido');
+                }
+            } else if (vazioEl) {
+                vazioEl.classList.add('escondido');
+            }
+        }
+
+        const inputPalavraChave = document.getElementById('filtroPalavraChave');
+        const btnLimparPalavraChave = document.getElementById('limparPalavraChave');
+
+        if (inputPalavraChave) {
+            inputPalavraChave.addEventListener('input', (e) => {
+                filtroPalavraChaveAtivo = e.target.value;
+                aplicarFiltros();
             });
         }
 
-        // Event Listeners para os botões de filtro de Categoria
+        if (btnLimparPalavraChave) {
+            btnLimparPalavraChave.addEventListener('click', () => {
+                filtroPalavraChaveAtivo = '';
+                if (inputPalavraChave) {
+                    inputPalavraChave.value = '';
+                    inputPalavraChave.focus();
+                }
+                aplicarFiltros();
+            });
+        }
+
         document.querySelectorAll('.btn-filtro[data-filter]').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove a classe 'active' de todos os botões de categoria
                 document.querySelectorAll('.btn-filtro[data-filter]').forEach(b => b.classList.remove('active'));
-                // Adiciona a classe 'active' ao botão clicado
                 btn.classList.add('active');
-                // Atualiza o filtro de categoria ativo
                 filtroCategoriaAtivo = btn.getAttribute('data-filter');
-                // Aplica os filtros
                 aplicarFiltros();
             });
         });
 
-        // Event Listeners para os botões de filtro de Segmento
         document.querySelectorAll('.btn-filtro[data-filter-segmento]').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove a classe 'active' de todos os botões de segmento
                 document.querySelectorAll('.btn-filtro[data-filter-segmento]').forEach(b => b.classList.remove('active'));
-                // Adiciona a classe 'active' ao botão clicado
                 btn.classList.add('active');
-                // Atualiza o filtro de segmento ativo
                 filtroSegmentoAtivo = btn.getAttribute('data-filter-segmento');
-                // Aplica os filtros
                 aplicarFiltros();
             });
         });
 
-        // Inicializa os filtros ao carregar a página
         document.addEventListener('DOMContentLoaded', () => {
-            // Define o filtro de categoria inicial como 'todos' se nenhum estiver ativo
             const activeCategoriaBtn = document.querySelector('.btn-filtro.active[data-filter]');
             if (!activeCategoriaBtn) {
                 document.querySelector('.btn-filtro[data-filter="todos"]').classList.add('active');
                 filtroCategoriaAtivo = 'todos';
             }
 
-            // Define o filtro de segmento inicial como 'todos' se nenhum estiver ativo
             const activeSegmentoBtn = document.querySelector('.btn-filtro.active[data-filter-segmento]');
             if (!activeSegmentoBtn) {
                 document.querySelector('.btn-filtro[data-filter-segmento="todos"]').classList.add('active');
                 filtroSegmentoAtivo = 'todos';
             }
-            
-            aplicarFiltros(); // Aplica os filtros iniciais
+
+            aplicarFiltros();
         });
     </script>
 </body>
